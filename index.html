@@ -1158,20 +1158,15 @@
       flex-wrap: wrap;
     }
     .pipeline-bar .pb-label {
-      font-family: "IBM Plex Mono", Consolas, monospace;
-      font-size: .58rem;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      color: var(--steel);
       display: flex;
       align-items: center;
-      gap: 8px;
+      flex: 0 0 auto;
     }
     .pipeline-bar .pb-label::before {
       content: "";
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: var(--steel);
+      background: var(--sage);
     }
     .pipeline-bar .pb-items {
       display: flex;
@@ -1560,7 +1555,7 @@
 
     <div class="pipeline-bar">
       <div class="pb-main">
-        <div class="pb-label">At a glance</div>
+        <div class="pb-label" aria-hidden="true"></div>
         <div class="pb-items">
           <div class="pb-item">Primary source <strong>Mandiant / Google TI</strong></div>
           <div class="pb-item">Reports indexed <strong>371</strong></div>
