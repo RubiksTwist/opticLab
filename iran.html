@@ -630,6 +630,34 @@
       vertical-align: middle;
       margin-left: 3px;
     }
+    .site-footer {
+      max-width: var(--wide);
+      margin: 64px auto 0;
+      padding: 24px 24px 0;
+      border-top: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-family: "IBM Plex Mono", Consolas, monospace;
+      font-size: .58rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--muted);
+    }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .site-footer a {
+      color: var(--steel);
+    }
+    .site-footer a:hover {
+      text-decoration: underline;
+    }
 
     @media (max-width: 900px) {
       .technique-flow { grid-template-columns: repeat(2, 1fr); }
@@ -637,6 +665,7 @@
       .timeline-track { grid-template-columns: repeat(2, 1fr); }
       .section-body-wrap { flex-direction: column; }
       .section-sources { width: 100%; position: static; }
+      .site-footer { padding-left: 16px; padding-right: 16px; }
     }
     @media (max-width: 600px) {
       .hero { padding: 36px 16px 30px; }
@@ -920,6 +949,15 @@
   <div class="source-list" id="source-list"></div>
 
 </div><!-- /article-wrap -->
+
+<footer class="site-footer">
+  <div>OPTIC Lab - Open Provenance Threat Intelligence Corpus</div>
+  <div class="footer-links">
+    <a href="https://github.com/RubiksTwist/opticLab" target="_blank" rel="noopener">Dataset on GitHub</a>
+    <a href="https://www.linkedin.com/in/alex-cheung-878632290/" target="_blank" rel="noopener">Alex Cheung on LinkedIn</a>
+  </div>
+  <div>Not affiliated with Google, Mandiant, or MITRE. Code is MIT licensed; written content and data are CC BY-NC 4.0.</div>
+</footer>
 
 <script>
 // ── Data ─────────────────────────────────────────────────────────────────────

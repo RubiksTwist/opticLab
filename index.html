@@ -1232,6 +1232,18 @@
       letter-spacing: .05em;
       color: var(--muted);
     }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    footer a {
+      color: var(--steel);
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
 
     /* â”€â”€ Responsive â”€â”€ */
     @media (max-width: 860px) {
@@ -1521,6 +1533,10 @@
     <!-- Footer -->
     <footer>
       <div>OPTIC Lab - Open Provenance Threat Intelligence Corpus</div>
+      <div class="footer-links">
+        <a href="https://github.com/RubiksTwist/opticLab" target="_blank" rel="noopener">Dataset on GitHub</a>
+        <a href="https://www.linkedin.com/in/alex-cheung-878632290/" target="_blank" rel="noopener">Alex Cheung on LinkedIn</a>
+      </div>
       <div>Not affiliated with Google, Mandiant, or MITRE. Code is MIT licensed; written content and data are CC BY-NC 4.0.</div>
     </footer>
 
