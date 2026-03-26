@@ -50,20 +50,42 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 12px 24px;
+      padding: 12px 28px;
       border-bottom: 1px solid var(--line);
       background: rgba(237,241,241,.92);
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(16px);
       font-family: "IBM Plex Mono", Consolas, monospace;
-      font-size: .64rem;
+      font-size: .63rem;
       text-transform: uppercase;
       letter-spacing: .05em;
       color: var(--muted);
     }
-    .topnav { display: flex; gap: 18px; flex-wrap: wrap; }
+    .topbar-brand {
+      color: var(--steel);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .topbar-brand::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--signal);
+      flex-shrink: 0;
+    }
+    .topnav { display: flex; gap: 20px; flex-wrap: wrap; }
     .topnav a { color: var(--muted); transition: color .15s; }
     .topnav a:hover { color: var(--ink); }
-    .topbar-brand { color: var(--steel); font-weight: 500; }
+    .topbar-tag {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--steel-soft);
+      color: var(--steel);
+      font-size: .56rem;
+    }
 
     /* ── Hero ── */
     .hero {
@@ -660,6 +682,12 @@
     }
 
     @media (max-width: 900px) {
+      .topbar {
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+      .topbar-tag { display: none; }
+      .topnav { width: 100%; gap: 14px; }
       .technique-flow { grid-template-columns: repeat(2, 1fr); }
       .operator-grid { grid-template-columns: 1fr; }
       .timeline-track { grid-template-columns: repeat(2, 1fr); }
@@ -683,7 +711,10 @@
 
 <!-- ── Topbar ── -->
 <header class="topbar">
-  <a class="topbar-brand" href="/">OPTIC Lab · Open Provenance Threat Intelligence Corpus</a>
+  <a class="topbar-brand" href="/">
+    OPTIC Lab
+    <span class="topbar-tag">Open Provenance Threat Intelligence Corpus</span>
+  </a>
   <nav class="topnav">
     <a href="#target-map">Iran's Target Map</a>
     <a href="#escalation">Escalation</a>
@@ -692,7 +723,6 @@
     <a href="#decisions">Decisions</a>
     <a href="#sources">Sources</a>
   </nav>
-  <span>Iran · 13 reports · 2017–2025</span>
 </header>
 
 <!-- ── Hero ── -->
