@@ -1144,16 +1144,16 @@
       border: 1px solid rgba(41,90,111,.2);
       background: var(--steel-soft);
       display: flex;
-      align-items: flex-start;
-      justify-content: flex-start;
+      align-items: center;
+      justify-content: space-between;
       flex-wrap: wrap;
       gap: 16px;
     }
     .pipeline-bar .pb-main {
       display: flex;
       align-items: center;
-      gap: 16px 24px;
-      flex: 1 1 100%;
+      gap: 16px 20px;
+      flex: 1 1 auto;
       min-width: 0;
       flex-wrap: wrap;
     }
@@ -1170,8 +1170,10 @@
     }
     .pipeline-bar .pb-items {
       display: flex;
-      gap: 24px;
+      gap: 18px;
       flex-wrap: wrap;
+      flex: 1 1 auto;
+      min-width: 0;
     }
     .pipeline-bar .pb-item {
       font-family: "IBM Plex Mono", Consolas, monospace;
