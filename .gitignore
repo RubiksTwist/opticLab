@@ -1,0 +1,2 @@
+release-assets/*.dump
+release-assets/*.sql.gz
