@@ -1181,6 +1181,20 @@
       color: var(--ink);
       font-weight: 500;
     }
+    .pipeline-bar .pb-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(41,90,111,.2);
+      background: rgba(41,90,111,.08);
+      color: var(--steel);
+      font-weight: 500;
+    }
+    .pipeline-bar .pb-link:hover {
+      background: rgba(41,90,111,.14);
+    }
 
     /* â”€â”€ Quote verification banner â”€â”€ */
     .verify-banner {
@@ -1526,6 +1540,7 @@
         <div class="pb-item">Primary source <strong>Mandiant / Google TI</strong></div>
         <div class="pb-item">Reports indexed <strong>371</strong></div>
         <div class="pb-item">Core strength <strong>source-linked findings</strong></div>
+        <div class="pb-item"><a class="pb-link" href="https://github.com/RubiksTwist/opticLab/releases" target="_blank" rel="noopener">Download dataset</a></div>
         <div class="pb-item">Updated <strong>Mar 25, 2026</strong></div>
       </div>
     </div>
@@ -1534,7 +1549,7 @@
     <footer>
       <div>OPTIC Lab - Open Provenance Threat Intelligence Corpus</div>
       <div class="footer-links">
-        <a href="https://github.com/RubiksTwist/opticLab" target="_blank" rel="noopener">Dataset on GitHub</a>
+        <a href="https://github.com/RubiksTwist/opticLab/releases" target="_blank" rel="noopener">Download dataset</a>
         <a href="https://www.linkedin.com/in/alex-cheung-878632290/" target="_blank" rel="noopener">Alex Cheung on LinkedIn</a>
       </div>
       <div>Not affiliated with Google, Mandiant, or MITRE. Code is MIT licensed; written content and data are CC BY-NC 4.0.</div>
