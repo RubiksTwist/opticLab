@@ -7,7 +7,7 @@ This folder is intended to become the public GitHub repo contents for the databa
 ## Included
 
 - `index.html`: static dashboard for the March 25, 2026 OPTIC snapshot.
-- `optic_iran_v2.html`: companion report linked from the dashboard.
+- `iran.html`: companion report linked from the dashboard and served as `/iran` on Cloudflare Pages.
 - `schema.sql`: PostgreSQL DDL for the OPTIC schema.
 - `schema-overview.md`: table-by-table explanation of the data model.
 - `release-assets/optic-postgres-2026-03-25.dump`: PostgreSQL custom-format dump for the public release.
@@ -48,6 +48,12 @@ pg_restore --clean --if-exists --no-owner --no-privileges -d opticlab release-as
 ```
 
 If you only want to inspect the schema before restoring data, review `schema.sql` directly or apply it to an empty database first.
+
+## Licensing
+
+Frontend and schema code in this repository are licensed under the MIT License. Database snapshots, release assets, and written analytical content in this repository are licensed under CC BY-NC 4.0.
+
+Underlying source reporting, trademarks, and third-party intelligence content remain the property of their respective owners, including Mandiant / Google Threat Intelligence.
 
 ## Release Notes
 
