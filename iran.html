@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Patient Operators: Iran's Cyber Operations, 2017–2025 | OPTIC Lab — Open Provenance Threat Intelligence Corpus</title>
+  <title>Patient Operators: Iran's Cyber Operations, 2017&ndash;2025 | OPTIC Lab &mdash; Open Provenance Threat Intelligence Corpus</title>
   <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +22,24 @@
       --signal-soft: rgba(194,74,58,.10);
       --amber: #c88b2a;
       --amber-soft: rgba(200,139,42,.10);
+      --apt33: #b5651d;
+      --apt33-rgb: 181,101,29;
+      --apt34: #3a7d44;
+      --apt34-rgb: 58,125,68;
+      --apt39: #7b4b8a;
+      --apt39-rgb: 123,75,138;
+      --apt42: #a03c64;
+      --apt42-rgb: 160,60,100;
+      --unc788: #8b3a3a;
+      --unc788-rgb: 139,58,58;
+      --unc1549: #1a7a7a;
+      --unc1549-rgb: 26,122,122;
+      --unc1860: #4a6084;
+      --unc1860-rgb: 74,96,132;
+      --unc3890: #b06040;
+      --unc3890-rgb: 176,96,64;
+      --muddywater: #8a7328;
+      --muddywater-rgb: 138,115,40;
       --shadow: 0 18px 50px rgba(31,48,58,.09);
       --read: 720px;
       --wide: 1080px;
@@ -41,7 +59,7 @@
     h1, h2, h3, h4, p { margin: 0; }
     a { color: inherit; text-decoration: none; }
 
-    /* ── Topbar ── */
+    /* -- Topbar -- */
     .topbar {
       position: sticky;
       top: 0;
@@ -87,7 +105,7 @@
       font-size: .56rem;
     }
 
-    /* ── Hero ── */
+    /* -- Hero -- */
     .hero {
       padding: 56px 24px 44px;
       text-align: center;
@@ -140,7 +158,7 @@
       color: var(--muted);
     }
 
-    /* ── Stat rail ── */
+    /* -- Stat rail -- */
     .stat-rail {
       display: flex;
       gap: 16px;
@@ -184,7 +202,7 @@
       line-height: 1.4;
     }
 
-    /* ── Context banner ── */
+    /* -- Context banner -- */
     .context-banner {
       max-width: var(--wide);
       margin: 0 auto 0;
@@ -208,8 +226,13 @@
       display: block;
       margin-bottom: 4px;
     }
+    .context-block + .context-block {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(194,74,58,.18);
+    }
 
-    /* ── Article prose ── */
+    /* -- Article prose -- */
     .article-wrap {
       max-width: var(--wide);
       margin: 0 auto;
@@ -224,6 +247,7 @@
       line-height: 1.8;
     }
     .article-body p + p { margin-top: 20px; }
+    .article-body-spacious p + p { margin-top: 26px; }
     .article-body strong { font-weight: 700; color: var(--ink); }
 
     .section-header {
@@ -251,7 +275,7 @@
     .section-header + figure { margin-top: 22px; }
     figure + .article-body { margin-top: 24px; }
 
-    /* ── Figures ── */
+    /* -- Figures -- */
     figure {
       margin: 36px 0 0;
       padding: 24px;
@@ -288,7 +312,7 @@
       white-space: nowrap;
     }
 
-    /* ── Target matrix ── */
+    /* -- Target matrix -- */
     .matrix-table {
       width: 100%;
       border-collapse: collapse;
@@ -338,8 +362,9 @@
       display: inline-block;
       padding: 3px 8px;
       border-radius: 999px;
-      background: var(--signal-soft);
-      color: var(--signal);
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
       font-family: "IBM Plex Mono", Consolas, monospace;
       font-size: .6rem;
       text-transform: uppercase;
@@ -347,16 +372,21 @@
       margin: 2px 2px 0 0;
     }
     .conf-badge {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(24,33,38,.06);
+      border: 1px solid rgba(24,33,38,.08);
       font-family: "IBM Plex Mono", Consolas, monospace;
       font-size: .6rem;
       color: var(--muted);
     }
 
-    /* ── Timeline ── */
+    /* -- Timeline -- */
     .timeline-track {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
       gap: 12px;
       align-items: end;
     }
@@ -398,7 +428,7 @@
       line-height: 1.4;
     }
 
-    /* ── Technique sequence ── */
+    /* -- Technique sequence -- */
     .technique-flow {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -457,7 +487,7 @@
       white-space: nowrap;
     }
 
-    /* ── Operator lanes ── */
+    /* -- Operator lanes -- */
     .operator-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -480,6 +510,7 @@
     }
     .op-tag.surveillance { background: var(--signal-soft); color: var(--signal); }
     .op-tag.access { background: var(--steel-soft); color: var(--steel); }
+    .op-tag.coordination { background: rgba(var(--muddywater-rgb), .12); color: var(--muddywater); }
     .op-tag.pressure { background: var(--amber-soft); color: var(--amber); }
     .op-tag.disruption { background: rgba(24,33,38,.07); color: var(--muted); }
     .op-card h4 {
@@ -508,7 +539,8 @@
       letter-spacing: .04em;
       padding: 3px 8px;
       border-radius: 999px;
-      border: 1px solid var(--line);
+      border: 1px solid transparent;
+      background: transparent;
       color: var(--muted);
     }
     .op-tenure {
@@ -519,8 +551,14 @@
       letter-spacing: .04em;
       color: var(--muted);
     }
+    .op-note {
+      margin-top: 10px;
+      font-size: .84rem;
+      color: var(--steel);
+      line-height: 1.45;
+    }
 
-    /* ── Source record ── */
+    /* -- Source record -- */
     .source-list { display: grid; gap: 10px; }
     .source-row {
       display: grid;
@@ -532,6 +570,10 @@
       border: 1px solid var(--line);
       background: rgba(255,255,255,.7);
     }
+    .source-row.supplemental {
+      border-left: 3px solid rgba(200,139,42,.55);
+      padding-left: 13px;
+    }
     .source-date {
       font-family: "IBM Plex Mono", Consolas, monospace;
       font-size: .6rem;
@@ -540,6 +582,14 @@
       color: var(--muted);
       padding-top: 2px;
     }
+    .source-type {
+      display: block;
+      margin-top: 6px;
+      font-size: .56rem;
+      letter-spacing: .06em;
+    }
+    .source-type.seed { color: var(--signal); }
+    .source-type.supplemental { color: var(--amber); }
     .source-title {
       font-family: "Bricolage Grotesque", "Segoe UI", sans-serif;
       font-size: .96rem;
@@ -552,6 +602,23 @@
       margin-top: 4px;
       line-height: 1.4;
     }
+    .source-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .source-stat {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(24,33,38,.06);
+      border: 1px solid rgba(24,33,38,.08);
+      font-family: "IBM Plex Mono", Consolas, monospace;
+      font-size: .56rem;
+      color: var(--muted);
+    }
     .source-link {
       font-family: "IBM Plex Mono", Consolas, monospace;
       font-size: .58rem;
@@ -562,6 +629,77 @@
       padding-top: 2px;
     }
     .source-link:hover { text-decoration: underline; }
+
+    .methodology-panel {
+      margin-top: 16px;
+      padding: 18px 20px 20px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.72);
+      box-shadow: var(--shadow);
+      scroll-margin-top: 88px;
+    }
+    .methodology-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .methodology-kicker {
+      font-family: "IBM Plex Mono", Consolas, monospace;
+      font-size: .58rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--signal);
+    }
+    .methodology-panel h3 {
+      margin-top: 6px;
+      font-family: "Bricolage Grotesque", "Segoe UI", sans-serif;
+      font-size: 1.15rem;
+      line-height: 1.05;
+      letter-spacing: -.03em;
+    }
+    .methodology-meta {
+      font-family: "IBM Plex Mono", Consolas, monospace;
+      font-size: .58rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--muted);
+    }
+    .methodology-intro {
+      margin-top: 12px;
+      max-width: 72ch;
+      font-size: .95rem;
+      line-height: 1.65;
+      color: rgba(24,33,38,.82);
+    }
+    .methodology-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .methodology-item {
+      padding: 14px 14px 15px;
+      border-radius: 14px;
+      border: 1px solid rgba(24,33,38,.09);
+      background: rgba(247,248,246,.88);
+    }
+    .methodology-item strong {
+      display: block;
+      font-family: "IBM Plex Mono", Consolas, monospace;
+      font-size: .58rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--steel);
+    }
+    .methodology-item p {
+      margin-top: 7px;
+      font-size: .88rem;
+      line-height: 1.55;
+      color: rgba(24,33,38,.82);
+    }
 
     .inline-cite {
       display: inline-flex;
@@ -583,7 +721,36 @@
       text-decoration: none;
     }
 
-    /* ── Body + sources sidebar layout ── */
+    .actor-apt33 { color: var(--apt33); }
+    .actor-apt34 { color: var(--apt34); }
+    .actor-apt39 { color: var(--apt39); }
+    .actor-apt42 { color: var(--apt42); }
+    .actor-unc788 { color: var(--unc788); }
+    .actor-unc1549 { color: var(--unc1549); }
+    .actor-unc1860 { color: var(--unc1860); }
+    .actor-unc3890 { color: var(--unc3890); }
+    .actor-muddywater { color: var(--muddywater); }
+
+    .actor-chip.actor-apt33,
+    .op-actor.actor-apt33 { color: var(--apt33); background: rgba(var(--apt33-rgb), .10); border-color: rgba(var(--apt33-rgb), .18); }
+    .actor-chip.actor-apt34,
+    .op-actor.actor-apt34 { color: var(--apt34); background: rgba(var(--apt34-rgb), .10); border-color: rgba(var(--apt34-rgb), .18); }
+    .actor-chip.actor-apt39,
+    .op-actor.actor-apt39 { color: var(--apt39); background: rgba(var(--apt39-rgb), .10); border-color: rgba(var(--apt39-rgb), .18); }
+    .actor-chip.actor-apt42,
+    .op-actor.actor-apt42 { color: var(--apt42); background: rgba(var(--apt42-rgb), .10); border-color: rgba(var(--apt42-rgb), .18); }
+    .actor-chip.actor-unc788,
+    .op-actor.actor-unc788 { color: var(--unc788); background: rgba(var(--unc788-rgb), .10); border-color: rgba(var(--unc788-rgb), .18); }
+    .actor-chip.actor-unc1549,
+    .op-actor.actor-unc1549 { color: var(--unc1549); background: rgba(var(--unc1549-rgb), .10); border-color: rgba(var(--unc1549-rgb), .18); }
+    .actor-chip.actor-unc1860,
+    .op-actor.actor-unc1860 { color: var(--unc1860); background: rgba(var(--unc1860-rgb), .10); border-color: rgba(var(--unc1860-rgb), .18); }
+    .actor-chip.actor-unc3890,
+    .op-actor.actor-unc3890 { color: var(--unc3890); background: rgba(var(--unc3890-rgb), .10); border-color: rgba(var(--unc3890-rgb), .18); }
+    .actor-chip.actor-muddywater,
+    .op-actor.actor-muddywater { color: var(--muddywater); background: rgba(var(--muddywater-rgb), .10); border-color: rgba(var(--muddywater-rgb), .18); }
+
+    /* -- Body + sources sidebar layout -- */
     .section-body-wrap {
       display: flex;
       gap: 44px;
@@ -605,7 +772,7 @@
       top: 72px;
     }
 
-    /* ── Quote card (sidebar) ── */
+    /* -- Quote card (sidebar) -- */
     .section-source-card {
       padding: 14px 0;
       border-top: 1px solid rgba(24,33,38,.11);
@@ -638,7 +805,7 @@
     }
     .section-source-link:hover { text-decoration: underline; }
 
-    /* ── Graded claim inline ── */
+    /* -- Graded claim inline -- */
     .graded {
       display: inline-block;
       font-family: "IBM Plex Mono", Consolas, monospace;
@@ -693,6 +860,7 @@
       .timeline-track { grid-template-columns: repeat(2, 1fr); }
       .section-body-wrap { flex-direction: column; }
       .section-sources { width: 100%; position: static; }
+      .methodology-grid { grid-template-columns: 1fr; }
       .site-footer { padding-left: 16px; padding-right: 16px; }
     }
     @media (max-width: 600px) {
@@ -709,7 +877,7 @@
 </head>
 <body>
 
-<!-- ── Topbar ── -->
+<!-- -- Topbar -- -->
 <header class="topbar">
   <a class="topbar-brand" href="/">
     OPTIC Lab
@@ -725,49 +893,50 @@
   </nav>
 </header>
 
-<!-- ── Hero ── -->
+<!-- -- Hero -- -->
 <div class="hero">
   <div class="hero-inner">
-    <div class="strap">Iran · Threat Feature · Open Provenance Threat Intelligence Corpus · March 2026</div>
+    <div class="strap">Iran &middot; Threat Feature &middot; Open Provenance Threat Intelligence Corpus &middot; March 2026</div>
     <h1 class="hero-title">Patient <em>Operators</em></h1>
-    <p class="hero-sub">Iran's Cyber Operations, 2017–2025</p>
-    <p class="hero-lede">Iran's state-linked operators spent eight years building quiet access inside government ministries, aerospace companies, energy infrastructure, and telecommunications networks across four continents. Thirteen published reports, September 2017 through November 2025, document how that access was established, maintained, and applied — consistently below the threshold at which most organizations recognize they have a problem.</p>
-    <div class="hero-meta">13 Mandiant reports · OPTIC graded dataset · Seed corpus as of March 25, 2026</div>
+    <p class="hero-sub">Iran's Cyber Operations, 2017&ndash;2025</p>
+    <p class="hero-lede">Published threat intelligence traces Iran-linked operators quietly building access across government, aerospace, energy, and telecommunications networks on three continents. It shows how that access was built and maintained below most organizations' detection threshold.</p>
+    <div class="hero-meta">11-report Google/Mandiant seed corpus &middot; 4 cited Talos articles &middot; Live DB checked March 27, 2026</div>
 
     <div class="stat-rail">
       <div class="stat-card">
-        <span class="label">Reports analyzed</span>
-        <span class="value">13</span>
-        <span class="sub">September 2017 – November 2025</span>
-      </div>
-      <div class="stat-card">
-        <span class="label">Primary target sector</span>
-        <span class="value">Gov't</span>
-        <span class="sub">7 of 13 reports — first documented Dec 2017</span>
+        <span class="label">Victim countries</span>
+        <span class="value">10</span>
+        <span class="sub">Unique named victim countries documented, excluding regional placeholders</span>
       </div>
       <div class="stat-card">
         <span class="label">Lead target country</span>
         <span class="value">Israel</span>
-        <span class="sub">5 reports — explicit in 4, first Aug 2022</span>
+        <span class="sub">5 reports &middot; 4 explicit, first Aug 2022</span>
       </div>
       <div class="stat-card">
         <span class="label">Most recurring technique</span>
         <span class="value">T1204</span>
-        <span class="sub">Malicious file — 6 reports, avg confidence 0.853</span>
+        <span class="sub">Malicious file &middot; 6 of 11 seed reports</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ── Present-tense context ── -->
+<!-- -- Present-tense context -- -->
 <div class="context-banner">
   <div class="context-inner">
-    <strong>Current context — external to the OPTIC dataset</strong>
-    As of March 25, 2026, the U.S. government is publicly describing ongoing military operations against Iran under the designation Operation Epic Fury, beginning February 28 – March 1, 2026. In June 2025, CISA, FBI, NSA, and DC3 warned that the geopolitical environment had elevated cyber risk for U.S. critical infrastructure, the defense industrial base, and organizations with Israeli research or defense ties. The retrospective analysis below covers the 2017–2025 OPTIC seed corpus only; these present-tense developments are noted as context, not as part of the sourced dataset.
+    <div class="context-block">
+      <strong>Current context &mdash; external to the OPTIC dataset</strong>
+      As of March 25, 2026, the U.S. government is publicly describing ongoing military operations against Iran under the designation Operation Epic Fury, beginning February 28 &ndash; March 1, 2026. In June 2025, CISA, FBI, NSA, and DC3 warned that the geopolitical environment had elevated cyber risk for U.S. critical infrastructure, the defense industrial base, and organizations with Israeli research or defense ties. The retrospective analysis below covers the 2017&ndash;2025 OPTIC seed corpus only; these present-tense developments are noted as context, not as part of the sourced dataset.
+    </div>
+    <div class="context-block">
+      <strong>Methodological note</strong>
+      <a href="#methodology-note">See the methodological note below the Source Record for denominator and confidence-score details.</a>
+    </div>
   </div>
 </div>
 
-<!-- ── Main article ── -->
+<!-- -- Main article -- -->
 <div class="article-wrap">
 
   <!-- Target Map -->
@@ -779,7 +948,7 @@
   <figure>
     <div class="fig-head">
       <h3>Country and sector distribution</h3>
-      <span class="fig-meta">OPTIC seed corpus · 13 reports · 2017–2025</span>
+      <span class="fig-meta">OPTIC Google/Mandiant seed &middot; 11 reports &middot; 2017&ndash;2025</span>
     </div>
     <div style="overflow-x:auto;">
       <table class="matrix-table" id="matrix-table">
@@ -795,73 +964,71 @@
         <tbody id="matrix-body"></tbody>
       </table>
     </div>
-    <figcaption>Built from <code>result_json → victims</code> in <code>optic.article_extractions</code>. Country-sector pairings reflect explicit article-level attribution only; derived mentions are noted. Azerbaijan's documented victim profile is NGO/activist rather than strategic-sector.</figcaption>
+    <figcaption>Built from database-backed victim-country and victim-sector mentions in the 11-report Google/Mandiant seed corpus. Provenance notes preserve explicit-versus-derived coverage. Azerbaijan's documented victim profile remains NGO and activist-focused rather than infrastructure or strategic industry.</figcaption>
   </figure>
 
   <div class="section-body-wrap">
-  <div class="article-body">
-    <p>The sector and country distribution describes an operational surface aligned to the institutions most directly implicated in Iranian foreign policy exposure: governments facing strategic friction, defense and aerospace industries linked to regional military balance, and energy infrastructure tied to sanctions leverage. Government leads the corpus — seven of thirteen reports, first documented in December 2017. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/targeted-attack-in-middle-east-by-apt34" target="_blank" rel="noopener">APT34 source</a> Aerospace and energy follow at three reports each, both dated to September 2017. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/apt33-insights-into-iranian-cyber-espionage" target="_blank" rel="noopener">APT33 source</a></p>
+    <div class="article-body article-body-spacious">
+    <p>The map is concentrated rather than random, and the friction cases do not all mean the same thing. Israel and Albania sit near the top of the table, but equal report counts mask different political logics: Israel becomes an explicit focal point only in 2022, and the timing reads as sustained surveillance and access-building rather than open signaling. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/suspected-iranian-actor-targeting-israeli-shipping" target="_blank" rel="noopener">UNC3890 source</a> Albania, by contrast, is the one case in the corpus Mandiant describes as a "politically motivated disruptive operation," which makes it coercive signaling rather than quiet collection. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/likely-iranian-threat-actor-conducts-politically-motivated-disruptive-activity-against" target="_blank" rel="noopener">ROADSWEEP source</a></p>
 
-    <p>The country picture reflects the same logic, not just volume. Israel's five reports (first documented August 17, 2022) and Albania's three (all explicit, August 2022 through September 2024) represent two distinct kinds of adversarial exposure — one defined by direct territorial and military friction, the other by political rupture over the presence of Iranian opposition groups. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/suspected-iranian-actor-targeting-israeli-shipping" target="_blank" rel="noopener">UNC3890 source</a> The United States and United Kingdom appear in three and two reports respectively, with U.S. presence dated to the earliest reporting in the corpus.</p>
+    <p>Azerbaijan, meanwhile, sits off to the side as a surveillance outlier, appearing once against NGOs, activists, and media-linked communities rather than government, infrastructure, or strategic industry. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations" target="_blank" rel="noopener">Uncharmed</a></p>
 
-    <p>Aerospace and energy targeting dates to 2017; Israel-specific targeting, despite its prominence in the country count, does not appear until 2022. Azerbaijan appears in the corpus against a different target profile entirely — NGOs and activists rather than any strategic-sector category — marking a surveillance operation rather than the government, defense, and infrastructure operations that dominate the rest of the record.</p>
+    <p>Turkey complicates the picture further: Mandiant places it in UNC1549's 2024 aerospace and defense campaign, but Talos was already documenting MuddyWater activity against Turkish government entities in January 2022, suggesting the access map reaches there two years before the seed corpus alone would show. <a class="inline-cite" href="https://blog.talosintelligence.com/iranian-apt-muddywater-targets-turkey/" target="_blank" rel="noopener">Talos Turkey</a></p>
   </div>
 
   <div class="section-sources" aria-label="Target map source notes">
     <div class="section-source-card">
-      <div class="section-source-label">Mandiant · Sep 20, 2017</div>
-      <div class="section-source-quote">"APT33 has shown particular interest in organizations in the aviation sector ... as well as organizations in the energy sector."</div>
-      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/apt33-insights-into-iranian-cyber-espionage" target="_blank" rel="noopener">Open source →</a>
+      <div class="section-source-label">Mandiant &middot; Aug 17, 2022</div>
+      <div class="section-source-quote">"Their focused targeting poses a threat to Israel-based organizations and entities."</div>
+      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/suspected-iranian-actor-targeting-israeli-shipping" target="_blank" rel="noopener">Open source &rarr;</a>
     </div>
     <div class="section-source-card">
-      <div class="section-source-label">Mandiant · Aug 17, 2022</div>
-      <div class="section-source-quote">"Their focused targeting poses a threat to Israel-based organizations and entities."</div>
-      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/suspected-iranian-actor-targeting-israeli-shipping" target="_blank" rel="noopener">Open source →</a>
+      <div class="section-source-label">Mandiant &middot; Aug 4, 2022</div>
+      <div class="section-source-quote">"politically motivated disruptive operation"</div>
+      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/likely-iranian-threat-actor-conducts-politically-motivated-disruptive-activity-against" target="_blank" rel="noopener">Open source &rarr;</a>
     </div>
   </div>
   </div><!-- /section-body-wrap -->
 
   <!-- Escalation -->
   <div class="section-header" id="escalation">
-    <div class="section-kicker">Iranian Operations · 2017–2025</div>
+    <div class="section-kicker">Iranian Operations &middot; 2017&ndash;2025</div>
     <h2>Eight Years, One Escalation</h2>
   </div>
 
   <figure id="timeline-fig">
     <div class="fig-head">
       <h3>Reporting timeline by period</h3>
-      <span class="fig-meta">Reports per cluster year</span>
+      <span class="fig-meta">Google/Mandiant seed count by year</span>
     </div>
     <div class="timeline-track" id="timeline-track"></div>
-    <figcaption>Bar height reflects report count per period. Annotations describe operational developments, not publication volume. The 2022 spike reflects a genuine broadening of the documented operation, not an artefact of vendor reporting cycles.</figcaption>
+    <figcaption>Timeline focuses on years with new Google/Mandiant seed publications; quieter windows and Cisco Talos supplemental evidence are addressed in the accompanying text. Annotations describe operational developments, not publication volume. The 2022 spike reflects a genuine broadening of the documented operation, not an artefact of vendor reporting cycles.</figcaption>
   </figure>
 
   <div class="section-body-wrap">
   <div class="article-body">
-    <p>The 2017 baseline is established by APT33 and APT34. APT33's documented activity in this corpus connects to U.S. aerospace, Saudi energy, and South Korean energy environments. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/apt33-insights-into-iranian-cyber-espionage" target="_blank" rel="noopener">APT33 source</a> APT34 anchors Middle Eastern government targeting from December 2017. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/targeted-attack-in-middle-east-by-apt34" target="_blank" rel="noopener">APT34 source</a> Both operations share a common posture: deliberate, sector-specific access rather than broad opportunistic scanning. The techniques in use at this stage - application-layer blending, valid account use - are already present in the 2017 reporting.</p>
+    <p>The quieter Google/Mandiant publication window after 2017 is not the same thing as operational dormancy: Talos was documenting MuddyWater-associated BlackWater tradecraft refinement in 2019, which is better read as evidence of active iteration during a reporting lull than as a pause in activity. <a class="inline-cite" href="https://blog.talosintelligence.com/recent-muddywater-associated-blackwater/" target="_blank" rel="noopener">Talos BlackWater</a> By 2022 the documented program changes in kind, not just scale. APT42 reporting shifts attention toward the human layer, with social engineering and surveillance aimed at government officials, policy researchers, journalists, and NGO workers, while the Telegram malware case shows the same logic reaching beyond institutional networks: operators did not need a corporate foothold if the person they wanted could be followed onto a consumer-facing platform instead. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/apt42-charms-cons-compromises" target="_blank" rel="noopener">APT42 source</a> <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/telegram-malware-iranian-espionage" target="_blank" rel="noopener">Telegram case</a></p>
 
-    <p>By 2022 the picture changes in kind, not just in scale. APT42 reporting shifts attention toward the human layer: social engineering campaigns against government officials, policy researchers, journalists, and NGO workers. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/apt42-charms-cons-compromises" target="_blank" rel="noopener">APT42 source</a> The February 2022 Telegram malware documentation and the September 2022 APT42 profile together show an operation built for sustained visibility into individuals, not just institutional environments. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/telegram-malware-iranian-espionage" target="_blank" rel="noopener">Telegram case</a> The Albania ROADSWEEP case in August 2022 is the exception in this period - a disruptive action rather than a surveillance or access operation - and its distinctiveness in the corpus reflects something deliberate: it sits at the edge of the ecosystem, not at its center. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/likely-iranian-threat-actor-conducts-politically-motivated-disruptive-activity-against/" target="_blank" rel="noopener">ROADSWEEP source</a></p>
+    <p>After no new seed publications in 2023, the record reopens in 2024 on a different layer. By late 2023, Talos had already identified HTTPSnoop as "being deployed against telecommunications providers in the Middle East," which makes the telecom layer feel less like a one-off anomaly and more like a sustained Iran-linked priority target. <a class="inline-cite" href="https://blog.talosintelligence.com/introducing-shrouded-snooper/" target="_blank" rel="noopener">Talos telecom case</a> The 2024 UNC1860 reporting then introduces a qualitatively different layer: passive backdoors in Middle Eastern telecommunications and government networks, designed to persist without operational noise and to "gain persistent access to high-priority networks." <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/unc1860-iran-middle-eastern-networks" target="_blank" rel="noopener">UNC1860 source</a> The access exists; the question is when and for what it will be used.</p>
 
-    <p>The 2024 UNC1860 reporting introduces a qualitatively different layer. Passive backdoors in Middle Eastern telecommunications and government networks, designed to persist without operational noise, represent a shift toward pre-positioning rather than active collection. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/unc1860-iran-middle-eastern-networks" target="_blank" rel="noopener">UNC1860 source</a> The access exists; the question is when and for what it will be used. This is the period in the dataset that most directly frames the current geopolitical context: infrastructure access established years before a potential point of activation.</p>
-
-    <p>UNC1549's November 2025 reporting closes the arc. Aerospace and defense targeting under a sustained, technically sophisticated campaign extends the operational surface into the strategic industry layer. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/analysis-of-unc1549-ttps-targeting-aerospace-defense" target="_blank" rel="noopener">UNC1549 source</a> Taken with the telecom footholds of 2024, the endpoint of the dataset suggests an ecosystem that spans infrastructure access, communications penetration, and defense-industrial presence simultaneously.</p>
+    <p>UNC1549's November 2025 reporting closes the arc. Aerospace and defense targeting under a sustained, technically sophisticated campaign extends the operational surface into the strategic industry layer, with Mandiant documenting operators "exploiting trusted connections with third-party suppliers and partners." <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/analysis-of-unc1549-ttps-targeting-aerospace-defense" target="_blank" rel="noopener">UNC1549 source</a> Taken with the telecom footholds of 2024, the endpoint of the dataset suggests an ecosystem that spans infrastructure access, communications penetration, and defense-industrial presence simultaneously. By the end of the record, access is not a hypothesis but a condition, which makes the mechanics of entry, escalation, and persistence the more urgent question.</p>
   </div>
 
   <div class="section-sources" aria-label="Escalation source notes">
     <div class="section-source-card">
-      <div class="section-source-label">Mandiant · Aug 4, 2022</div>
-      <div class="section-source-quote">"a politically motivated disruptive operation" against Albanian government organizations</div>
-      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/likely-iranian-threat-actor-conducts-politically-motivated-disruptive-activity-against/" target="_blank" rel="noopener">Open source →</a>
+      <div class="section-source-label">Cisco Talos &middot; May 20, 2019</div>
+      <div class="section-source-quote">"suggesting that MuddyWater's tactics, techniques and procedures (TTPs) have evolved to evade detection"</div>
+      <a class="section-source-link" href="https://blog.talosintelligence.com/recent-muddywater-associated-blackwater/" target="_blank" rel="noopener">Open source &rarr;</a>
     </div>
     <div class="section-source-card">
-      <div class="section-source-label">Mandiant · Sep 19, 2024</div>
-      <div class="section-source-quote">"gain persistent access to high-priority networks"</div>
-      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/unc1860-iran-middle-eastern-networks" target="_blank" rel="noopener">Open source →</a>
+      <div class="section-source-label">Cisco Talos &middot; Sep 19, 2023</div>
+      <div class="section-source-quote">"being deployed against telecommunications providers in the Middle East"</div>
+      <a class="section-source-link" href="https://blog.talosintelligence.com/introducing-shrouded-snooper/" target="_blank" rel="noopener">Open source &rarr;</a>
     </div>
     <div class="section-source-card">
-      <div class="section-source-label">Mandiant · Nov 17, 2025</div>
+      <div class="section-source-label">Mandiant &middot; Nov 17, 2025</div>
       <div class="section-source-quote">"exploiting trusted connections with third-party suppliers and partners"</div>
-      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/analysis-of-unc1549-ttps-targeting-aerospace-defense" target="_blank" rel="noopener">Open source →</a>
+      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/analysis-of-unc1549-ttps-targeting-aerospace-defense" target="_blank" rel="noopener">Open source &rarr;</a>
     </div>
   </div>
   </div><!-- /section-body-wrap -->
@@ -875,38 +1042,41 @@
   <figure>
     <div class="fig-head">
       <h3>Documented intrusion sequence</h3>
-      <span class="fig-meta">OPTIC technique layer · 13 reports · avg confidence shown</span>
+      <span class="fig-meta">OPTIC technique layer &middot; 11 seed reports</span>
     </div>
     <div class="technique-flow" id="technique-flow"></div>
-    <figcaption>Techniques are ordered by their position in the intrusion sequence, not by report frequency. Confidence scores reflect average OPTIC extraction confidence across all mentions of that technique in the seed corpus.</figcaption>
+    <figcaption>Techniques are ordered by their position in the intrusion sequence, not by report frequency.</figcaption>
   </figure>
 
   <div class="section-body-wrap">
   <div class="article-body">
-    <p>An employee opens a file. Nothing obvious breaks. The file executes quietly, and the operator has a foothold in an environment with no immediate reason to be suspicious. This entry path — malicious file execution, T1204.002, documented in six of thirteen reports at an average OPTIC confidence of 0.853 — is the most consistent initial access mechanism in the corpus, but the stat matters less than what it enables: a clean handoff to everything that follows. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/telegram-malware-iranian-espionage" target="_blank" rel="noopener">Phishing case</a></p>
+    <p>An employee opens a file. Nothing obvious breaks. Read left to right, the figure works as a handoff chain. The opening foothold begins with malicious file execution, and the pattern becomes harder to see once access shifts from endpoint activity to the identity layer. Talos's 2022 MuddyWater reporting makes the first move explicit, with malicious documents used "to serve as the initial infection vector." <a class="inline-cite" href="https://blog.talosintelligence.com/iranian-apt-muddywater-targets-turkey/" target="_blank" rel="noopener">Talos initial access</a> UNC1549 shows the same ecosystem leaning on operators who "used valid compromised accounts to gain initial access." <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/analysis-of-unc1549-ttps-targeting-aerospace-defense" target="_blank" rel="noopener">Valid accounts</a> However the handoff occurs, the effect is the same: the activity is recast as ordinary user behavior. Application-layer command and control then carries that access inside ordinary web traffic and avoids the louder beaconing patterns that attract attention. <a class="inline-cite" href="https://blog.talosintelligence.com/introducing-shrouded-snooper/" target="_blank" rel="noopener">Talos HTTPSnoop</a></p>
 
-    <p>From there, the intrusion proceeds through a sequence that the corpus documents consistently enough to treat as a signature. Command-and-control traffic blends into ordinary web activity - application-layer protocols that look indistinguishable from routine HTTPS traffic. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/telegram-malware-iranian-espionage" target="_blank" rel="noopener">C2 blend</a> Valid accounts, either harvested through prior credential operations or compromised through the initial access, begin accessing systems slightly outside their normal scope. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/analysis-of-unc1549-ttps-targeting-aerospace-defense" target="_blank" rel="noopener">Valid accounts</a> Privilege escalation follows, turning a limited foothold into a durable presence with broader reach. Evidence gets cleaned: indicator removal appears in four reports at an average confidence of 0.725, suggesting operators expect to have time to work and plan accordingly. Communications shift into tunneled protocols - T1572 appears in three reports, at the highest average confidence in the dataset at 0.933, indicating a deliberate effort to shape how traffic flows rather than simply to stay connected. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/suspected-iranian-unc1549-targets-israel-middle-east" target="_blank" rel="noopener">Azure C2 masking</a></p>
+    <p>The back half of the figure works by reducing noise. Privilege escalation expands what the operator can touch; cleanup and defense evasion shrink what defenders can see; tunneled communications shape the route so the session looks routine. The APT39 reporting describes privilege escalation with commodity tools, and APT42 is explicit that operators "deployed multiple defense evasion techniques to minimize their intrusion footprint." By the time communications shift into tunneled protocols, the intrusion has become an environment adjusted to tolerate the intruder. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/apt39-iranian-cyber-espionage-group-focused-on-personal-information" target="_blank" rel="noopener">APT39 source</a> <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations" target="_blank" rel="noopener">Uncharmed</a> <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/suspected-iranian-unc1549-targets-israel-middle-east" target="_blank" rel="noopener">Azure C2 masking</a></p>
 
-    <p>The composite picture across those six techniques is not a sophisticated novel attack. It is a familiar sequence executed with operational discipline. Each individual step - a file opened, a familiar-looking account, a routine web connection - is the kind of thing that defensive tooling is calibrated to ignore in isolation. The power of the playbook is in how each stage hands off to the next without triggering the threshold at which most organizations shift into incident mode.</p>
-
-    <p>For a CISO trying to locate this activity in their environment: the diagnostic question is not whether their endpoint protection would catch a known malicious file signature. It is at what point in this sequence their logging and behavioral detection would fire - and whether that point comes before or after the privilege escalation and cleanup phases. In most environments that fit the target profile, the honest answer is: after.</p>
+    <p>That is why the sequence matters more than any single technique. Nothing here is especially novel; the force of the playbook is in how each stage hands the operator into the next while remaining "difficult to discern ... from legitimate network traffic." <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/suspected-iranian-unc1549-targets-israel-middle-east" target="_blank" rel="noopener">UNC1549 source</a> For a CISO, the diagnostic question is where the chain stops looking like ordinary business activity and starts triggering investigation; a single malicious file or odd login rarely answers that on its own. For organizations without a dedicated SOC, the same pattern becomes a procurement and vendor-access question: which third-party relationships would turn one employee click into durable, low-noise access? The same access logic recurs across actors with very different end goals, which turns the next question toward the operators putting it to work.</p>
   </div>
 
   <div class="section-sources" aria-label="Access source notes">
     <div class="section-source-card">
-      <div class="section-source-label">Mandiant · Feb 24, 2022</div>
-      <div class="section-source-quote">"allows for malicious traffic to blend in with legitimate user behavior"</div>
-      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/telegram-malware-iranian-espionage" target="_blank" rel="noopener">Open source →</a>
+      <div class="section-source-label">Cisco Talos &middot; Jan 31, 2022</div>
+      <div class="section-source-quote">"to serve as the initial infection vector"</div>
+      <a class="section-source-link" href="https://blog.talosintelligence.com/iranian-apt-muddywater-targets-turkey/" target="_blank" rel="noopener">Open source &rarr;</a>
     </div>
     <div class="section-source-card">
-      <div class="section-source-label">Mandiant · Nov 17, 2025</div>
+      <div class="section-source-label">Mandiant &middot; Nov 17, 2025</div>
       <div class="section-source-quote">"used valid compromised accounts to gain initial access"</div>
-      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/analysis-of-unc1549-ttps-targeting-aerospace-defense" target="_blank" rel="noopener">Open source →</a>
+      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/analysis-of-unc1549-ttps-targeting-aerospace-defense" target="_blank" rel="noopener">Open source &rarr;</a>
     </div>
     <div class="section-source-card">
-      <div class="section-source-label">Mandiant · Feb 27, 2024</div>
-      <div class="section-source-quote">"making it difficult to discern the activity from legitimate network traffic"</div>
-      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/suspected-iranian-unc1549-targets-israel-middle-east" target="_blank" rel="noopener">Open source →</a>
+      <div class="section-source-label">Mandiant &middot; Jan 29, 2019</div>
+      <div class="section-source-quote">"During privilege escalation, freely available tools such as Mimikatz and Ncrack have been observed."</div>
+      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/apt39-iranian-cyber-espionage-group-focused-on-personal-information" target="_blank" rel="noopener">Open source &rarr;</a>
+    </div>
+    <div class="section-source-card">
+      <div class="section-source-label">Mandiant &middot; May 1, 2024</div>
+      <div class="section-source-quote">"deployed multiple defense evasion techniques to minimize their intrusion footprint"</div>
+      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations" target="_blank" rel="noopener">Open source &rarr;</a>
     </div>
   </div>
   </div><!-- /section-body-wrap -->
@@ -920,7 +1090,7 @@
   <figure>
     <div class="fig-head">
       <h3>Iranian cyber operator lanes</h3>
-      <span class="fig-meta">OPTIC seed set · actor tenure from entity_article_support</span>
+      <span class="fig-meta">OPTIC seed set &middot; actor tenure from entity_article_support</span>
     </div>
     <div class="operator-grid" id="operator-grid"></div>
     <figcaption>Lane assignments reflect functional mandate as documented in the seed corpus, not official attribution. Co-occurrence between actor labels in the same article often reflects alias relationships (APT42 / Charming Kitten / Phosphorus) rather than independent coordination. Tenure spans reflect first and last publication dates in the OPTIC dataset, not necessarily operational start and end dates.</figcaption>
@@ -928,30 +1098,35 @@
 
   <div class="section-body-wrap">
   <div class="article-body">
-    <p>The surveillance lane - anchored by APT42, which appears in three reports across 2022 to 2024 - runs long-horizon visibility operations against individuals: government officials, policy researchers, journalists, and NGO workers. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/apt42-charms-cons-compromises" target="_blank" rel="noopener">APT42 source</a> The output is sustained intelligence on people and organizations, maintained over months or years. APT39 falls into this lane as well, with a focus on telecommunications and personal data. Facing APT42 surveillance means facing an identity and behavioral monitoring problem: the threat is account-level and human-facing, and the appropriate response centers on phishing-resistant authentication, behavioral monitoring of high-value individual accounts, and awareness training for the specific social engineering patterns documented in the reporting.</p>
+    <p>Read together, the operator cards describe a division of labor across the ecosystem. The surveillance lane is the clearest example: APT42 treats people as collection infrastructure as much as organizations. Mandiant's observation that the group "consistently targeted Western think tanks, researchers, journalists" makes that plain, while APT39 gives the lane a different texture by prioritizing telecommunications and travel-related data, where identity, movement, and personal records become routes into larger political questions. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/apt42-charms-cons-compromises" target="_blank" rel="noopener">APT42 source</a> <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/apt39-iranian-cyber-espionage-group-focused-on-personal-information" target="_blank" rel="noopener">APT39 source</a></p>
 
-    <p>The access maintenance lane - APT34, which leads the corpus at four reports from 2017 through 2024, and UNC1860 - keeps quiet footholds alive in regional government, telecommunications, and enterprise environments. These are not operations designed to produce immediate intelligence or disruption. They maintain access that other elements of the ecosystem can use when needed. UNC1860's passive backdoor work in telecommunications environments, documented in 2024, is the clearest expression of this function in the corpus. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/unc1860-iran-middle-eastern-networks" target="_blank" rel="noopener">UNC1860 source</a></p>
+    <p>The access maintenance lane does a different kind of work. APT34 and UNC1860 function as custodians of access, keeping quiet footholds alive in government and telecommunications environments that other parts of the ecosystem can use later. That is where Talos's description of MuddyWater as "a conglomerate of multiple teams operating independently rather than a single threat actor group" becomes useful: it gives the grid an ecosystem logic built around segmented roles. UNC1860's passive backdoor work is the clearest expression of this role in the seed corpus, because it matters precisely when nothing visible is happening. <a class="inline-cite" href="https://blog.talosintelligence.com/iranian-supergroup-muddywater/" target="_blank" rel="noopener">Talos MuddyWater</a> <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/unc1860-iran-middle-eastern-networks" target="_blank" rel="noopener">UNC1860 source</a></p>
 
-    <p>The strategic pressure lane encompasses UNC1549, APT33, and UNC3890, and targets the sectors that carry the most geopolitical weight: aerospace, defense, energy, shipping, and healthcare. UNC1549, with two reports spanning 2024 through 2025, represents the most recent and technically sophisticated development in this lane. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/suspected-iranian-unc1549-targets-israel-middle-east" target="_blank" rel="noopener">UNC1549 2024</a> <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/suspected-iranian-actor-targeting-israeli-shipping" target="_blank" rel="noopener">UNC3890 source</a> Facing this lane means facing a supply-chain and strategic-industry problem: the threat is infrastructure and production-facing, and the response involves OT security posture, third-party access review across defense supply chains, and threat-informed asset prioritization for the specific sector categories that recur in the corpus.</p>
+    <p>The strategic pressure lane is where access turns into leverage. UNC3890's Israel-focused targeting and UNC1549's later aerospace and defense campaign point at sectors where collection, interference, and contingency positioning sit close together. These actors operate where disruption would radiate outward into state capacity, supply chains, and allied relationships. In this lane, geopolitical pressure and technical access are effectively the same instrument viewed from different stages of use. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/suspected-iranian-actor-targeting-israeli-shipping" target="_blank" rel="noopener">UNC3890 source</a> <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/analysis-of-unc1549-ttps-targeting-aerospace-defense" target="_blank" rel="noopener">UNC1549 source</a></p>
 
-    <p>The disruption lane - UNC788 / HomeLand Justice, documented once in the corpus in connection with the Albania ROADSWEEP attack - sits at the edge of the ecosystem and activates when the political objective requires visible effect. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/likely-iranian-threat-actor-conducts-politically-motivated-disruptive-activity-against/" target="_blank" rel="noopener">ROADSWEEP source</a> Its single appearance in this dataset is consistent with its function: this is not a persistent presence but a capability that is deployed selectively. The Albania case from 2022 remains the clearest documented example of Iranian cyber operations crossing from quiet access into deliberate disruption.</p>
+    <p>The disruption lane sits at the visible edge of the same ecosystem. UNC788 / HomeLand Justice appears once, in the Albania ROADSWEEP case, and that sparsity is part of the point: when the objective shifts from quiet access to public effect, the operation becomes narrower and louder. Mandiant's description of a "politically motivated disruptive operation" marks the exception clearly. Most of the record is about patient access; this lane shows what happens when that patience is abandoned in favor of coercive signaling. For most potential targets, the practical question is which lane they are most likely to encounter first. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/likely-iranian-threat-actor-conducts-politically-motivated-disruptive-activity-against" target="_blank" rel="noopener">ROADSWEEP source</a></p>
   </div>
 
   <div class="section-sources" aria-label="Operator source notes">
     <div class="section-source-card">
-      <div class="section-source-label">Mandiant · Sep 7, 2022</div>
+      <div class="section-source-label">Mandiant &middot; Sep 7, 2022</div>
       <div class="section-source-quote">"consistently targeted Western think tanks, researchers, journalists"</div>
-      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/apt42-charms-cons-compromises" target="_blank" rel="noopener">Open source →</a>
+      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/apt42-charms-cons-compromises" target="_blank" rel="noopener">Open source &rarr;</a>
     </div>
     <div class="section-source-card">
-      <div class="section-source-label">Mandiant · Sep 19, 2024</div>
-      <div class="section-source-quote">"its role as a probable initial access provider"</div>
-      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/unc1860-iran-middle-eastern-networks" target="_blank" rel="noopener">Open source →</a>
+      <div class="section-source-label">Mandiant &middot; Jan 29, 2019</div>
+      <div class="section-source-quote">"APT39 has prioritized the telecommunications sector"</div>
+      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/apt39-iranian-cyber-espionage-group-focused-on-personal-information" target="_blank" rel="noopener">Open source &rarr;</a>
     </div>
     <div class="section-source-card">
-      <div class="section-source-label">Mandiant · Aug 17, 2022</div>
-      <div class="section-source-quote">"particularly those affiliated with the government, shipping, energy, aviation and healthcare sectors"</div>
-      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/suspected-iranian-actor-targeting-israeli-shipping" target="_blank" rel="noopener">Open source →</a>
+      <div class="section-source-label">Cisco Talos &middot; Mar 10, 2022</div>
+      <div class="section-source-quote">"a conglomerate of multiple teams operating independently rather than a single threat actor group"</div>
+      <a class="section-source-link" href="https://blog.talosintelligence.com/iranian-supergroup-muddywater/" target="_blank" rel="noopener">Open source &rarr;</a>
+    </div>
+    <div class="section-source-card">
+      <div class="section-source-label">Mandiant &middot; Aug 4, 2022</div>
+      <div class="section-source-quote">"targeted the Albanian government in a politically motivated disruptive operation"</div>
+      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/likely-iranian-threat-actor-conducts-politically-motivated-disruptive-activity-against" target="_blank" rel="noopener">Open source &rarr;</a>
     </div>
   </div>
   </div><!-- /section-body-wrap -->
@@ -962,12 +1137,31 @@
     <h2>Three Decisions</h2>
   </div>
 
+  <div class="section-body-wrap">
   <div class="article-body">
-    <p>Valid account abuse <span class="graded">T1078 · 5/13 reports · avg conf 0.860</span> is documented more consistently than any other access mechanism in this corpus after malicious file execution. For organizations whose sector and geography place them in the documented target set, identity governance is the highest-priority defensive investment the data supports: MFA enforcement without exceptions for privileged accounts, third-party access review, and behavioral baselining that flags accounts operating outside their established scope. This is not generic security hygiene — it is the specific defensive layer that would disrupt the documented access pattern most directly.</p>
+    <p>Valid account abuse is documented more consistently than any access mechanism in this corpus after malicious file execution, appearing in five of the eleven seed reports. For organizations whose sector and geography place them inside the documented target set, identity governance is the highest-priority defensive investment the data supports: MFA without privileged-account carveouts, third-party access review, and behavioral baselining that flags accounts operating outside established scope. Talos's 2022 Turkey case shows how quickly the sequence can begin, documenting malicious PDFs and Office documents "to serve as the initial infection vector" into Turkish government targeting before the intrusion moves deeper into the environment. <a class="inline-cite" href="https://blog.talosintelligence.com/iranian-apt-muddywater-targets-turkey/" target="_blank" rel="noopener">Talos Turkey</a></p>
 
-    <p>Sector and geography are exposure signals, not backdrop. The target profile in this corpus is specific: government (7 reports), aerospace (3), energy (3), defense (2), telecommunications (2). The lead countries are Israel (5), Albania (3), the United States (3), and the United Kingdom (2). An organization that operates in those sectors and countries is in the documented target set and should treat its threat model accordingly — with a dedicated analysis of the specific actor lanes most likely to be relevant to its environment, rather than a generic enterprise security posture applied uniformly.</p>
+    <p>Sector and geography are exposure signals, not backdrop. The map here is selective: no actor in the DB-backed seed corpus is documented against more than five named countries, and most appear against one or two. That is the opposite of spray-and-pray targeting. It means geography functions as a political exposure map: organizations in the recurring country-sector combinations should model themselves against the specific actor lanes most likely to matter to their environment, rather than rely on a generic enterprise threat model.</p>
 
-    <p>Cleanup activity is part of the operating pattern. <span class="graded">T1070.001 · 4/13 reports · avg conf 0.725</span> Indicator removal appearing in four of thirteen reports, at a confidence level that reflects explicit sourcing rather than inference, means operators expect to have time to clean up after themselves and plan for it. The defensive implication is not faster detection of initial access — it is forensic resilience: tamper-resistant, forensic-grade logging that preserves evidence of cleanup attempts as its own indicator class, and retrospective visibility infrastructure that does not depend on real-time alerting to recover the intrusion timeline.</p>
+    <p>Cleanup activity is part of the operating pattern. Indicator removal appears in three of the eleven seed reports, and APT42 reporting is explicit that operators "deployed multiple defense evasion techniques to minimize their intrusion footprint," which means operators expect to have time to clean up after themselves and plan for it. <a class="inline-cite" href="https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations" target="_blank" rel="noopener">Uncharmed</a> The defensive implication is not faster signature detection of initial access; it is forensic resilience: tamper-resistant logging that preserves evidence of cleanup attempts as its own indicator class, and retrospective visibility that does not depend on real-time alerting to reconstruct the intrusion timeline.</p>
+  </div>
+
+  <div class="section-sources" aria-label="Decision source notes">
+    <div class="section-source-card">
+      <div class="section-source-label">Cisco Talos &middot; Jan 31, 2022</div>
+      <div class="section-source-quote">"to serve as the initial infection vector"</div>
+      <a class="section-source-link" href="https://blog.talosintelligence.com/iranian-apt-muddywater-targets-turkey/" target="_blank" rel="noopener">Open source &rarr;</a>
+    </div>
+    <div class="section-source-card">
+      <div class="section-source-label">Mandiant &middot; May 1, 2024</div>
+      <div class="section-source-quote">"deployed multiple defense evasion techniques to minimize their intrusion footprint"</div>
+      <a class="section-source-link" href="https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations" target="_blank" rel="noopener">Open source &rarr;</a>
+    </div>
+  </div>
+  </div><!-- /section-body-wrap -->
+
+  <div class="article-body">
+    <p>Across the 2017&ndash;2025 reporting window, the pattern in this corpus is not a series of isolated incidents but a sustained investment in access that could survive long periods without visible effect. Cleanup activity and passive backdoors point to operators who expect dwell time, preserve their footholds, and avoid the kinds of signals that force defenders into response. In the current geopolitical environment, that patience is what makes the record newly urgent: some of the most consequential infrastructure in the dataset may have been put in place years earlier and left ready for use.</p>
   </div>
 
   <!-- Source Record -->
@@ -978,101 +1172,242 @@
 
   <div class="source-list" id="source-list"></div>
 
+  <div class="methodology-panel" id="methodology-note">
+    <div class="methodology-head">
+      <div>
+        <div class="methodology-kicker">Appendix</div>
+        <h3>Methodological Note</h3>
+      </div>
+      <div class="methodology-meta">OPTIC analytic layer · source record context</div>
+    </div>
+    <p class="methodology-intro">The source record above functions as both bibliography and data inventory. This note explains how the article's counts, denominators, and confidence signals are produced so the narrative claims can be read against the same analytic layer that generated the figures.</p>
+    <div class="methodology-grid">
+      <div class="methodology-item">
+        <strong>Corpus</strong>
+        <p>Quantitative baselines in this article use a fixed 11-report Google/Mandiant seed corpus spanning 2017 through 2025. Those seed entries are the basis for report counts, technique frequencies, and the timeline figure.</p>
+      </div>
+      <div class="methodology-item">
+        <strong>Supplemental Sources</strong>
+        <p>Cisco Talos reporting is included as corroborating evidence in the prose and sidebar source cards. It informs interpretation and fills reporting gaps, but it does not change seed-only denominators or bar heights.</p>
+      </div>
+      <div class="methodology-item">
+        <strong>Confidence Scores</strong>
+        <p>In OPTIC, confidence is an extraction-confidence signal for structured mentions, not a probability that the underlying intelligence claim is true. Source rows display per-article average technique confidence, while the main narrative omits those scores to keep the prose readable.</p>
+      </div>
+      <div class="methodology-item">
+        <strong>Coverage Limits</strong>
+        <p>Country, sector, actor, and technique rows reflect structured entity mentions captured from the seed corpus. They show what is documented in the selected reporting set, not an exhaustive map of all Iran-linked cyber activity outside that corpus.</p>
+      </div>
+    </div>
+  </div>
+
 </div><!-- /article-wrap -->
 
 <footer class="site-footer">
   <div>OPTIC Lab - Open Provenance Threat Intelligence Corpus</div>
   <div class="footer-links">
-    <a href="https://github.com/RubiksTwist/opticLab/releases" target="_blank" rel="noopener">Download dataset</a>
+    <a href="https://github.com/RubiksTwist/opticLab" target="_blank" rel="noopener">Project on GitHub</a>
     <a href="https://www.linkedin.com/in/alex-cheung-878632290/" target="_blank" rel="noopener">Alex Cheung on LinkedIn</a>
   </div>
   <div>Not affiliated with Google, Mandiant, or MITRE. Code is MIT licensed; written content and data are CC BY-NC 4.0.</div>
 </footer>
 
 <script>
-// ── Data ─────────────────────────────────────────────────────────────────────
+// -- Data -------------------------------------------------------------------
+
+const SEED_REPORT_TOTAL = 11;
 
 const MATRIX = [
-  { country: "Israel",         sectors: ["Government","Defense","Energy","Healthcare","Telecommunications"], actors: ["UNC3890","UNC1860","APT42"], reports: 5, first: "Aug 2022", prov: "4 explicit · 1 derived" },
-  { country: "Albania",        sectors: ["Government","Defense"],                                           actors: ["UNC788","UNC1860"],            reports: 3, first: "Aug 2022", prov: "3 explicit" },
-  { country: "United States",  sectors: ["Aerospace","Government"],                                         actors: ["APT33","APT42"],               reports: 3, first: "Sep 2017", prov: "2 explicit · 1 derived" },
-  { country: "United Kingdom", sectors: ["Government","Research"],                                          actors: ["APT42","APT34"],               reports: 2, first: "Sep 2022", prov: "2 explicit" },
-  { country: "Turkey",         sectors: ["Defense"],                                                        actors: ["UNC1549"],                     reports: 1, first: "Feb 2024", prov: "1 explicit" },
-  { country: "UAE",            sectors: ["Aerospace"],                                                      actors: ["UNC1549"],                     reports: 1, first: "Feb 2024", prov: "1 explicit" },
-  { country: "Azerbaijan",     sectors: ["NGOs","Activists"],                                               actors: ["APT42"],                       reports: 1, first: "Sep 2022", prov: "1 explicit · non-strategic sectors" },
-  { country: "Saudi Arabia",   sectors: ["Energy"],                                                         actors: ["APT33"],                       reports: 1, first: "Sep 2017", prov: "1 explicit" },
-  { country: "South Korea",    sectors: ["Energy"],                                                         actors: ["APT33"],                       reports: 1, first: "Sep 2017", prov: "1 explicit" },
-  { country: "India",          sectors: ["Government"],                                                      actors: ["APT34"],                       reports: 1, first: "Dec 2017", prov: "1 explicit" },
+  { country: "Israel", reports: 5, avgConf: "0.700", first: "Aug 2022", prov: "4 explicit · 1 derived", sectors: ["Academia","Activists","Aerospace","Defense","Energy","Government","Healthcare","Journalism","Legal Services","Media Organizations","NGOs","Research","Shipping","Telecommunications"], actors: ["APT34","APT42","UNC1549","UNC1860","UNC3890"] },
+  { country: "Albania", reports: 3, avgConf: "0.700", first: "Aug 2022", prov: "3 explicit", sectors: ["Aerospace","Defense","Government","Telecommunications"], actors: ["APT34","UNC1549","UNC1860","UNC788"] },
+  { country: "United States", reports: 3, avgConf: "0.700", first: "Sep 2017", prov: "2 explicit · 1 derived", sectors: ["Academia","Activists","Aerospace","Energy","Government","Journalism","Legal Services","Media Organizations","NGOs","Research"], actors: ["APT33","APT42"] },
+  { country: "United Kingdom", reports: 2, avgConf: "0.700", first: "Sep 2022", prov: "1 explicit · 1 derived", sectors: ["Academia","Activists","Government","Journalism","Legal Services","Media Organizations","NGOs","Research"], actors: ["APT42"] },
+  { country: "Azerbaijan", reports: 1, avgConf: "0.700", first: "May 2024", prov: "1 derived", sectors: ["Academia","Activists","Legal Services","Media Organizations","NGOs"], actors: ["APT42"] },
+  { country: "India", reports: 1, avgConf: "0.700", first: "Feb 2024", prov: "1 explicit", sectors: ["Aerospace","Defense"], actors: ["UNC1549"] },
+  { country: "Saudi Arabia", reports: 1, avgConf: "0.700", first: "Sep 2017", prov: "1 explicit", sectors: ["Aerospace","Energy"], actors: ["APT33"] },
+  { country: "South Korea", reports: 1, avgConf: "0.700", first: "Sep 2017", prov: "1 explicit", sectors: ["Aerospace","Energy"], actors: ["APT33"] },
+  { country: "Turkey", reports: 1, avgConf: "0.700", first: "Feb 2024", prov: "1 explicit", sectors: ["Aerospace","Defense"], actors: ["UNC1549"] },
+  { country: "United Arab Emirates", reports: 1, avgConf: "0.700", first: "Feb 2024", prov: "1 explicit", sectors: ["Aerospace","Defense"], actors: ["UNC1549"] },
 ];
 
 const TIMELINE = [
-  { period: "2017", count: 2, label: "APT33 and APT34 establish access in aerospace, energy, and Middle Eastern government environments." },
-  { period: "2019–21", count: 2, label: "APT39 telecom and personal data targeting. Quieter publicly documented period." },
-  { period: "2022", count: 5, label: "APT42 surveillance broadens to journalists and NGOs. Albania ROADSWEEP disruption. UNC3890 targets Israel." },
-  { period: "2024–25", count: 4, label: "UNC1860 telecom footholds. UNC1549 aerospace and defense campaign. APT42 UK and US targeting." },
+  { period: "2017", count: 2, label: "APT33 and APT34 establish aerospace, energy, and government access." },
+  { period: "2019", count: 1, label: "APT39 adds telecom and personal-data targeting to the corpus." },
+  { period: "2022", count: 4, label: "APT42 surveillance broadens to journalists and NGOs. ROADSWEEP hits Albania. UNC3890 focuses on Israel." },
+  { period: "2024", count: 3, label: "UNC1549 expands aerospace and defense targeting. APT42 widens its map. UNC1860 documents passive telecom footholds." },
+  { period: "2025", count: 1, label: "UNC1549 extends the defense-industrial access campaign into trusted third-party relationships." },
 ];
 
 const TECHNIQUES = [
-  { id: "T1204.002", label: "Malicious file execution", body: "A lure document or attachment opens the path. The entry point looks like a user action, not an exploit — which is why it precedes nearly everything else in the sequence.", reports: 6, conf: 0.853, pct: 100 },
-  { id: "T1078",     label: "Valid account use",        body: "An existing or harvested account accesses systems within its apparent scope. The activity looks like authorized use until behavioral baselining catches the deviation.", reports: 5, conf: 0.860, pct: 83 },
-  { id: "T1071.001", label: "Application-layer C2",     body: "Command-and-control rides inside HTTPS traffic that defenders expect to see. The connection is real; only the destination is hostile.", reports: 5, conf: 0.720, pct: 83 },
-  { id: "T1068",     label: "Privilege escalation",     body: "A limited foothold is converted into broader access. At this stage the operator has moved from entry to durable presence with meaningful reach.", reports: 4, conf: 0.730, pct: 67 },
-  { id: "T1070.001", label: "Indicator removal",        body: "Log entries and forensic artifacts are cleaned before discovery. Operators who do this expect dwell time and plan for it.", reports: 4, conf: 0.725, pct: 67 },
-  { id: "T1572",     label: "Protocol tunneling",       body: "Communications shift to tunneled channels that are harder to inspect. The highest-confidence technique in the dataset — this is deliberate infrastructure, not improvisation.", reports: 3, conf: 0.933, pct: 50 },
+  { id: "T1204.002", label: "Malicious file execution", body: "A lure document or attachment opens the path. The entry point looks like a user action, not an exploit — which is why it precedes nearly everything else in the sequence.", reports: 6, conf: 0.853, pct: 55 },
+  { id: "T1078",     label: "Valid account use",        body: "An existing or harvested account accesses systems within its apparent scope. The activity looks like authorized use until behavioral baselining catches the deviation.", reports: 5, conf: 0.860, pct: 45 },
+  { id: "T1071.001", label: "Application-layer C2",     body: "Command-and-control rides inside HTTPS traffic that defenders expect to see. The connection is real; only the destination is hostile.", reports: 4, conf: 0.725, pct: 36 },
+  { id: "T1068",     label: "Privilege escalation",     body: "A limited foothold is converted into broader access. At this stage the operator has moved from entry to durable presence with meaningful reach.", reports: 4, conf: 0.730, pct: 36 },
+  { id: "T1070.001", label: "Indicator removal",        body: "Log entries and forensic artifacts are cleaned before discovery. Operators who do this expect dwell time and plan for it.", reports: 3, conf: 0.733, pct: 27 },
+  { id: "T1572",     label: "Protocol tunneling",       body: "Communications shift to tunneled channels that are harder to inspect. This is deliberate infrastructure, not improvisation.", reports: 3, conf: 0.933, pct: 27 },
 ];
 
 const OPERATORS = [
   {
     tag: "surveillance", tagLabel: "Surveillance",
     title: "Long-horizon visibility",
-    body: "Operations built for sustained intelligence on individuals — officials, researchers, journalists, NGO workers. The threat is account-level and human-facing.",
+    body: "Operations built for sustained intelligence on individuals — officials, researchers, journalists, and NGO workers. The threat is account-level and human-facing.",
     actors: ["APT42 / Charming Kitten", "APT39"],
-    tenure: "APT42: Sep 2022 – Aug 2024 · APT39: Jan 2019",
-    implication: "Response: phishing-resistant auth, behavioral monitoring of high-value accounts."
+    tenure: "APT42: Sep 2022 – Feb 2026 · APT39: Jan 2019 – Jul 2020",
+    note: "Identity problem — the person is the entry point."
   },
   {
     tag: "access", tagLabel: "Access maintenance",
     title: "Quiet footholds",
-    body: "Low-noise persistence in government, telecommunications, and enterprise environments. Access maintained without operational activity until needed.",
+    body: "Low-noise persistence in government, telecommunications, and enterprise environments. Access is maintained without operational activity until needed.",
     actors: ["APT34 / OilRig", "UNC1860"],
-    tenure: "APT34: Dec 2017 – Sep 2024 · UNC1860: Sep 2024",
-    implication: "Response: privileged access review, application-layer behavioral baselines."
+    tenure: "APT34: May 2016 – Sep 2024 · UNC1860: Sep 2024",
+    note: "Persistence problem — access is stored for later use."
+  },
+  {
+    tag: "coordination", tagLabel: "Access / coordination",
+    title: "Umbrella coordination",
+    body: "Talos frames MuddyWater as an umbrella of regionally focused sub-teams rather than a single operator, which is why it surfaces across access, surveillance, and pressure evidence instead of sitting cleanly in one lane.",
+    actors: ["MuddyWater"],
+    tenure: "Talos supplemental: May 2019 – Mar 2022",
+    note: "Coordination problem — multiple sub-teams can feed the same access ecosystem."
   },
   {
     tag: "pressure", tagLabel: "Strategic pressure",
     title: "Infrastructure and industry",
-    body: "Aerospace, defense, energy, shipping, and healthcare targeting aligned to geopolitical leverage points. The most recently escalating lane in the corpus.",
+    body: "Aerospace, defense, energy, shipping, and healthcare targeting aligned to geopolitical leverage points. This is the most recently escalating lane in the record.",
     actors: ["UNC1549 / Tortoiseshell", "APT33", "UNC3890"],
-    tenure: "APT33: Sep 2017 – Jul 2019 · UNC1549: Feb 2024 – Nov 2025",
-    implication: "Response: OT posture, defense supply-chain access review, threat-informed asset prioritization."
+    tenure: "APT33: Sep 2017 – Jul 2020 · UNC1549: Feb 2024 – Feb 2026 · UNC3890: Aug 2022",
+    note: "Supply-chain problem — trusted industrial relationships become the path."
   },
   {
     tag: "disruption", tagLabel: "Disruption on demand",
     title: "Visible effect",
-    body: "Activated when the political objective requires a signal rather than silence. One documented case in this corpus: Albania 2022.",
+    body: "Activated when the political objective requires a signal rather than silence. One DB-backed case in this corpus: Albania 2022.",
     actors: ["UNC788 / HomeLand Justice"],
     tenure: "UNC788: Aug 2022",
-    implication: "Response: incident response preparedness for destructive wiper scenarios."
+    note: "Coercive signaling problem — the visible effect is the objective."
   },
 ];
 
 const SOURCES = [
-  { date: "Sep 20, 2017", title: "APT33: Insights into Iranian Cyber Espionage", source: "Mandiant / Google Cloud", anchor: "Opens the corpus: aerospace and energy targeting in Saudi Arabia, South Korea, and the United States.", url: "https://cloud.google.com/blog/topics/threat-intelligence/apt33-insights-into-iranian-cyber-espionage" },
-  { date: "Dec 7, 2017",  title: "New Targeted Attack in the Middle East by APT34", source: "Mandiant / Google Cloud", anchor: "APT34 establishes the government-targeting baseline in the Middle East.", url: "https://cloud.google.com/blog/topics/threat-intelligence/targeted-attack-in-middle-east-by-apt34" },
-  { date: "Feb 24, 2022", title: "Left On Read: Telegram Malware in Iranian Espionage Activity", source: "Mandiant / Google Cloud", anchor: "Surveillance tradecraft extends into messaging platforms. Marks the shift toward the human targeting layer.", url: "https://cloud.google.com/blog/topics/threat-intelligence/telegram-malware-iranian-espionage" },
-  { date: "Aug 4, 2022",  title: "ROADSWEEP Ransomware and CHIMNEYPOT in Albania", source: "Mandiant / Google Cloud", anchor: "The disruption case. HomeLand Justice deploys wiper malware against Albanian government infrastructure.", url: "https://cloud.google.com/blog/topics/threat-intelligence/likely-iranian-threat-actor-conducts-politically-motivated-disruptive-activity-against" },
-  { date: "Aug 17, 2022", title: "UNC3890: Suspected Iranian Threat Actor Targeting Israeli Shipping, Healthcare, Government and Energy Sectors", source: "Mandiant / Google Cloud", anchor: "Israel-focused collection expands the sector map into shipping, healthcare, government, and energy. First explicit documentation of Israel as a primary target.", url: "https://cloud.google.com/blog/topics/threat-intelligence/suspected-iranian-actor-targeting-israeli-shipping" },
-  { date: "Sep 7, 2022",  title: "APT42: Charms, Cons, and Compromises", source: "Mandiant / Google Cloud", anchor: "Full APT42 profile. Long-horizon social engineering against officials, journalists, and think-tank researchers across the US, UK, and globally.", url: "https://cloud.google.com/blog/topics/threat-intelligence/apt42-charms-cons-compromises" },
-  { date: "Sep 14, 2022", title: "Prying Eyes: APT42 Targets UK and US Research and Government", source: "Mandiant / Google Cloud", anchor: "UK-focused APT42 targeting. Documents the expansion of the surveillance lane into Western government and research environments.", url: "https://cloud.google.com/blog/topics/threat-intelligence/apt42-charms-cons-compromises" },
-  { date: "Jan 9, 2019",  title: "APT39: An Iranian Cyber Espionage Group Focused on Personal Information", source: "Mandiant / Google Cloud", anchor: "APT39 establishes the telecommunications and personal data targeting lane. Regional focus on Middle East, targeting individuals and travel records.", url: "https://cloud.google.com/blog/topics/threat-intelligence/apt39-iranian-cyber-espionage-network-used-to-steal-personal-information-and-data" },
-  { date: "Jul 2019",     title: "APT33: Continued Targeting of Aviation and Energy Sectors", source: "Mandiant / Google Cloud", anchor: "APT33 follow-up documents persistence in aerospace and energy environments through 2019.", url: "https://cloud.google.com/blog/topics/threat-intelligence/apt33-insights-into-iranian-cyber-espionage" },
-  { date: "Feb 27, 2024", title: "UNC1549: Suspected Iranian Threat Actor Targets Israel and Middle East Aerospace and Defense Industries", source: "Mandiant / Google Cloud", anchor: "UNC1549 begins documented aerospace and defense campaign. Azure-hosted infrastructure used to mask C2 traffic.", url: "https://cloud.google.com/blog/topics/threat-intelligence/suspected-iranian-unc1549-targets-israel-middle-east" },
-  { date: "Aug 2024",     title: "APT42: Continued Phishing Operations Against US and UK Research and Policy Communities", source: "Mandiant / Google Cloud", anchor: "APT42 expands UK and US targeting into 2024. Consistent social engineering tradecraft, persistent credential harvesting.", url: "https://cloud.google.com/blog/topics/threat-intelligence/apt42-charms-cons-compromises" },
-  { date: "Sep 19, 2024", title: "UNC1860: Passive Backdoors and Initial Access in Middle Eastern Telecommunications and Government Networks", source: "Mandiant / Google Cloud", anchor: "Pre-positioning in telecom and government infrastructure. UNC1860 establishes persistent, low-noise access ahead of potential activation.", url: "https://cloud.google.com/blog/topics/threat-intelligence/unc1860-iran-middle-eastern-networks" },
-  { date: "Nov 17, 2025", title: "Analysis of UNC1549: Tactics, Techniques, and Procedures Targeting Aerospace and Defense", source: "Mandiant / Google Cloud", anchor: "Closes the arc. Sustained aerospace and defense campaign exploiting supply-chain trust relationships and third-party access.", url: "https://cloud.google.com/blog/topics/threat-intelligence/analysis-of-unc1549-ttps-targeting-aerospace-defense" },
+  { date: "Sep 20, 2017", title: "APT33 Targets Aerospace & Energy Sectors", source: "Google/Mandiant", type: "seed", typeLabel: "Seed corpus", anchor: "Opens the DB-backed corpus with aerospace and energy targeting in Saudi Arabia, South Korea, and the United States.", url: "https://cloud.google.com/blog/topics/threat-intelligence/apt33-insights-into-iranian-cyber-espionage", techniques: 5, actors: 1, victims: 5, conf: "0.816" },
+  { date: "Dec 7, 2017", title: "New Targeted Attack in the Middle East by APT34", source: "Google/Mandiant", type: "seed", typeLabel: "Seed corpus", anchor: "APT34 establishes the government-targeting baseline in the Middle East.", url: "https://cloud.google.com/blog/topics/threat-intelligence/targeted-attack-in-middle-east-by-apt34", techniques: 6, actors: 2, victims: 2, conf: "0.800" },
+  { date: "Jan 29, 2019", title: "APT39 | Iranian Threat Group Focused on Personal Information", source: "Google/Mandiant", type: "seed", typeLabel: "Seed corpus", anchor: "APT39 establishes the telecommunications and personal-data targeting lane.", url: "https://cloud.google.com/blog/topics/threat-intelligence/apt39-iranian-cyber-espionage-group-focused-on-personal-information", techniques: 11, actors: 4, victims: 3, conf: "0.756" },
+  { date: "May 20, 2019", title: "Recent MuddyWater-associated BlackWater campaign shows signs of new anti-detection techniques", source: "Cisco Talos", type: "supplemental", typeLabel: "Talos supplemental", anchor: "Talos documents MuddyWater tradecraft refinement and anti-detection changes during the quieter seed-publication window.", url: "https://blog.talosintelligence.com/recent-muddywater-associated-blackwater/", techniques: 6, actors: 1, victims: 2, conf: "0.800" },
+  { date: "Jan 31, 2022", title: "Iranian APT MuddyWater targets Turkish users via malicious PDFs, executables", source: "Cisco Talos", type: "supplemental", typeLabel: "Talos supplemental", anchor: "Adds Talos evidence for document-led initial access and Turkey-focused MuddyWater activity.", url: "https://blog.talosintelligence.com/iranian-apt-muddywater-targets-turkey/", techniques: 5, actors: 1, victims: 2, conf: "0.800" },
+  { date: "Feb 24, 2022", title: "Left On Read: Telegram Malware Spotted in Latest Iranian Cyber Espionage Activity", source: "Google/Mandiant", type: "seed", typeLabel: "Seed corpus", anchor: "Surveillance tradecraft extends into messaging platforms and marks the shift toward the human targeting layer.", url: "https://cloud.google.com/blog/topics/threat-intelligence/telegram-malware-iranian-espionage", techniques: 36, actors: 3, victims: 3, conf: "0.993" },
+  { date: "Mar 10, 2022", title: "Iranian linked conglomerate MuddyWater comprised of regionally focused subgroups", source: "Cisco Talos", type: "supplemental", typeLabel: "Talos supplemental", anchor: "Frames MuddyWater as a multi-team Iran-linked ecosystem spanning government, telecom, and regional targeting.", url: "https://blog.talosintelligence.com/iranian-supergroup-muddywater/", techniques: 5, actors: 2, victims: 6, conf: "0.800" },
+  { date: "Aug 4, 2022", title: "ROADSWEEP Ransomware Targets the Albanian Government", source: "Google/Mandiant", type: "seed", typeLabel: "Seed corpus", anchor: "The visible disruption case: HomeLand Justice and ROADSWEEP against Albanian government infrastructure.", url: "https://cloud.google.com/blog/topics/threat-intelligence/likely-iranian-threat-actor-conducts-politically-motivated-disruptive-activity-against", techniques: 21, actors: 3, victims: 2, conf: "0.990" },
+  { date: "Aug 17, 2022", title: "UNC3890 Targets Israeli Shipping, Healthcare, Government and Energy Sectors", source: "Google/Mandiant", type: "seed", typeLabel: "Seed corpus", anchor: "Israel-focused collection expands the sector map into shipping, healthcare, government, and energy.", url: "https://cloud.google.com/blog/topics/threat-intelligence/suspected-iranian-actor-targeting-israeli-shipping", techniques: 32, actors: 5, victims: 5, conf: "0.983" },
+  { date: "Sep 7, 2022", title: "APT42: Crooked Charms, Cons, and Compromises", source: "Google/Mandiant", type: "seed", typeLabel: "Seed corpus", anchor: "Full APT42 profile: long-horizon social engineering against officials, journalists, and researchers across the US and UK.", url: "https://cloud.google.com/blog/topics/threat-intelligence/apt42-charms-cons-compromises", techniques: 4, actors: 5, victims: 6, conf: "0.750" },
+  { date: "Sep 19, 2023", title: "New ShroudedSnooper actor targets telecommunications firms in the Middle East with novel Implants", source: "Cisco Talos", type: "supplemental", typeLabel: "Talos supplemental", anchor: "Adds telecom-focused evidence for low-noise implants and HTTP(S)-listener tradecraft in the Middle East.", url: "https://blog.talosintelligence.com/introducing-shrouded-snooper/", techniques: 4, actors: 2, victims: 2, conf: "0.775" },
+  { date: "Feb 27, 2024", title: "When Cats Fly: Suspected Iranian Threat Actor UNC1549 Targets Israeli and Middle East Aerospace and Defense Sectors", source: "Google/Mandiant", type: "seed", typeLabel: "Seed corpus", anchor: "UNC1549 begins the documented aerospace and defense campaign using Azure-hosted infrastructure to mask C2 traffic.", url: "https://cloud.google.com/blog/topics/threat-intelligence/suspected-iranian-unc1549-targets-israel-middle-east", techniques: 6, actors: 3, victims: 7, conf: "0.730" },
+  { date: "May 1, 2024", title: "Uncharmed: Untangling Iran's APT42 Operations", source: "Google/Mandiant", type: "seed", typeLabel: "Seed corpus", anchor: "Widens the APT42 geography and makes the cleanup and defense-evasion layer explicit.", url: "https://cloud.google.com/blog/topics/threat-intelligence/untangling-iran-apt42-operations", techniques: 7, actors: 8, victims: 9, conf: "0.791" },
+  { date: "Sep 19, 2024", title: "UNC1860 and the Temple of Oats: Iran’s Hidden Hand in Middle Eastern Networks", source: "Google/Mandiant", type: "seed", typeLabel: "Seed corpus", anchor: "Pre-positioning in telecom and government infrastructure: passive backdoors held ready for later use.", url: "https://cloud.google.com/blog/topics/threat-intelligence/unc1860-iran-middle-eastern-networks", techniques: 6, actors: 5, victims: 4, conf: "0.708" },
+  { date: "Nov 17, 2025", title: "Frontline Intelligence: Analysis of UNC1549 TTPs, Custom Tools, and Malware Targeting the Aerospace and Defense Ecosystem", source: "Google/Mandiant", type: "seed", typeLabel: "Seed corpus", anchor: "Closes the arc with a sustained aerospace and defense campaign exploiting trusted supplier and partner relationships.", url: "https://cloud.google.com/blog/topics/threat-intelligence/analysis-of-unc1549-ttps-targeting-aerospace-defense", techniques: 12, actors: 1, victims: 3, conf: "0.912" },
+];
+const ACTOR_LABELS = [
+  { label: "UNC1549 / Tortoiseshell", className: "actor-unc1549" },
+  { label: "UNC788 / HomeLand Justice", className: "actor-unc788" },
+  { label: "APT42 / Charming Kitten", className: "actor-apt42" },
+  { label: "APT34 / OilRig", className: "actor-apt34" },
+  { label: "HomeLand Justice", className: "actor-unc788" },
+  { label: "Charming Kitten", className: "actor-apt42" },
+  { label: "Tortoiseshell", className: "actor-unc1549" },
+  { label: "MuddyWater", className: "actor-muddywater" },
+  { label: "UNC1860", className: "actor-unc1860" },
+  { label: "UNC3890", className: "actor-unc3890" },
+  { label: "UNC1549", className: "actor-unc1549" },
+  { label: "UNC788", className: "actor-unc788" },
+  { label: "APT42", className: "actor-apt42" },
+  { label: "APT39", className: "actor-apt39" },
+  { label: "APT34", className: "actor-apt34" },
+  { label: "APT33", className: "actor-apt33" },
+  { label: "OilRig", className: "actor-apt34" },
 ];
 
-// ── Render: Matrix ────────────────────────────────────────────────────────────
+const ACTOR_CLASS_BY_LABEL = Object.fromEntries(
+  ACTOR_LABELS.map(actor => [actor.label, actor.className])
+);
+
+const ACTOR_TEXT_REGEX = new RegExp(
+  ACTOR_LABELS.map(actor => escapeRegExp(actor.label)).join('|'),
+  'g'
+);
+
+function escapeRegExp(text) {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function escapeHtml(text) {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function actorClassForLabel(label) {
+  const match = ACTOR_LABELS.find(actor => label.includes(actor.label));
+  return match ? match.className : '';
+}
+
+function renderActorBadge(label, baseClass) {
+  const actorClass = actorClassForLabel(label);
+  const classes = actorClass ? `${baseClass} ${actorClass}` : baseClass;
+  return `<span class="${classes}">${escapeHtml(label)}</span>`;
+}
+
+function highlightActorString(text) {
+  ACTOR_TEXT_REGEX.lastIndex = 0;
+  if (!ACTOR_TEXT_REGEX.test(text)) return escapeHtml(text);
+  ACTOR_TEXT_REGEX.lastIndex = 0;
+
+  let lastIndex = 0;
+  let html = '';
+
+  text.replace(ACTOR_TEXT_REGEX, (match, offset) => {
+    html += escapeHtml(text.slice(lastIndex, offset));
+    html += `<span class="${ACTOR_CLASS_BY_LABEL[match]}">${escapeHtml(match)}</span>`;
+    lastIndex = offset + match.length;
+    return match;
+  });
+
+  html += escapeHtml(text.slice(lastIndex));
+  return html;
+}
+
+function highlightActorNodes(selector) {
+  document.querySelectorAll(selector).forEach(root => {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        const parent = node.parentElement;
+        if (!parent) return NodeFilter.FILTER_REJECT;
+        if (parent.closest('.inline-cite, .source-link, .section-source-label, .source-title, .source-date')) {
+          return NodeFilter.FILTER_REJECT;
+        }
+        ACTOR_TEXT_REGEX.lastIndex = 0;
+        return ACTOR_TEXT_REGEX.test(node.nodeValue)
+          ? NodeFilter.FILTER_ACCEPT
+          : NodeFilter.FILTER_REJECT;
+      }
+    });
+
+    const textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+    textNodes.forEach(node => {
+      const wrapper = document.createElement('span');
+      wrapper.innerHTML = highlightActorString(node.nodeValue);
+      node.replaceWith(...wrapper.childNodes);
+    });
+  });
+}
+
+// -- Render: Matrix ----------------------------------------------------------
 function renderMatrix() {
   const tbody = document.getElementById('matrix-body');
   if (!tbody) return;
@@ -1083,14 +1418,14 @@ function renderMatrix() {
         <span class="matrix-prov">${r.prov}</span>
       </td>
       <td>${r.sectors.map(s => `<span class="sector-chip">${s}</span>`).join(' ')}</td>
-      <td>${r.actors.map(a => `<span class="actor-chip">${a}</span>`).join(' ')}</td>
+      <td>${r.actors.map(a => renderActorBadge(a, 'actor-chip')).join(' ')}</td>
       <td><span class="conf-badge">${r.reports}</span></td>
       <td><span class="conf-badge">${r.first}</span></td>
     </tr>
   `).join('');
 }
 
-// ── Render: Timeline ──────────────────────────────────────────────────────────
+// -- Render: Timeline --------------------------------------------------------
 function renderTimeline() {
   const track = document.getElementById('timeline-track');
   if (!track) return;
@@ -1104,13 +1439,13 @@ function renderTimeline() {
           <div class="tl-bar" style="height:${barH}px;" title="${n.count} reports"></div>
         </div>
         <div class="tl-count">${n.count}</div>
-        <div class="tl-label">${n.label}</div>
+        <div class="tl-label">${highlightActorString(n.label)}</div>
       </div>
     `;
   }).join('');
 }
 
-// ── Render: Techniques ────────────────────────────────────────────────────────
+// -- Render: Techniques ------------------------------------------------------
 function renderTechniques() {
   const flow = document.getElementById('technique-flow');
   if (!flow) return;
@@ -1123,13 +1458,13 @@ function renderTechniques() {
         <div class="tech-bar-wrap">
           <div class="tech-bar-fill" style="width:${t.pct}%;"></div>
         </div>
-        <span class="tech-count">${t.reports}/13 · ${t.conf} conf</span>
+        <span class="tech-count">${t.reports}/${SEED_REPORT_TOTAL} seed reports</span>
       </div>
     </div>
   `).join('');
 }
 
-// ── Render: Operators ─────────────────────────────────────────────────────────
+// -- Render: Operators -------------------------------------------------------
 function renderOperators() {
   const grid = document.getElementById('operator-grid');
   if (!grid) return;
@@ -1139,38 +1474,47 @@ function renderOperators() {
       <h4>${op.title}</h4>
       <p>${op.body}</p>
       <div class="op-actors">
-        ${op.actors.map(a => `<span class="op-actor">${a}</span>`).join('')}
+        ${op.actors.map(a => renderActorBadge(a, 'op-actor')).join('')}
       </div>
       <div class="op-tenure">${op.tenure}</div>
-      <p style="margin-top:10px;font-size:.84rem;color:var(--steel);line-height:1.45;">${op.implication}</p>
+      <p class="op-note">${op.note}</p>
     </div>
   `).join('');
 }
 
-// ── Render: Sources ───────────────────────────────────────────────────────────
+// -- Render: Sources ---------------------------------------------------------
 function renderSources() {
   const list = document.getElementById('source-list');
   if (!list) return;
   list.innerHTML = SOURCES.map(s => `
-    <div class="source-row">
-      <div class="source-date">${s.date}<br><span style="color:var(--muted);opacity:.7;">${s.source}</span></div>
+    <div class="source-row ${s.type}">
+      <div class="source-date">${s.date}<br><span class="source-type ${s.type}">${s.typeLabel}</span><span style="color:var(--muted);opacity:.7;">${s.source}</span></div>
       <div>
         <div class="source-title">${s.title}</div>
-        <div class="source-anchor">${s.anchor}</div>
+        <div class="source-anchor">${highlightActorString(s.anchor)}</div>
+        <div class="source-stats">
+          <span class="source-stat">${s.techniques} techniques</span>
+          <span class="source-stat">${s.actors} actors</span>
+          <span class="source-stat">${s.victims} victim entities</span>
+          <span class="source-stat">${s.conf} avg tech conf</span>
+        </div>
       </div>
-      <a class="source-link" href="${s.url}" target="_blank" rel="noopener">Open →</a>
+      <a class="source-link" href="${s.url}" target="_blank" rel="noopener">Open &rarr;</a>
     </div>
   `).join('');
 }
 
-// ── Init ──────────────────────────────────────────────────────────────────────
+// -- Init -------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
   renderMatrix();
   renderTimeline();
   renderTechniques();
   renderOperators();
   renderSources();
+  highlightActorNodes('.article-body, .section-source-quote');
 });
 </script>
 </body>
 </html>
+
+

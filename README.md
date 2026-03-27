@@ -1,19 +1,33 @@
 # OPTICLab
 
-Public release bundle for the OPTIC database snapshot dated March 25, 2026.
+Public release bundle for OPTIC database materials.
 
-This folder is intended to become the public GitHub repo contents for the database release. The static dashboard, schema, and orientation docs live in the repo. The actual PostgreSQL dump is staged under `release-assets/` so it can be uploaded as a GitHub Release asset instead of being committed into source control.
+This folder is intended to become the public GitHub repo contents for the database release. The static dashboard, schema, and orientation docs live in the repo. The PostgreSQL dump is staged under `release-assets/` so it can be uploaded as a GitHub Release asset instead of being committed into source control.
+
+## Current corpus framing
+
+Use this distinction consistently in public copy:
+
+- `571` normalized Mandiant archive articles are preserved on disk.
+- `402` corpus-policy-filtered articles make up the current analyst-usable operational corpus.
+- Preferred wording: `402 analyst-usable reports in the production corpus, built from a 571-report normalized archive.`
+
+This distinction matters because the operational corpus is the cleaner production search set. Archive-only articles remain preserved for review and reprocessing but are intentionally excluded from the production corpus.
+
+## Public release snapshot
+
+The downloadable PostgreSQL dump in `release-assets/` is still the historical public snapshot dated March 25, 2026.
 
 ## Included
 
-- `index.html`: static dashboard for the March 25, 2026 OPTIC snapshot.
+- `index.html`: static dashboard copy reflecting the current operational corpus / normalized archive distinction.
 - `iran.html`: companion report linked from the dashboard and served as `/iran` on Cloudflare Pages.
 - `schema.sql`: PostgreSQL DDL for the OPTIC schema.
 - `schema-overview.md`: table-by-table explanation of the data model.
-- `release-assets/optic-postgres-2026-03-25.dump`: PostgreSQL custom-format dump for the public release.
+- `release-assets/optic-postgres-2026-03-25.dump`: PostgreSQL custom-format dump for the March 25 public snapshot.
 - `release-assets/SHA256SUMS.txt`: checksum manifest for the dump.
 
-## Seven Headline Metrics
+## Historical Snapshot Metrics
 
 Snapshot source: live `optic` PostgreSQL database on March 25, 2026.
 
@@ -29,9 +43,9 @@ Snapshot source: live `optic` PostgreSQL database on March 25, 2026.
 
 Additional release context:
 
-- `524` source reports have been collected in the archive.
-- `371` of those reports are currently loaded into PostgreSQL.
-- `153` collected reports are not yet included in this snapshot.
+- The current working corpus has moved beyond this snapshot: `402` analyst-usable operational reports built from a `571`-article normalized archive.
+- The downloadable asset remains the older March 25, 2026 PostgreSQL snapshot with `371` reports loaded into PostgreSQL.
+- Public copy should describe this release as a historical snapshot, not as the current production corpus.
 
 ## Restore
 
@@ -59,4 +73,5 @@ Underlying source reporting, trademarks, and third-party intelligence content re
 
 - Upload `release-assets/optic-postgres-2026-03-25.dump` as the GitHub Release asset for this snapshot.
 - Keep `schema.sql`, `schema-overview.md`, `index.html`, and this README in the public repo.
+- Do not describe the March 25 dump as the current production corpus. Public copy should distinguish the `402`-report operational corpus from the older `371`-report dump snapshot.
 - Verify the release asset against `release-assets/SHA256SUMS.txt` after upload.

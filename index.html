@@ -1399,7 +1399,7 @@
           <div class="section-kicker">Why this is useful</div>
           <h2 class="section-title">What you can trust and work with</h2>
         </div>
-        <span class="section-note">371 reports indexed as of Mar 25, 2026</span>
+        <span class="section-note">402 analyst-usable reports in production corpus · 571 normalized archive articles as of Mar 27, 2026</span>
       </div>
 
       <div class="dashboard-grid">
@@ -1413,11 +1413,11 @@
               <div class="compare-head">
                 <div>
                   <div class="compare-label">Findings with source quotes</div>
-                  <div class="compare-detail">16,998 of 17,091 extracted findings preserve source text, so you can verify the claim instead of trusting a summary.</div>
+                  <div class="compare-detail">18,220 of 18,319 extracted findings preserve source text, so you can verify the claim instead of trusting a summary.</div>
                 </div>
                 <div class="compare-stat">
                   <strong>99.5%</strong>
-                  <span>93 findings require source review</span>
+                  <span>99 findings require source review</span>
                 </div>
               </div>
               <div class="compare-track"><div class="compare-fill sage" style="width:99.5%"></div></div>
@@ -1426,49 +1426,49 @@
               <div class="compare-head">
                 <div>
                   <div class="compare-label">Directly stated in the source</div>
-                  <div class="compare-detail">14,308 of 17,091 findings come from explicit language in the report, helping you separate stated facts from inferred context.</div>
+                  <div class="compare-detail">15,357 of 18,319 findings come from explicit language in the report, helping you separate stated facts from inferred context.</div>
                 </div>
                 <div class="compare-stat">
-                  <strong>83.7%</strong>
-                  <span>2,783 require analyst judgment</span>
+                  <strong>83.8%</strong>
+                  <span>2,962 require analyst judgment</span>
                 </div>
               </div>
-              <div class="compare-track"><div class="compare-fill amber" style="width:83.7%"></div></div>
+              <div class="compare-track"><div class="compare-fill amber" style="width:83.8%"></div></div>
             </div>
           </div>
         </div>
 
         <div class="card">
           <div class="card-kicker">Operational coverage</div>
-          <h3 class="viz-title">Actor attribution and sector targeting are available across most of the dataset</h3>
-          <p class="viz-sub">These coverage rates tell you whether the database supports actor tracking and targeting analysis, not just isolated lookups.</p>
+          <h3 class="viz-title">Actor attribution and sector targeting are available across most of the production corpus</h3>
+          <p class="viz-sub">These coverage rates tell you whether the operational corpus supports actor tracking and targeting analysis, not just isolated lookups.</p>
 
           <div class="compare-list">
             <div class="compare-row">
               <div class="compare-head">
                 <div>
                   <div class="compare-label">Reports with named threat actors</div>
-                  <div class="compare-detail">282 of 371 reports include a normalized actor reference, which makes actor-centric pivots useful rather than sparse.</div>
+                  <div class="compare-detail">306 of 402 operational reports include a normalized actor reference, which makes actor-centric pivots useful rather than sparse.</div>
                 </div>
                 <div class="compare-stat">
-                  <strong>76.0%</strong>
-                  <span>89 reports without actor context</span>
+                  <strong>76.1%</strong>
+                  <span>96 reports without actor context</span>
                 </div>
               </div>
-              <div class="compare-track"><div class="compare-fill signal" style="width:76%"></div></div>
+              <div class="compare-track"><div class="compare-fill signal" style="width:76.1%"></div></div>
             </div>
             <div class="compare-row">
               <div class="compare-head">
                 <div>
                   <div class="compare-label">Reports with sector targeting</div>
-                  <div class="compare-detail">281 of 371 reports identify victim sectors or industry targeting, which supports campaign scoping and sector research.</div>
+                  <div class="compare-detail">300 of 402 operational reports identify victim sectors or industry targeting, which supports campaign scoping and sector research.</div>
                 </div>
                 <div class="compare-stat">
-                  <strong>75.7%</strong>
-                  <span>90 reports without sector detail</span>
+                  <strong>74.6%</strong>
+                  <span>102 reports without sector detail</span>
                 </div>
               </div>
-              <div class="compare-track"><div class="compare-fill steel" style="width:75.7%"></div></div>
+              <div class="compare-track"><div class="compare-fill steel" style="width:74.6%"></div></div>
             </div>
           </div>
         </div>
@@ -1477,13 +1477,13 @@
       <div class="metrics-grid metrics-grid-duo">
         <div class="metric-card c-amber">
           <div class="m-label">Searchable IOCs</div>
-          <span class="m-value">6,624</span>
-          <p class="m-sub">Enough indicator depth for enrichment, hunting pivots, and historical lookups across the dataset.</p>
-          <div class="m-detail">17.9 IOCs per report</div>
+          <span class="m-value">7,243</span>
+          <p class="m-sub">Enough indicator depth for enrichment, hunting pivots, and historical lookups across the analyst-usable corpus.</p>
+          <div class="m-detail">18.0 IOCs per report</div>
         </div>
         <div class="metric-card c-steel">
           <div class="m-label">Connected relationships</div>
-          <span class="m-value">1,041</span>
+          <span class="m-value">1,113</span>
           <p class="m-sub">Linked actors, malware, techniques, victims, and infrastructure let you move from one fact to the next without rebuilding the chain by hand.</p>
           <div class="m-detail">2.8 linked relationships per report</div>
         </div>
@@ -1497,23 +1497,23 @@
 
           <div class="skyline skyline-entity">
             <div class="sky-col">
-              <div class="sky-count">1,881</div>
+              <div class="sky-count">2,026</div>
               <div class="sky-wrap"><div class="sky-bar amber" style="--bar-size:100%"></div></div>
               <div class="sky-label">Malware</div>
             </div>
             <div class="sky-col">
-              <div class="sky-count">530</div>
-              <div class="sky-wrap"><div class="sky-bar signal" style="--bar-size:max(28.1%, 28px)"></div></div>
+              <div class="sky-count">535</div>
+              <div class="sky-wrap"><div class="sky-bar signal" style="--bar-size:max(26.4%, 28px)"></div></div>
               <div class="sky-label">Actors</div>
             </div>
             <div class="sky-col">
-              <div class="sky-count">384</div>
-              <div class="sky-wrap"><div class="sky-bar" style="--bar-size:max(20.4%, 22px)"></div></div>
+              <div class="sky-count">385</div>
+              <div class="sky-wrap"><div class="sky-bar" style="--bar-size:max(19.0%, 22px)"></div></div>
               <div class="sky-label">ATT&amp;CK</div>
             </div>
             <div class="sky-col">
-              <div class="sky-count">228</div>
-              <div class="sky-wrap"><div class="sky-bar sage" style="--bar-size:max(12.1%, 18px)"></div></div>
+              <div class="sky-count">254</div>
+              <div class="sky-wrap"><div class="sky-bar sage" style="--bar-size:max(12.5%, 18px)"></div></div>
               <div class="sky-label">CVEs</div>
             </div>
           </div>
@@ -1521,32 +1521,32 @@
 
         <div class="card">
           <div class="card-kicker">Usable coverage</div>
-          <h3 class="viz-title">Most of the collected report set is already searchable, with 153 reports still outside the database</h3>
-          <p class="viz-sub">This is the completeness check: enough material to be useful now, while making the remaining gap explicit.</p>
+          <h3 class="viz-title">The production corpus is the analyst-usable slice of a larger normalized archive</h3>
+          <p class="viz-sub">This is the corpus-policy distinction: archive breadth is preserved, but only the cleaner operational subset is exposed as the production search set.</p>
 
           <div class="band-card">
             <div class="compare-head">
               <div>
-                <div class="compare-label">Reports available in OPTIC</div>
-                <div class="compare-detail">371 of 524 collected source reports are already searchable here, which is enough to support broad actor and campaign research.</div>
+                <div class="compare-label">Reports in the production corpus</div>
+                <div class="compare-detail">402 of 571 normalized archive articles are currently in the operational corpus. The remaining 169 stay preserved in the archive, but are excluded from the production search set by corpus policy.</div>
               </div>
               <div class="compare-stat">
-                <strong>70.8%</strong>
-                <span>153 reports not yet available</span>
+                <strong>70.4%</strong>
+                <span>169 archive-only articles</span>
               </div>
             </div>
             <div class="band split-band">
-              <div class="done" style="width:70.8%"></div>
-              <div class="remaining" style="width:29.2%"></div>
+              <div class="done" style="width:70.4%"></div>
+              <div class="remaining" style="width:29.6%"></div>
             </div>
             <div class="legend-list">
               <div class="legend-row">
-                <span class="legend-key"><span class="legend-dot sage"></span>Available now</span>
-                <strong>371</strong>
+                <span class="legend-key"><span class="legend-dot sage"></span>Operational corpus</span>
+                <strong>402</strong>
               </div>
               <div class="legend-row">
-                <span class="legend-key"><span class="legend-dot signal"></span>Not yet available</span>
-                <strong>153</strong>
+                <span class="legend-key"><span class="legend-dot signal"></span>Archive-only</span>
+                <strong>169</strong>
               </div>
             </div>
           </div>
@@ -1560,13 +1560,14 @@
         <div class="pb-label" aria-hidden="true"></div>
         <div class="pb-items">
           <div class="pb-item">Primary source <strong>Mandiant / Google TI</strong></div>
-          <div class="pb-item">Reports indexed <strong>371</strong></div>
+          <div class="pb-item">Operational corpus <strong>402</strong></div>
+          <div class="pb-item">Normalized archive <strong>571</strong></div>
           <div class="pb-item">Core strength <strong>source-linked findings</strong></div>
-          <div class="pb-item">Updated <strong>Mar 25, 2026</strong></div>
+          <div class="pb-item">Updated <strong>Mar 27, 2026</strong></div>
         </div>
       </div>
       <div class="pb-cta">
-        <a class="pb-link" href="https://github.com/RubiksTwist/opticLab/releases" target="_blank" rel="noopener">Download dataset</a>
+        <a class="pb-link" href="https://github.com/RubiksTwist/opticLab" target="_blank" rel="noopener">Project on GitHub</a>
       </div>
     </div>
 
@@ -1574,7 +1575,7 @@
     <footer>
       <div>OPTIC Lab - Open Provenance Threat Intelligence Corpus</div>
       <div class="footer-links">
-        <a href="https://github.com/RubiksTwist/opticLab/releases" target="_blank" rel="noopener">Download dataset</a>
+        <a href="https://github.com/RubiksTwist/opticLab" target="_blank" rel="noopener">Project on GitHub</a>
         <a href="https://www.linkedin.com/in/alex-cheung-878632290/" target="_blank" rel="noopener">Alex Cheung on LinkedIn</a>
       </div>
       <div>Not affiliated with Google, Mandiant, or MITRE. Code is MIT licensed; written content and data are CC BY-NC 4.0.</div>
