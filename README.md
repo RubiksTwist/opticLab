@@ -16,7 +16,7 @@ This distinction matters because the operational corpus is the cleaner productio
 
 ## Public release snapshot
 
-The downloadable PostgreSQL dump in `release-assets/` is still the historical public snapshot dated March 25, 2026.
+The downloadable PostgreSQL dump in `release-assets/` has been refreshed from the live `optic` PostgreSQL database on March 28, 2026.
 
 ## Included
 
@@ -24,28 +24,28 @@ The downloadable PostgreSQL dump in `release-assets/` is still the historical pu
 - `iran.html`: companion report linked from the dashboard and served as `/iran` on Cloudflare Pages.
 - `schema.sql`: PostgreSQL DDL for the OPTIC schema.
 - `schema-overview.md`: table-by-table explanation of the data model.
-- `release-assets/optic-postgres-2026-03-25.dump`: PostgreSQL custom-format dump for the March 25 public snapshot.
+- `release-assets/optic-postgres-2026-03-28.dump`: PostgreSQL custom-format dump for the March 28 public snapshot.
 - `release-assets/SHA256SUMS.txt`: checksum manifest for the dump.
 
-## Historical Snapshot Metrics
+## Snapshot Metrics
 
-Snapshot source: live `optic` PostgreSQL database on March 25, 2026.
+Snapshot source: live `optic` PostgreSQL database on March 28, 2026.
 
 | Metric | Value |
 | --- | --- |
-| Reports indexed | `371` |
-| Findings with source quotes | `16,998 / 17,091` (`99.5%`) |
-| Explicit findings | `14,308 / 17,091` (`83.7%`) |
-| Reports with named threat actors | `282 / 371` (`76.0%`) |
-| Reports with sector targeting | `281 / 371` (`75.7%`) |
-| Searchable IOCs | `6,624` |
-| Connected relationships | `1,041` |
+| Reports indexed | `1,103` |
+| Findings with source quotes | `37,949 / 38,312` (`99.1%`) |
+| Explicit findings | `30,700 / 38,312` (`80.1%`) |
+| Reports with named threat actors | `659 / 1,103` (`59.7%`) |
+| Reports with sector targeting | `717 / 1,103` (`65.0%`) |
+| Searchable IOCs | `16,283` |
+| Connected relationships | `2,665` |
 
 Additional release context:
 
-- The current working corpus has moved beyond this snapshot: `402` analyst-usable operational reports built from a `571`-article normalized archive.
-- The downloadable asset remains the older March 25, 2026 PostgreSQL snapshot with `371` reports loaded into PostgreSQL.
-- Public copy should describe this release as a historical snapshot, not as the current production corpus.
+- The current working dashboard copy still distinguishes a narrower `402`-report analyst-usable operational corpus built from a `571`-article normalized archive.
+- The downloadable asset is a broader March 28, 2026 PostgreSQL snapshot with `1,103` reports loaded into PostgreSQL.
+- Public copy should not conflate the broader PostgreSQL snapshot with the narrower analyst-facing production corpus.
 
 ## Restore
 
@@ -58,7 +58,7 @@ Restore the release asset into a fresh database:
 
 ```bash
 createdb opticlab
-pg_restore --clean --if-exists --no-owner --no-privileges -d opticlab release-assets/optic-postgres-2026-03-25.dump
+pg_restore --clean --if-exists --no-owner --no-privileges -d opticlab release-assets/optic-postgres-2026-03-28.dump
 ```
 
 If you only want to inspect the schema before restoring data, review `schema.sql` directly or apply it to an empty database first.
@@ -71,7 +71,7 @@ Underlying source reporting, trademarks, and third-party intelligence content re
 
 ## Release Notes
 
-- Upload `release-assets/optic-postgres-2026-03-25.dump` as the GitHub Release asset for this snapshot.
+- Upload `release-assets/optic-postgres-2026-03-28.dump` as the GitHub Release asset for this snapshot.
 - Keep `schema.sql`, `schema-overview.md`, `index.html`, and this README in the public repo.
-- Do not describe the March 25 dump as the current production corpus. Public copy should distinguish the `402`-report operational corpus from the older `371`-report dump snapshot.
+- Do not describe the March 28 dump as the same thing as the `402`-report production corpus. Public copy should distinguish the operational corpus from the broader `1,103`-report PostgreSQL snapshot.
 - Verify the release asset against `release-assets/SHA256SUMS.txt` after upload.

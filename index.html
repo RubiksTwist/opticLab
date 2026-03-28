@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>OPTIC Lab — Open Provenance Threat Intelligence Corpus</title>
+  <title>OPTIC — Open Provenance Threat Intelligence Corpus</title>
   <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -628,6 +628,84 @@
     .legend-dot.signal { background: var(--signal); }
     .legend-dot.amber { background: var(--amber); }
     .legend-dot.sage { background: var(--sage); }
+    .source-mix-card {
+      margin-top: 16px;
+    }
+    .source-band {
+      display: flex;
+      width: 100%;
+      height: 22px;
+      margin-top: 18px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(24,33,38,.08);
+      border: 1px solid rgba(24,33,38,.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.4);
+    }
+    .source-segment {
+      height: 100%;
+      position: relative;
+    }
+    .source-segment + .source-segment {
+      box-shadow: inset 1px 0 0 rgba(255,255,255,.55);
+    }
+    .source-segment.signal {
+      background: linear-gradient(90deg, var(--signal), color-mix(in srgb, var(--signal) 58%, white));
+    }
+    .source-segment.steel {
+      background: linear-gradient(90deg, var(--steel), color-mix(in srgb, var(--steel) 58%, white));
+    }
+    .source-segment.amber {
+      background: linear-gradient(90deg, var(--amber), color-mix(in srgb, var(--amber) 58%, white));
+    }
+    .source-segment.sage {
+      background: linear-gradient(90deg, var(--sage), color-mix(in srgb, var(--sage) 58%, white));
+    }
+    .source-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .source-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.58);
+    }
+    .source-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+    .source-name {
+      font-family: "Bricolage Grotesque", "Segoe UI", sans-serif;
+      font-size: 1rem;
+      line-height: 1;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .source-count {
+      font-family: "IBM Plex Mono", Consolas, monospace;
+      font-size: .58rem;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--muted);
+    }
+    .source-share {
+      font-family: "IBM Plex Mono", Consolas, monospace;
+      font-size: .62rem;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--ink);
+      white-space: nowrap;
+    }
     .insight-stack {
       display: grid;
       gap: 10px;
@@ -1158,15 +1236,21 @@
       flex-wrap: wrap;
     }
     .pipeline-bar .pb-label {
+      font-family: "IBM Plex Mono", Consolas, monospace;
+      font-size: .58rem;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--steel);
       display: flex;
       align-items: center;
+      gap: 8px;
       flex: 0 0 auto;
     }
     .pipeline-bar .pb-label::before {
       content: "";
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: var(--sage);
+      background: var(--steel);
     }
     .pipeline-bar .pb-items {
       display: flex;
@@ -1304,6 +1388,9 @@
         width: 100%;
         justify-content: center;
       }
+      .source-row {
+        align-items: flex-start;
+      }
     }
     @media (max-width: 560px) {
       .gauge-grid { grid-template-columns: 1fr; }
@@ -1345,10 +1432,10 @@
 
   <!-- Topbar -->
   <nav class="topbar">
-    <a class="topbar-brand" href="/">
-      OPTIC Lab
+    <div class="topbar-brand">
+      OPTIC
       <span class="topbar-tag">Open Provenance Threat Intelligence Corpus</span>
-    </a>
+    </div>
     <div class="topnav">
       <a href="#overview">Overview</a>
       <a href="#metrics">Metrics</a>
@@ -1362,7 +1449,7 @@
       <div class="hero-head">
         <div class="hero-copy-block">
           <div class="strap">Threat Intelligence Database</div>
-          <h1 class="hero-title">OPTIC <em>Lab</em></h1>
+          <h1 class="hero-title"><em>OP</em>TIC</h1>
           <div class="hero-sub">Every finding tied to its source</div>
           <p class="hero-lede">
             Search adversary activity, malware, techniques, and victim targeting in one place, with the source text preserved so you can verify every claim before you use it.
@@ -1384,7 +1471,7 @@
                 <span>March 25, 2026</span>
               </div>
               <div class="hero-article-footer">
-                <a class="hero-article-link" href="/iran">Read Iran report</a>
+                <a class="hero-article-link" href="iran.html">Read Iran report</a>
               </div>
             </article>
           </div>
@@ -1399,7 +1486,7 @@
           <div class="section-kicker">Why this is useful</div>
           <h2 class="section-title">What you can trust and work with</h2>
         </div>
-        <span class="section-note">402 analyst-usable reports in production corpus · 571 normalized archive articles as of Mar 27, 2026</span>
+        <span class="section-note">1,078 articles · 981 current extractions · 4 data sources · Mar 28, 2026</span>
       </div>
 
       <div class="dashboard-grid">
@@ -1413,62 +1500,62 @@
               <div class="compare-head">
                 <div>
                   <div class="compare-label">Findings with source quotes</div>
-                  <div class="compare-detail">18,220 of 18,319 extracted findings preserve source text, so you can verify the claim instead of trusting a summary.</div>
+                  <div class="compare-detail">40,122 of 40,476 extracted findings preserve source text, so you can verify the claim instead of trusting a summary.</div>
                 </div>
                 <div class="compare-stat">
-                  <strong>99.5%</strong>
-                  <span>99 findings require source review</span>
+                  <strong>99.1%</strong>
+                  <span>354 findings require source review</span>
                 </div>
               </div>
-              <div class="compare-track"><div class="compare-fill sage" style="width:99.5%"></div></div>
+              <div class="compare-track"><div class="compare-fill sage" style="width:99.1%"></div></div>
             </div>
             <div class="compare-row">
               <div class="compare-head">
                 <div>
                   <div class="compare-label">Directly stated in the source</div>
-                  <div class="compare-detail">15,357 of 18,319 findings come from explicit language in the report, helping you separate stated facts from inferred context.</div>
+                  <div class="compare-detail">32,081 of 40,476 findings come from explicit language in the report, helping you separate stated facts from inferred context.</div>
                 </div>
                 <div class="compare-stat">
-                  <strong>83.8%</strong>
-                  <span>2,962 require analyst judgment</span>
+                  <strong>79.3%</strong>
+                  <span>8,395 require analyst judgment</span>
                 </div>
               </div>
-              <div class="compare-track"><div class="compare-fill amber" style="width:83.8%"></div></div>
+              <div class="compare-track"><div class="compare-fill amber" style="width:79.3%"></div></div>
             </div>
           </div>
         </div>
 
         <div class="card">
-          <div class="card-kicker">Operational coverage</div>
-          <h3 class="viz-title">Actor attribution and sector targeting are available across most of the production corpus</h3>
-          <p class="viz-sub">These coverage rates tell you whether the operational corpus supports actor tracking and targeting analysis, not just isolated lookups.</p>
+          <div class="card-kicker">Current coverage</div>
+          <h3 class="viz-title">Actor attribution and sector targeting remain strong across the latest extracted corpus</h3>
+          <p class="viz-sub">These coverage rates tell you whether the current searchable corpus supports actor tracking and targeting analysis, not just isolated lookups.</p>
 
           <div class="compare-list">
             <div class="compare-row">
               <div class="compare-head">
                 <div>
                   <div class="compare-label">Reports with named threat actors</div>
-                  <div class="compare-detail">306 of 402 operational reports include a normalized actor reference, which makes actor-centric pivots useful rather than sparse.</div>
+                  <div class="compare-detail">650 of 981 extracted reports include a normalized actor reference, which makes actor-centric pivots useful rather than sparse.</div>
                 </div>
                 <div class="compare-stat">
-                  <strong>76.1%</strong>
-                  <span>96 reports without actor context</span>
+                  <strong>66.3%</strong>
+                  <span>331 reports without actor context</span>
                 </div>
               </div>
-              <div class="compare-track"><div class="compare-fill signal" style="width:76.1%"></div></div>
+              <div class="compare-track"><div class="compare-fill signal" style="width:66.3%"></div></div>
             </div>
             <div class="compare-row">
               <div class="compare-head">
                 <div>
                   <div class="compare-label">Reports with sector targeting</div>
-                  <div class="compare-detail">300 of 402 operational reports identify victim sectors or industry targeting, which supports campaign scoping and sector research.</div>
+                  <div class="compare-detail">700 of 981 extracted reports identify victim sectors or industry targeting, which supports campaign scoping and sector research.</div>
                 </div>
                 <div class="compare-stat">
-                  <strong>74.6%</strong>
-                  <span>102 reports without sector detail</span>
+                  <strong>71.4%</strong>
+                  <span>281 reports without sector detail</span>
                 </div>
               </div>
-              <div class="compare-track"><div class="compare-fill steel" style="width:74.6%"></div></div>
+              <div class="compare-track"><div class="compare-fill steel" style="width:71.4%"></div></div>
             </div>
           </div>
         </div>
@@ -1477,43 +1564,43 @@
       <div class="metrics-grid metrics-grid-duo">
         <div class="metric-card c-amber">
           <div class="m-label">Searchable IOCs</div>
-          <span class="m-value">7,243</span>
-          <p class="m-sub">Enough indicator depth for enrichment, hunting pivots, and historical lookups across the analyst-usable corpus.</p>
-          <div class="m-detail">18.0 IOCs per report</div>
+          <span class="m-value">15,617</span>
+          <p class="m-sub">Enough indicator depth for enrichment, hunting pivots, and historical lookups across the latest extracted corpus.</p>
+          <div class="m-detail">15.9 searchable IOCs per extracted report</div>
         </div>
         <div class="metric-card c-steel">
           <div class="m-label">Connected relationships</div>
-          <span class="m-value">1,113</span>
+          <span class="m-value">2,607</span>
           <p class="m-sub">Linked actors, malware, techniques, victims, and infrastructure let you move from one fact to the next without rebuilding the chain by hand.</p>
-          <div class="m-detail">2.8 linked relationships per report</div>
+          <div class="m-detail">2.7 linked relationships per extracted report</div>
         </div>
       </div>
 
       <div class="dashboard-grid section-cluster">
         <div class="card">
           <div class="card-kicker">Research pivots</div>
-          <h3 class="viz-title">Malware leads the database, with strong actor, ATT&amp;CK, and CVE coverage for real investigation work</h3>
+          <h3 class="viz-title">Malware leads the database, with strong actor, ATT&amp;CK, and CVE coverage across all sources</h3>
           <p class="viz-sub">This mix shows whether the database helps with adversary profiling, technical analysis, and vulnerability context, not just IOC storage.</p>
 
           <div class="skyline skyline-entity">
             <div class="sky-col">
-              <div class="sky-count">2,026</div>
+              <div class="sky-count">2,697</div>
               <div class="sky-wrap"><div class="sky-bar amber" style="--bar-size:100%"></div></div>
               <div class="sky-label">Malware</div>
             </div>
             <div class="sky-col">
-              <div class="sky-count">535</div>
-              <div class="sky-wrap"><div class="sky-bar signal" style="--bar-size:max(26.4%, 28px)"></div></div>
+              <div class="sky-count">939</div>
+              <div class="sky-wrap"><div class="sky-bar signal" style="--bar-size:34.8%"></div></div>
               <div class="sky-label">Actors</div>
             </div>
             <div class="sky-col">
-              <div class="sky-count">385</div>
-              <div class="sky-wrap"><div class="sky-bar" style="--bar-size:max(19.0%, 22px)"></div></div>
+              <div class="sky-count">479</div>
+              <div class="sky-wrap"><div class="sky-bar" style="--bar-size:17.8%"></div></div>
               <div class="sky-label">ATT&amp;CK</div>
             </div>
             <div class="sky-col">
-              <div class="sky-count">254</div>
-              <div class="sky-wrap"><div class="sky-bar sage" style="--bar-size:max(12.5%, 18px)"></div></div>
+              <div class="sky-count">646</div>
+              <div class="sky-wrap"><div class="sky-bar sage" style="--bar-size:24.0%"></div></div>
               <div class="sky-label">CVEs</div>
             </div>
           </div>
@@ -1521,34 +1608,82 @@
 
         <div class="card">
           <div class="card-kicker">Usable coverage</div>
-          <h3 class="viz-title">The production corpus is the analyst-usable slice of a larger normalized archive</h3>
-          <p class="viz-sub">This is the corpus-policy distinction: archive breadth is preserved, but only the cleaner operational subset is exposed as the production search set.</p>
+          <h3 class="viz-title">Most ingested articles already have a current extraction in the searchable corpus</h3>
+          <p class="viz-sub">The archive is ahead of the latest extraction pass, but the searchable slice already covers the vast majority of ingested articles.</p>
 
           <div class="band-card">
             <div class="compare-head">
               <div>
-                <div class="compare-label">Reports in the production corpus</div>
-                <div class="compare-detail">402 of 571 normalized archive articles are currently in the operational corpus. The remaining 169 stay preserved in the archive, but are excluded from the production search set by corpus policy.</div>
+                <div class="compare-label">Articles with current extractions</div>
+                <div class="compare-detail">981 of 1,078 ingested articles currently have a latest extraction record in Postgres. The remaining 97 are loaded in the archive but still need a current extraction pass.</div>
               </div>
               <div class="compare-stat">
-                <strong>70.4%</strong>
-                <span>169 archive-only articles</span>
+                <strong>91.0%</strong>
+                <span>97 articles pending extraction</span>
               </div>
             </div>
             <div class="band split-band">
-              <div class="done" style="width:70.4%"></div>
-              <div class="remaining" style="width:29.6%"></div>
+              <div class="done" style="width:91.0%"></div>
+              <div class="remaining" style="width:9.0%"></div>
             </div>
             <div class="legend-list">
               <div class="legend-row">
-                <span class="legend-key"><span class="legend-dot sage"></span>Operational corpus</span>
-                <strong>402</strong>
+                <span class="legend-key"><span class="legend-dot sage"></span>Current extraction coverage</span>
+                <strong>981</strong>
               </div>
               <div class="legend-row">
-                <span class="legend-key"><span class="legend-dot signal"></span>Archive-only</span>
-                <strong>169</strong>
+                <span class="legend-key"><span class="legend-dot signal"></span>Ingested without current extraction</span>
+                <strong>97</strong>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card source-mix-card">
+        <div class="card-kicker">Source mix</div>
+        <h3 class="viz-title">Article inventory is now distributed across four ingested data sources</h3>
+        <p class="viz-sub">This horizontal bar measures total ingested article volume by source. Extraction coverage above shows how much of that inventory already has a current normalized result.</p>
+
+        <div class="source-band" role="img" aria-label="Article counts by source: Google Mandiant 402, Cisco Talos 293, Microsoft Security 236, CrowdStrike 147.">
+          <div class="source-segment signal" style="width:37.3%"></div>
+          <div class="source-segment steel" style="width:27.2%"></div>
+          <div class="source-segment amber" style="width:21.9%"></div>
+          <div class="source-segment sage" style="width:13.6%"></div>
+        </div>
+
+        <div class="source-list">
+          <div class="source-row">
+            <div class="source-meta">
+              <span class="legend-dot signal"></span>
+              <span class="source-name">Google/Mandiant</span>
+              <span class="source-count">402 articles</span>
+            </div>
+            <span class="source-share">37.3%</span>
+          </div>
+          <div class="source-row">
+            <div class="source-meta">
+              <span class="legend-dot steel"></span>
+              <span class="source-name">Cisco Talos</span>
+              <span class="source-count">293 articles</span>
+            </div>
+            <span class="source-share">27.2%</span>
+          </div>
+          <div class="source-row">
+            <div class="source-meta">
+              <span class="legend-dot amber"></span>
+              <span class="source-name">Microsoft Security</span>
+              <span class="source-count">236 articles</span>
+            </div>
+            <span class="source-share">21.9%</span>
+          </div>
+          <div class="source-row">
+            <div class="source-meta">
+              <span class="legend-dot sage"></span>
+              <span class="source-name">CrowdStrike</span>
+              <span class="source-count">147 articles</span>
+            </div>
+            <span class="source-share">13.6%</span>
           </div>
         </div>
       </div>
@@ -1557,28 +1692,28 @@
 
     <div class="pipeline-bar">
       <div class="pb-main">
-        <div class="pb-label" aria-hidden="true"></div>
+        <div class="pb-label">At a glance</div>
         <div class="pb-items">
-          <div class="pb-item">Primary source <strong>Mandiant / Google TI</strong></div>
-          <div class="pb-item">Operational corpus <strong>402</strong></div>
-          <div class="pb-item">Normalized archive <strong>571</strong></div>
+          <div class="pb-item">Data sources <strong>4</strong></div>
+          <div class="pb-item">Article inventory <strong>1,078</strong></div>
+          <div class="pb-item">Current extractions <strong>981</strong></div>
           <div class="pb-item">Core strength <strong>source-linked findings</strong></div>
-          <div class="pb-item">Updated <strong>Mar 27, 2026</strong></div>
+          <div class="pb-item">Updated <strong>Mar 28, 2026</strong></div>
         </div>
       </div>
       <div class="pb-cta">
-        <a class="pb-link" href="https://github.com/RubiksTwist/opticLab" target="_blank" rel="noopener">Project on GitHub</a>
+        <a class="pb-link" href="https://github.com/RubiksTwist/opticLab/releases/latest" target="_blank" rel="noopener">Download latest release</a>
       </div>
     </div>
 
     <!-- Footer -->
     <footer>
-      <div>OPTIC Lab - Open Provenance Threat Intelligence Corpus</div>
+      <div>OPTIC - Open Provenance Threat Intelligence Corpus</div>
       <div class="footer-links">
         <a href="https://github.com/RubiksTwist/opticLab" target="_blank" rel="noopener">Project on GitHub</a>
         <a href="https://www.linkedin.com/in/alex-cheung-878632290/" target="_blank" rel="noopener">Alex Cheung on LinkedIn</a>
       </div>
-      <div>Not affiliated with Google, Mandiant, or MITRE. Code is MIT licensed; written content and data are CC BY-NC 4.0.</div>
+      <div>Not affiliated with Google, Mandiant, or MITRE - MIT License</div>
     </footer>
 
   </div>
