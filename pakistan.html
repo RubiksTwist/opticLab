@@ -1,0 +1,949 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commodity Patience: Pakistan's Cyber Operations, 2019-2025 | OPTIC Lab</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #e8eeea;
+      --paper: rgba(255,255,255,.82);
+      --paper-strong: #ffffff;
+      --ink: #182126;
+      --muted: #5d6967;
+      --line: rgba(24,33,38,.12);
+      --focus: #2c6774;
+      --focus-soft: rgba(44,103,116,.09);
+      --signal: #ad5632;
+      --signal-soft: rgba(173,86,50,.10);
+      --shadow: 0 18px 50px rgba(31,48,58,.08);
+      --wide: 1080px;
+      --read: 760px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font: 400 16px/1.75 "Source Serif 4", Georgia, serif;
+      background:
+        radial-gradient(circle at top right, rgba(173,86,50,.08), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,.48), transparent 240px),
+        linear-gradient(180deg, #e8eeea 0%, #eef1ec 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, h4, p { margin: 0; }
+
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 9;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      padding: 12px 24px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(239,242,239,.92);
+      backdrop-filter: blur(12px);
+      font: 500 .63rem/1 "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--muted);
+    }
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      color: var(--focus);
+    }
+    .brand::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--signal);
+    }
+
+    .hero,
+    .wrap {
+      max-width: var(--wide);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .hero {
+      text-align: center;
+      padding-top: 56px;
+    }
+    .strap,
+    .meta,
+    .eyebrow,
+    .micro {
+      font: 500 .66rem/1.35 "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .strap { color: var(--signal); }
+    .meta { margin-top: 18px; color: var(--muted); }
+    h1 {
+      margin-top: 18px;
+      font: 800 clamp(2.8rem, 7vw, 5.6rem)/.9 "Bricolage Grotesque", sans-serif;
+      letter-spacing: -.055em;
+    }
+    h1 em {
+      font-style: normal;
+      color: var(--focus);
+    }
+    .sub {
+      margin-top: 16px;
+      font: 500 .78rem/1.4 "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+    }
+    .lede {
+      max-width: 62ch;
+      margin: 24px auto 0;
+      font-size: 1.15rem;
+      line-height: 1.65;
+      color: rgba(24,33,38,.84);
+    }
+
+    .rail,
+    .notes,
+    .grid,
+    .sources,
+    .dec,
+    .techs,
+    .ops,
+    .inv,
+    .mgrid {
+      display: grid;
+      gap: 14px;
+    }
+    .rail {
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 34px;
+    }
+    .notes {
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 26px;
+    }
+
+    .card,
+    .panel,
+    .source,
+    .note,
+    .decision,
+    .method {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      border-radius: 18px;
+    }
+    .card,
+    .note,
+    .source,
+    .decision {
+      padding: 16px;
+    }
+    .panel {
+      padding: 22px;
+      margin-top: 20px;
+    }
+    .method {
+      margin-top: 18px;
+      padding: 18px 20px 20px;
+    }
+    .eyebrow { color: var(--signal); }
+    .stat strong {
+      display: block;
+      margin-top: 8px;
+      font: 700 1.9rem/1 "Bricolage Grotesque", sans-serif;
+      letter-spacing: -.04em;
+    }
+    .card p,
+    .note p,
+    .source p,
+    .decision p {
+      margin-top: 8px;
+      color: rgba(24,33,38,.78);
+      font-size: .92rem;
+      line-height: 1.55;
+    }
+    .note strong,
+    .decision .num {
+      color: var(--signal);
+    }
+
+    .section {
+      padding-top: 46px;
+      margin-top: 42px;
+      border-top: 1px solid var(--line);
+    }
+    .section:first-child { border-top: 0; }
+    .section h2 {
+      margin-top: 10px;
+      font: 700 clamp(1.8rem, 3.5vw, 2.8rem)/1.08 "Bricolage Grotesque", sans-serif;
+      letter-spacing: -.045em;
+    }
+    .head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .head h3 {
+      font: 700 1.12rem/1.1 "Bricolage Grotesque", sans-serif;
+      letter-spacing: -.03em;
+    }
+    .micro { color: var(--muted); }
+
+    .grid.two { grid-template-columns: 2fr 1fr; }
+    .mini { display: grid; gap: 10px; }
+    .row,
+    .tech,
+    .mitem {
+      padding: 14px;
+      border: 1px solid rgba(24,33,38,.08);
+      border-radius: 16px;
+      background: rgba(247,248,246,.92);
+    }
+    .row h4,
+    .card h4,
+    .source h4,
+    .tech h4 {
+      font: 700 1.04rem/1.06 "Bricolage Grotesque", sans-serif;
+      letter-spacing: -.03em;
+    }
+
+    .bar,
+    .meter {
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(24,33,38,.08);
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .bar span,
+    .meter span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--signal), var(--focus));
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .chip,
+    .pill {
+      display: inline-flex;
+      width: fit-content;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: var(--focus-soft);
+      color: var(--focus);
+      font: 500 .56rem/1 "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .pill {
+      background: rgba(24,33,38,.05);
+      color: var(--muted);
+    }
+
+    .body {
+      max-width: var(--read);
+      margin-top: 22px;
+    }
+    .body p {
+      font-size: 1.04rem;
+      color: rgba(24,33,38,.84);
+    }
+    .body p + p { margin-top: 18px; }
+
+    .cite {
+      display: inline-flex;
+      margin-left: 6px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(44,103,116,.18);
+      background: rgba(44,103,116,.08);
+      font: 500 .56rem/1 "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--focus);
+      vertical-align: middle;
+    }
+
+    .timeline { display: grid; gap: 12px; grid-template-columns: repeat(5, 1fr); align-items: end; }
+    .year { display: flex; flex-direction: column; gap: 6px; }
+    .year b { font: 700 1.24rem/1 "Bricolage Grotesque", sans-serif; }
+    .col { height: 100px; display: flex; align-items: flex-end; }
+    .col span {
+      width: 100%;
+      border-radius: 8px 8px 0 0;
+      background: linear-gradient(180deg, var(--focus), var(--signal));
+    }
+    .col .z {
+      min-height: 4px;
+      background: rgba(24,33,38,.08);
+    }
+
+    .techs { grid-template-columns: repeat(3, 1fr); }
+    .track {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .track .meter { margin-top: 0; flex: 1; }
+
+    .ops { grid-template-columns: repeat(2, 1fr); }
+    .inv { grid-template-columns: repeat(5, 1fr); }
+
+    .dec { grid-template-columns: repeat(3, 1fr); margin-top: 20px; }
+    .decision .num {
+      font: 700 .7rem/1 "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .decision h3 {
+      margin-top: 10px;
+      font: 700 1.18rem/1.06 "Bricolage Grotesque", sans-serif;
+      letter-spacing: -.03em;
+    }
+
+    .sources { margin-top: 18px; }
+    .source {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 14px;
+    }
+    .smeta {
+      font: 500 .56rem/1.4 "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--muted);
+    }
+
+    .mgrid {
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 14px;
+    }
+    .mitem strong {
+      display: block;
+      font: 500 .56rem/1.3 "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--focus);
+    }
+    .mitem p {
+      margin-top: 7px;
+      font-size: .88rem;
+      color: rgba(24,33,38,.82);
+    }
+
+    .foot {
+      max-width: var(--wide);
+      margin: 62px auto 0;
+      padding: 24px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      font: 500 .56rem/1.4 "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      color: var(--muted);
+    }
+
+    @media (max-width: 920px) {
+      .rail,
+      .notes,
+      .grid.two,
+      .techs,
+      .inv,
+      .dec,
+      .mgrid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .ops,
+      .timeline,
+      .source {
+        grid-template-columns: 1fr;
+      }
+      .top { flex-wrap: wrap; }
+      .nav { width: 100%; }
+    }
+
+    @media (max-width: 700px) {
+      .hero,
+      .wrap,
+      .foot {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      .rail,
+      .notes,
+      .grid.two,
+      .techs,
+      .ops,
+      .inv,
+      .dec,
+      .mgrid {
+        grid-template-columns: 1fr;
+      }
+      .timeline { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/">OPTIC Lab</a>
+    <nav class="nav">
+      <a href="#map">Target Map</a>
+      <a href="#runway">Runway</a>
+      <a href="#tradecraft">Tradecraft</a>
+      <a href="#operators">Operators</a>
+      <a href="#sources">Sources</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="strap">Pakistan · Threat Feature · April 2026</div>
+    <h1>Commodity <em>Patience</em></h1>
+    <div class="sub">Pakistan's Cyber Operations, 2019-2025</div>
+    <p class="lede">
+      Published reporting on Pakistan-linked operations shows a narrower map than the Iran feature, but not a smaller problem:
+      repeated lures against India, low-cost remote-access tooling, and campaigns that survive by changing wrappers more often
+      than logic. The tools stay affordable. The campaigns keep running.
+    </p>
+    <div class="meta">Technical reading of published reporting across Talos, Unit 42, Google Cloud, and related open-source references.</div>
+
+    <div class="rail">
+      <div class="card stat">
+        <div class="eyebrow">Primary pressure point</div>
+        <strong>India</strong>
+        <p>Most published cases still circle the same rival, even as the victim surface moves beyond ministries and officers.</p>
+      </div>
+      <div class="card stat">
+        <div class="eyebrow">Longest runway disclosed</div>
+        <strong>2018-ongoing</strong>
+        <p>Celestial Force surfaces in 2024, but the campaign itself reaches back years earlier.</p>
+      </div>
+      <div class="card stat">
+        <div class="eyebrow">Recurring access shape</div>
+        <strong>Web C2 + loaders</strong>
+        <p>Small downloaders, script stages, and ordinary web traffic recur more often than flashy intrusion novelty.</p>
+      </div>
+    </div>
+
+    <div class="notes">
+      <div class="note">
+        <strong>Why the record matters</strong>
+        <p>The strongest pattern is not geographic reach. It is concentration, repetition, and an ability to keep campaigns alive with replaceable tooling.</p>
+      </div>
+      <div class="note">
+        <strong>Attribution stays messy</strong>
+        <p>Transparent Tribe, APT36, SideCopy, Cosmic Leopard, and Unit 42's Mocking Draco do not resolve into one clean vendor-neutral tree. The argument here follows the campaigns first.</p>
+      </div>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="section" id="map">
+      <div class="eyebrow">Pakistani Target Set</div>
+      <h2>One Country, One Obsession</h2>
+      <div class="panel">
+        <div class="head">
+          <h3>Country and victim-surface distribution</h3>
+          <div class="micro">Published reporting through 2025</div>
+        </div>
+        <div class="grid two">
+          <div class="mini">
+            <div class="row">
+              <h4>India</h4>
+              <div class="micro">Seven direct country references</div>
+              <div class="bar"><span style="width:78%"></span></div>
+              <div class="chips">
+                <span class="chip">government</span>
+                <span class="chip">military</span>
+                <span class="chip">defense</span>
+                <span class="chip">education</span>
+                <span class="chip">students</span>
+                <span class="chip">research</span>
+              </div>
+              <div class="chips">
+                <span class="chip">Transparent Tribe</span>
+                <span class="chip">APT36</span>
+                <span class="chip">Cosmic Leopard</span>
+                <span class="chip">SideCopy-adjacent</span>
+              </div>
+              <p>The theater stays concentrated. What changes over time is not the rival but who inside India is being approached and through what social surface.</p>
+            </div>
+            <div class="row">
+              <h4>Afghanistan</h4>
+              <div class="micro">One direct country reference</div>
+              <div class="bar"><span style="width:11%"></span></div>
+              <div class="chips">
+                <span class="chip">government</span>
+                <span class="chip">diplomatic</span>
+                <span class="chip">political lures</span>
+                <span class="chip">A.R. Bunse</span>
+              </div>
+              <p>A secondary line. Afghanistan appears beside India rather than as an equally developed theater with its own long reporting arc.</p>
+            </div>
+          </div>
+          <div class="mini">
+            <div class="card">
+              <div class="eyebrow">What broadens the picture</div>
+              <h4>Phones and campuses</h4>
+              <p>The record gets wider by victim surface, not by country count. University lures and Android surveillance matter more than a new map pin.</p>
+            </div>
+            <div class="card">
+              <div class="eyebrow">Why this matters</div>
+              <h4>Concentration can still imply strategic seriousness.</h4>
+              <p>A narrow theater should not be mistaken for a shallow one. Repeated attention to the same rival often means the operators know exactly what they want.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="body">
+        <p>
+          The map stays narrow, but the narrowness is the point. Most of the published cases point back to India, and the difference between 2021 and 2024 is less about new geography than about how far into civilian and semi-civilian space the lures travel.
+          <a class="cite" href="https://blog.talosintelligence.com/transparent-tribe-infra-and-targeting/" target="_blank" rel="noopener">Talos 2021</a>
+          <a class="cite" href="https://blog.talosintelligence.com/transparent-tribe-targets-education/" target="_blank" rel="noopener">Education</a>
+          <a class="cite" href="https://blog.talosintelligence.com/cosmic-leopard/" target="_blank" rel="noopener">Celestial Force</a>
+        </p>
+        <p>
+          Afghanistan appears once, in the A.R. Bunse case, and even there the campaign is paired with India rather than opened as a second major theater. Two other sources do different work: the shared-VBA reporting helps explain operator adjacency, and the Unit 42 registry helps frame one branch of the naming problem.
+          <a class="cite" href="https://blog.talosintelligence.com/crimeware-targets-afghanistan-india/" target="_blank" rel="noopener">A.R. Bunse</a>
+          <a class="cite" href="https://blog.talosintelligence.com/whats-with-shared-vba-code/" target="_blank" rel="noopener">Shared VBA</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="runway">
+      <div class="eyebrow">Pakistani Operations · 2021-2025 reporting</div>
+      <h2>A Narrow Map, A Long Runway</h2>
+      <div class="panel">
+        <div class="head">
+          <h3>Publication timeline by year</h3>
+          <div class="micro">The reporting arrives later than some of the campaigns</div>
+        </div>
+        <div class="timeline">
+          <div class="year">
+            <div class="micro">2021</div>
+            <div class="col"><span style="height:76px"></span></div>
+            <b>3</b>
+            <p>ObliqueRAT, Armor Piercer, and A.R. Bunse make the access pattern visible.</p>
+          </div>
+          <div class="year">
+            <div class="micro">2022</div>
+            <div class="col"><span style="height:100px"></span></div>
+            <b>4</b>
+            <p>Government targeting, education lures, shared code, and XLL delivery broaden the record.</p>
+          </div>
+          <div class="year">
+            <div class="micro">2023</div>
+            <div class="col"><span class="z"></span></div>
+            <b>0</b>
+            <p>No core publication that year, but the later record does not suggest dormancy.</p>
+          </div>
+          <div class="year">
+            <div class="micro">2024</div>
+            <div class="col"><span style="height:52px"></span></div>
+            <b>1</b>
+            <p>Celestial Force exposes a campaign running since at least 2018.</p>
+          </div>
+          <div class="year">
+            <div class="micro">2025</div>
+            <div class="col"><span style="height:52px"></span></div>
+            <b>1</b>
+            <p>Unit 42 adds a naming lens for part of the Pakistan-linked ecosystem.</p>
+          </div>
+        </div>
+      </div>
+      <div class="body">
+        <p>
+          By late 2021 the reporting already shows three distinct access models: Transparent Tribe's bespoke Windows implants, SideCopy-adjacent use of commercial RATs, and a noisier commodity chain hitting India and Afghanistan with dcRAT, QuasarRAT, and Android tooling.
+          <a class="cite" href="https://blog.talosintelligence.com/operation-armor-piercer/" target="_blank" rel="noopener">Armor Piercer</a>
+          <a class="cite" href="https://blog.talosintelligence.com/crimeware-targets-afghanistan-india/" target="_blank" rel="noopener">Commodity RATs</a>
+        </p>
+        <p>
+          What changes in 2022 is the victim surface, not the campaign logic. The later reporting does not announce a sudden surge so much as it reveals how long some operations have been running in the background. Celestial Force is the clearest example: disclosed in 2024, active since at least 2018.
+          <a class="cite" href="https://blog.talosintelligence.com/transparent-tribe-new-campaign/" target="_blank" rel="noopener">TT 2022</a>
+          <a class="cite" href="https://blog.talosintelligence.com/cosmic-leopard/" target="_blank" rel="noopener">2018</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="tradecraft">
+      <div class="eyebrow">Pakistani Tradecraft</div>
+      <h2>Cheap Tools, Long Campaigns</h2>
+      <div class="panel">
+        <div class="head">
+          <h3>Technique sequence that keeps returning</h3>
+          <div class="micro">Grouped ATT&amp;CK behavior across the published cases</div>
+        </div>
+        <div class="techs">
+          <div class="tech">
+            <div class="micro">T1203</div>
+            <h4>Client execution</h4>
+            <p>Malicious documents, archives, and staged downloaders open the chain.</p>
+            <div class="track">
+              <div class="meter"><span style="width:89%"></span></div>
+              <div class="micro">8 mentions</div>
+            </div>
+          </div>
+          <div class="tech">
+            <div class="micro">T1059.001 / .003</div>
+            <h4>Script execution</h4>
+            <p>PowerShell and command-shell stages keep the payload path cheap.</p>
+            <div class="track">
+              <div class="meter"><span style="width:78%"></span></div>
+              <div class="micro">7 mentions</div>
+            </div>
+          </div>
+          <div class="tech">
+            <div class="micro">T1071.001</div>
+            <h4>Web-based C2</h4>
+            <p>Control rides through ordinary web protocols in most of the published cases.</p>
+            <div class="track">
+              <div class="meter"><span style="width:89%"></span></div>
+              <div class="micro">8 mentions</div>
+            </div>
+          </div>
+          <div class="tech">
+            <div class="micro">T1070.001</div>
+            <h4>Cleanup and tampering</h4>
+            <p>Defense evasion shows up as maintenance work rather than theatrical stealth.</p>
+            <div class="track">
+              <div class="meter"><span style="width:67%"></span></div>
+              <div class="micro">6 mentions</div>
+            </div>
+          </div>
+          <div class="tech">
+            <div class="micro">T1041 / T1048 / T1567</div>
+            <h4>Exfiltration</h4>
+            <p>Collection tends to go back over already-established command routes.</p>
+            <div class="track">
+              <div class="meter"><span style="width:44%"></span></div>
+              <div class="micro">4 mentions</div>
+            </div>
+          </div>
+          <div class="tech">
+            <div class="micro">T1056.001 / T1113 / T1082</div>
+            <h4>Personal collection</h4>
+            <p>Keylogging, screenshots, and device discovery become more important as campaigns move closer to people and phones.</p>
+            <div class="track">
+              <div class="meter"><span style="width:22%"></span></div>
+              <div class="micro">2 mentions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="body">
+        <p>
+          Once execution lands, the chain gets cheaper rather than fancier. Web-based command channels appear again and again, script execution is routine, and cleanup behavior is steady. That is the grammar of this record: small loaders, staged payloads, common remote-access families, and just enough evasion to keep the foothold alive.
+          <a class="cite" href="https://blog.talosintelligence.com/transparent-tribe-new-campaign/" target="_blank" rel="noopener">Downloaders</a>
+          <a class="cite" href="https://blog.talosintelligence.com/whats-with-shared-vba-code/" target="_blank" rel="noopener">Overlap</a>
+        </p>
+        <p>
+          The most socially important move comes later. The target is no longer just a workstation inside a ministry but a person carrying a phone or opening a university-themed lure. That shift matters more than another malware-family name would.
+          <a class="cite" href="https://blog.talosintelligence.com/transparent-tribe-targets-education/" target="_blank" rel="noopener">CrimsonRAT</a>
+          <a class="cite" href="https://blog.talosintelligence.com/cosmic-leopard/" target="_blank" rel="noopener">GravityRAT</a>
+        </p>
+      </div>
+    </section>
+    <section class="section" id="operators">
+      <div class="eyebrow">Pakistani Operator Landscape</div>
+      <h2>One Cluster, Several Shadows</h2>
+      <div class="panel">
+        <div class="head">
+          <h3>Operational lanes visible in the reporting</h3>
+          <div class="micro">A working analytic grouping, with vendor disagreement left intact</div>
+        </div>
+        <div class="ops">
+          <div class="card">
+            <div class="eyebrow">Primary cluster</div>
+            <h4>Transparent Tribe / APT36</h4>
+            <p>The dominant espionage lane in the record: government, military, research-adjacent, and later education lures delivered through staged downloaders and long-lived Windows access tooling.</p>
+            <div class="chips">
+              <span class="chip">CrimsonRAT</span>
+              <span class="chip">ObliqueRAT</span>
+              <span class="chip">CapraRAT</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="eyebrow">Mobile / cross-platform</div>
+            <h4>Cosmic Leopard</h4>
+            <p>Extends the same collection logic onto Android devices and paired desktop infrastructure, with GravityAdmin managing multiple campaigns at once.</p>
+            <div class="chips">
+              <span class="chip">GravityRAT</span>
+              <span class="chip">GravityAdmin</span>
+              <span class="chip">HeavyLift</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="eyebrow">Adjacency lane</div>
+            <h4>SideCopy / Mocking Draco</h4>
+            <p>Overlap in lures, fake domains, and infection chains makes this lane analytically important even when vendor labels do not settle into one clean alias path.</p>
+            <div class="chips">
+              <span class="chip">SideCopy</span>
+              <span class="chip">Mocking Draco</span>
+              <span class="chip">UNC2269</span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="eyebrow">Outlier lane</div>
+            <h4>A.R. Bunse</h4>
+            <p>A rougher campaign shape built on political and government-themed domains, a fake Pakistan-based IT firm persona, and a stack of commodity Windows and Android RATs.</p>
+            <div class="chips">
+              <span class="chip">dcRAT</span>
+              <span class="chip">QuasarRAT</span>
+              <span class="chip">AndroidRAT</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="body">
+        <p>
+          Transparent Tribe accounts for most of the clearest India-facing collection reporting. Cosmic Leopard widens the picture without changing its politics. Armor Piercer borrows tactics associated with Transparent Tribe and SideCopy, while Unit 42's registry places Mocking Draco inside its Pakistan-focused Draco grouping.
+          <a class="cite" href="https://blog.talosintelligence.com/transparent-tribe-infra-and-targeting/" target="_blank" rel="noopener">TT</a>
+          <a class="cite" href="https://unit42.paloaltonetworks.com/threat-actor-groups-tracked-by-palo-alto-networks-unit-42/" target="_blank" rel="noopener">Registry</a>
+        </p>
+        <p>
+          The practical reading is simple even if the aliasing is not: one mature espionage cluster dominates, several neighboring labels blur around it, and the boundaries matter most when they change defensive scoping or overstate precision.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="inventory">
+      <div class="eyebrow">Malware Inventory</div>
+      <h2>The Tool Stack Tells the Same Story</h2>
+      <div class="panel">
+        <div class="head">
+          <h3>Bespoke, mobile, and commodity families</h3>
+          <div class="micro">Named malware and operator tooling across the reporting set</div>
+        </div>
+        <div class="inv">
+          <div class="card">
+            <div class="eyebrow">Bespoke Windows</div>
+            <h4>CrimsonRAT</h4>
+            <p>Transparent Tribe's recurring foothold for long-term access.</p>
+          </div>
+          <div class="card">
+            <div class="eyebrow">Bespoke Windows</div>
+            <h4>ObliqueRAT</h4>
+            <p>Selective Windows implant used in targeted operations.</p>
+          </div>
+          <div class="card">
+            <div class="eyebrow">Mobile implant</div>
+            <h4>CapraRAT</h4>
+            <p>Android implant kept inside the broader Transparent Tribe arsenal.</p>
+          </div>
+          <div class="card">
+            <div class="eyebrow">Mobile implant</div>
+            <h4>GravityRAT</h4>
+            <p>Android surveillance malware at the center of Celestial Force.</p>
+          </div>
+          <div class="card">
+            <div class="eyebrow">Operator console</div>
+            <h4>GravityAdmin</h4>
+            <p>Admin layer used to manage GravityRAT and HeavyLift infections.</p>
+          </div>
+          <div class="card">
+            <div class="eyebrow">Commodity RAT</div>
+            <h4>dcRAT</h4>
+            <p>Off-the-shelf Windows access in the A.R. Bunse case.</p>
+          </div>
+          <div class="card">
+            <div class="eyebrow">Commodity RAT</div>
+            <h4>QuasarRAT</h4>
+            <p>Commodity Windows remote access paired with political lures.</p>
+          </div>
+          <div class="card">
+            <div class="eyebrow">Commercial RAT</div>
+            <h4>WarzoneRAT / Ave Maria</h4>
+            <p>Commercial remote access delivered through Armor Piercer.</p>
+          </div>
+          <div class="card">
+            <div class="eyebrow">Commercial RAT</div>
+            <h4>NetWireRAT</h4>
+            <p>Another commercial family inside the same delivery stack.</p>
+          </div>
+          <div class="card">
+            <div class="eyebrow">Commodity Android</div>
+            <h4>AndroRAT</h4>
+            <p>Mobile access in the A.R. Bunse campaign.</p>
+          </div>
+        </div>
+      </div>
+      <div class="body">
+        <p>
+          The inventory is varied without being extravagant. Bespoke implants exist, but the reporting keeps returning to replaceable access families and commercial remote-admin tooling. In this picture, persistence is the more expensive resource. The tools are not.
+          <a class="cite" href="https://blog.talosintelligence.com/operation-armor-piercer/" target="_blank" rel="noopener">Commercial RATs</a>
+          <a class="cite" href="https://blog.talosintelligence.com/crimeware-targets-afghanistan-india/" target="_blank" rel="noopener">Commodity stack</a>
+        </p>
+      </div>
+    </section>
+    <section class="section" id="sources">
+      <div class="eyebrow">Defensive Reading</div>
+      <h2>Three Decisions, Then the Record</h2>
+
+      <div class="dec">
+        <div class="decision">
+          <div class="num">01</div>
+          <h3>Kill the document chain early.</h3>
+          <p>Patch legacy Office execution paths, keep macro and XLL controls strict, and treat government-themed attachments as a primary intrusion surface.</p>
+        </div>
+        <div class="decision">
+          <div class="num">02</div>
+          <h3>Treat phones as part of the same intrusion.</h3>
+          <p>Celestial Force and the CapraRAT / AndroRAT thread make mobile-device governance part of the core defensive posture.</p>
+        </div>
+        <div class="decision">
+          <div class="num">03</div>
+          <h3>Investigate the hosting layer.</h3>
+          <p>Lookalike domains, fake portals, and staged download sites recur across the reporting. Hunting only by malware family misses the delivery infrastructure.</p>
+        </div>
+      </div>
+
+      <div class="body">
+        <p>
+          Pakistan does not sit outside other actors' collection maps. Mandiant's 2018 TEMP.Zagros case and Talos's 2022 MuddyWater overview both place Pakistan inside Iran-linked regional targeting. In 2024 CoralRaider includes Pakistan in a broad credential-theft victim set. In 2025 Unit 42's postal phishing and Phantom Taurus reporting place Pakistan inside two very different China-linked collection stories. The outward-facing record is smaller than the Iran feature's, but it does not feel minor.
+          <a class="cite" href="https://cloud.google.com/blog/topics/threat-intelligence/iranian-threat-group-updates-ttps-in-spear-phishing-campaign" target="_blank" rel="noopener">Mandiant 2018</a>
+          <a class="cite" href="https://blog.talosintelligence.com/coralraider-targets-socialmedia-accounts/" target="_blank" rel="noopener">CoralRaider</a>
+          <a class="cite" href="https://unit42.paloaltonetworks.com/phantom-taurus/" target="_blank" rel="noopener">Phantom Taurus</a>
+        </p>
+      </div>
+
+      <div class="sources">
+        <div class="source">
+          <div class="smeta">May 13, 2021<br>Core source</div>
+          <div>
+            <h4>Transparent Tribe APT expands its Windows malware arsenal</h4>
+            <p>Defense-focused targeting in the Indian subcontinent; ObliqueRAT expands a long-running Transparent Tribe line.</p>
+          </div>
+        </div>
+        <div class="source">
+          <div class="smeta">Sep 23, 2021<br>Core source</div>
+          <div>
+            <h4>Operation "Armor Piercer:" Targeted attacks in the Indian subcontinent using commercial RATs</h4>
+            <p>Commercial RAT chain with fake domains and APT36 / SideCopy-adjacent lure style aimed at Indian government personnel.</p>
+          </div>
+        </div>
+        <div class="source">
+          <div class="smeta">Oct 20, 2021<br>Core source</div>
+          <div>
+            <h4>Malicious campaign uses a barrage of commodity RATs to target Afghanistan and India</h4>
+            <p>A.R. Bunse case against India and Afghanistan using dcRAT, QuasarRAT, and Android tooling.</p>
+          </div>
+        </div>
+        <div class="source">
+          <div class="smeta">Feb 9, 2022<br>Core source</div>
+          <div>
+            <h4>What's with the shared VBA code between Transparent Tribe and other threat actors?</h4>
+            <p>Code reuse across Transparent Tribe and neighboring South Asian operators; useful for overlap, not simplistic alias merges.</p>
+          </div>
+        </div>
+        <div class="source">
+          <div class="smeta">Mar 29, 2022<br>Core source</div>
+          <div>
+            <h4>Transparent Tribe campaign uses new bespoke malware to target Indian government officials</h4>
+            <p>Indian government and military targeting with new stagers, established Windows implants, and mobile-implant context.</p>
+          </div>
+        </div>
+        <div class="source">
+          <div class="smeta">Jul 13, 2022<br>Core source</div>
+          <div>
+            <h4>Transparent Tribe begins targeting education sector in latest campaign</h4>
+            <p>Education-sector pivot with CrimsonRAT, student-focused lures, and a clearer link between long-term access and civilian surfaces.</p>
+          </div>
+        </div>
+        <div class="source">
+          <div class="smeta">Dec 20, 2022<br>Caveat source</div>
+          <div>
+            <h4>Threat Spotlight: XLLing in Excel - threat actors using malicious add-ins</h4>
+            <p>Useful mainly for the user-execution surface and the Donot caveat, not as a clean Pakistan-origin campaign centerpiece.</p>
+          </div>
+        </div>
+        <div class="source">
+          <div class="smeta">Jun 13, 2024<br>Core source</div>
+          <div>
+            <h4>Operation Celestial Force employs mobile and desktop malware to target Indian entities</h4>
+            <p>Pakistan-linked mobile-plus-desktop campaign against Indian entities, disclosed in 2024 but active since at least 2018.</p>
+          </div>
+        </div>
+        <div class="source">
+          <div class="smeta">Aug 1, 2025<br>Core source</div>
+          <div>
+            <h4>Threat Actor Groups Tracked by Palo Alto Networks Unit 42 (Updated Aug. 1, 2025)</h4>
+            <p>Registry-style naming layer that places Mocking Draco inside Unit 42's Pakistan-focused Draco grouping.</p>
+          </div>
+        </div>
+        <div class="source">
+          <div class="smeta">Context set</div>
+          <div>
+            <h4>Pakistan as target</h4>
+            <p>Context articles used here: TEMP.Zagros 2018, MuddyWater 2022, CoralRaider (2), postal phishing 2025, and Phantom Taurus 2025.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="method">
+        <div class="head">
+          <h3>Methodological Note</h3>
+          <div class="micro">Source discipline and naming caveats</div>
+        </div>
+        <p>
+          This feature is built from nine core publications on Pakistan-linked activity and six additional articles where Pakistan appears primarily as a target. Source names and aliases disagree on how to separate Transparent Tribe, APT36, SideCopy, and Mocking Draco. The page keeps those disagreements visible instead of forcing a single lineage that the reporting itself does not cleanly support.
+        </p>
+        <div class="mgrid">
+          <div class="mitem">
+            <strong>Core set</strong>
+            <p>All charts and primary claims use the same nine-source reporting base; context articles are used to position Pakistan inside the wider regional picture.</p>
+          </div>
+          <div class="mitem">
+            <strong>Alias discipline</strong>
+            <p>Transparent Tribe is used as the preferred label for the recurring Talos cluster, while SideCopy and Mocking Draco remain adjacent rather than silently merged.</p>
+          </div>
+          <div class="mitem">
+            <strong>Technique grouping</strong>
+            <p>Technique counts are rolled up into sequence-level behaviors so the reader can see the intrusion pattern rather than a wall of ATT&amp;CK identifiers.</p>
+          </div>
+          <div class="mitem">
+            <strong>Interpretive limit</strong>
+            <p>The argument here is about concentration, persistence, and widening victim surfaces. It is not a claim that every Pakistan-linked label belongs to one operator.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div>OPTIC Lab - Open Provenance Threat Intelligence Corpus</div>
+    <div><a href="https://github.com/RubiksTwist/opticLab" target="_blank" rel="noopener">Project on GitHub</a> · <a href="https://www.linkedin.com/in/alex-cheung-878632290/" target="_blank" rel="noopener">Alex Cheung on LinkedIn</a></div>
+    <div>Not affiliated with Cisco, Palo Alto Networks, Google, Mandiant, or MITRE. Code is MIT licensed; written content and data are CC BY-NC 4.0.</div>
+  </footer>
+</body>
+</html>
+
