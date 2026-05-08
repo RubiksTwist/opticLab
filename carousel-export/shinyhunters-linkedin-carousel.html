@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OPTIC Lab LinkedIn Carousel - ShinyHunters</title>
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #182126;
+      --muted: #647074;
+      --line: rgba(24,33,38,.11);
+      --focus: #315f6b;
+      --signal: #a54d34;
+      --green: #596f57;
+      --soft: #ebece5;
+      --paper: rgba(255,255,255,.84);
+      --shadow: 0 18px 50px rgba(31,48,58,.08);
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #eef0eb;
+      color: var(--ink);
+      font-family: "Source Serif 4", Georgia, serif;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      padding: 28px 0 48px;
+    }
+    .slide {
+      width: 1080px;
+      height: 1350px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid rgba(24,33,38,.08);
+      box-shadow: var(--shadow);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.7), rgba(238,240,235,.76) 340px, #eef0eb),
+        repeating-linear-gradient(90deg, rgba(24,33,38,.04) 0 1px, transparent 1px 90px);
+      padding: 56px 64px;
+    }
+    .frame {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 1;
+    }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      font: 600 .64rem/1 "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+    }
+    .brand {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      color: var(--focus);
+    }
+    .brand:before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--signal);
+    }
+    .tag {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      white-space: nowrap;
+    }
+    .strap {
+      margin-top: 34px;
+      font: 600 .68rem/1.3 "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--signal);
+    }
+    h1, h2, h3, p { margin: 0; }
+    .title {
+      margin-top: 16px;
+      font: 800 112px/.88 "Bricolage Grotesque", sans-serif;
+      letter-spacing: 0;
+      max-width: 10ch;
+    }
+    .title em,
+    .title .accent {
+      color: var(--focus);
+      font-style: normal;
+    }
+    .lede {
+      margin-top: 24px;
+      max-width: 29ch;
+      font-size: 1.52rem;
+      line-height: 1.52;
+      color: rgba(24,33,38,.84);
+    }
+    .deck {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .pill,
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      font: 600 .68rem/1 "IBM Plex Mono", monospace;
+      letter-spacing: .04em;
+      color: var(--focus);
+      text-transform: uppercase;
+    }
+    .panel,
+    .card,
+    .linkbox {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+    }
+    .panel {
+      margin-top: 28px;
+      padding: 24px;
+    }
+    .head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .head h3 {
+      font: 700 1.9rem/.96 "Bricolage Grotesque", sans-serif;
+      letter-spacing: 0;
+    }
+    .small {
+      font: 600 .6rem/1.3 "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+    }
+    .stack {
+      display: grid;
+      gap: 12px;
+    }
+    .layer {
+      display: grid;
+      grid-template-columns: 108px minmax(0, 1fr);
+      gap: 16px;
+      align-items: stretch;
+      min-height: 128px;
+      padding: 14px;
+      border: 1px solid rgba(24,33,38,.09);
+      border-radius: 8px;
+      background: rgba(247,248,246,.94);
+    }
+    .layer .mark {
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--focus);
+      color: #fff;
+      font: 800 2.6rem/.85 "Bricolage Grotesque", sans-serif;
+    }
+    .layer:nth-child(2) .mark { background: var(--green); }
+    .layer:nth-child(3) .mark { background: var(--signal); }
+    .layer strong {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font: 700 1.24rem/1.03 "Bricolage Grotesque", sans-serif;
+      letter-spacing: 0;
+    }
+    .layer span {
+      color: var(--muted);
+      font: 600 .6rem/1.2 "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    .layer p,
+    .card p,
+    .linkbox p {
+      margin-top: 8px;
+      font-size: .98rem;
+      line-height: 1.5;
+      color: rgba(24,33,38,.78);
+    }
+    .surface-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .surface-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 270px;
+      padding: 18px;
+      border: 1px solid rgba(24,33,38,.09);
+      background: rgba(247,248,246,.94);
+      border-radius: 8px;
+    }
+    .surface-card h3 {
+      margin-top: 12px;
+      font: 700 1.34rem/1.02 "Bricolage Grotesque", sans-serif;
+      letter-spacing: 0;
+    }
+    .surface-card p {
+      margin-top: 10px;
+      font-size: .94rem;
+      line-height: 1.46;
+      color: rgba(24,33,38,.76);
+    }
+    .surface-card .mini-list {
+      display: grid;
+      gap: 7px;
+      margin-top: auto;
+      padding-top: 16px;
+    }
+    .mini-list div {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(49,95,107,.08);
+      color: var(--focus);
+      font: 600 .62rem/1 "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+    .step {
+      border: 1px solid rgba(24,33,38,.09);
+      background: rgba(247,248,246,.94);
+      border-radius: 8px;
+      padding: 14px;
+      min-height: 170px;
+    }
+    .step b {
+      display: inline-grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--focus);
+      color: #fff;
+      font: 700 .76rem/1 "IBM Plex Mono", monospace;
+    }
+    .step strong,
+    .card h3,
+    .linkbox h3 {
+      display: block;
+      margin-top: 12px;
+      font: 700 1.08rem/1.04 "Bricolage Grotesque", sans-serif;
+      letter-spacing: 0;
+    }
+    .step span {
+      display: block;
+      margin-top: 8px;
+      font-size: .88rem;
+      line-height: 1.42;
+      color: rgba(24,33,38,.75);
+    }
+    .grid2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .card {
+      padding: 22px;
+      min-height: 350px;
+      display: flex;
+      flex-direction: column;
+    }
+    .card .deck { margin-top: auto; padding-top: 22px; }
+    .quote {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: 8px;
+      border: 1px solid rgba(165,77,52,.18);
+      background: rgba(165,77,52,.08);
+      font: 700 1.22rem/1.32 "Bricolage Grotesque", sans-serif;
+      color: var(--signal);
+      letter-spacing: 0;
+    }
+    .cta {
+      display: grid;
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .linkbox {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 22px 24px;
+    }
+    .url {
+      flex: 0 0 auto;
+      padding: 12px 14px;
+      border-radius: 999px;
+      background: rgba(49,95,107,.09);
+      color: var(--focus);
+      font: 700 .72rem/1 "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .footer {
+      margin-top: auto;
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: var(--muted);
+      font: 600 .62rem/1.2 "IBM Plex Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+    @media print {
+      @page { size: 1080px 1350px; margin: 0; }
+      body { padding: 0; gap: 0; background: none; }
+      .slide { margin: 0; border: none; box-shadow: none; break-after: page; page-break-after: always; }
+      .slide:last-child { break-after: auto; page-break-after: auto; }
+    }
+  </style>
+</head>
+<body>
+<section class="slide">
+  <div class="frame">
+    <div class="top"><div class="brand">opticLab.net</div><div class="tag">Summary from a published article</div></div>
+    <div class="strap">ShinyHunters - SaaS extortion - May 2026</div>
+    <h1 class="title">Routine <em>Logins.</em><br>Public Threats.</h1>
+    <p class="lede">The Canvas incident shows a common pattern: steal or trick your way into cloud accounts, copy data, then push the victim to pay.</p>
+    <div class="deck">
+      <div class="pill">Canvas</div>
+      <div class="pill">Salesforce</div>
+      <div class="pill">SSO / MFA</div>
+      <div class="pill">ransom threats</div>
+    </div>
+    <div class="panel">
+      <div class="head"><h3>How the attack works</h3><div class="small">From login to ransom demand</div></div>
+      <div class="stack">
+        <div class="layer">
+          <div class="mark">01</div>
+          <div><strong><span>Step one</span>Attackers get a working login</strong><p>They use phone calls, fake sign-in pages, and MFA tricks to reach a real cloud account.</p></div>
+        </div>
+        <div class="layer">
+          <div class="mark">02</div>
+          <div><strong><span>Step two</span>They copy the records inside</strong><p>CRM data, documents, messages, enrollments, and identity details are already in SaaS apps.</p></div>
+        </div>
+        <div class="layer">
+          <div class="mark">03</div>
+          <div><strong><span>Step three</span>They make the breach visible</strong><p>Leak sites, deadlines, messages to employees, and defaced pages push the victim to respond.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer"><span>Short version - source record in article</span><span>opticlab.net/shinyhunters</span></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="frame">
+    <div class="top"><div class="brand">opticLab.net</div><div class="tag">Article insight 1</div></div>
+    <div class="strap">The attack starts like support</div>
+    <h2 class="title" style="font-size:86px;max-width:11ch;">The phone call is part of the intrusion.</h2>
+    <div class="panel">
+      <div class="head"><h3>Attack chain</h3><div class="small">Plain-English version</div></div>
+      <div class="flow">
+        <div class="step"><b>1</b><strong>Call</strong><span>Impersonate IT, help desk, or a vendor.</span></div>
+        <div class="step"><b>2</b><strong>Convince</strong><span>Create urgency around MFA, account access, or app approval.</span></div>
+        <div class="step"><b>3</b><strong>Enroll</strong><span>Capture credentials, codes, or a connected-app authorization.</span></div>
+        <div class="step"><b>4</b><strong>Export</strong><span>Use the cloud apps the account can already reach.</span></div>
+        <div class="step"><b>5</b><strong>Threaten</strong><span>Post ransom notes, message employees, or change public-facing pages.</span></div>
+      </div>
+      <div class="quote">Once the login works, the attacker can reach the data that account is allowed to see.</div>
+    </div>
+    <div class="footer"><span>Stolen logins are the entry point</span><span>opticlab.net/shinyhunters</span></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="frame">
+    <div class="top"><div class="brand">opticLab.net</div><div class="tag">Article insight 2</div></div>
+    <div class="strap">Cloud apps hold the data</div>
+    <h2 class="title" style="font-size:82px;max-width:11ch;">CRM records, classroom messages, internal files.</h2>
+    <div class="panel">
+      <div class="head"><h3>What attackers try to steal</h3><div class="small">Common SaaS targets</div></div>
+      <div class="surface-grid">
+        <div class="surface-card">
+          <div class="small">Salesforce</div>
+          <h3>Customer and prospect records</h3>
+          <p>Salesforce data exports, connected apps, Experience Cloud, and Aura exposure all make CRM data a major target.</p>
+          <div class="mini-list">
+            <div>business relationships</div>
+            <div>sales notes</div>
+            <div>contact records</div>
+          </div>
+        </div>
+        <div class="surface-card">
+          <div class="small">Workspace suites</div>
+          <h3>Documents, mail, and app grants</h3>
+          <p>Files, OAuth app permissions, and MFA notices can show what happened and expose more sensitive data.</p>
+          <div class="mini-list">
+            <div>internal docs</div>
+            <div>mail trails</div>
+            <div>OAuth access</div>
+          </div>
+        </div>
+        <div class="surface-card">
+          <div class="small">Canvas</div>
+          <h3>Education identity and messages</h3>
+          <p>Student IDs, emails, enrollments, and private messages give attackers personal data they can threaten to leak.</p>
+          <div class="mini-list">
+            <div>student IDs</div>
+            <div>messages</div>
+            <div>course context</div>
+          </div>
+        </div>
+      </div>
+      <div class="quote">The danger is not only the account. It is the amount of data the account can reach.</div>
+    </div>
+    <div class="footer"><span>Cloud apps hold records</span><span>opticlab.net/shinyhunters</span></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="frame">
+    <div class="top"><div class="brand">opticLab.net</div><div class="tag">Article insight 3</div></div>
+    <div class="strap">Canvas made the threat visible</div>
+    <h2 class="title" style="font-size:82px;max-width:10ch;">A login page became a ransom billboard.</h2>
+    <div class="grid2">
+      <div class="card">
+        <div class="small">Confirmed facts</div>
+        <h3>Instructure confirmed exposed user data categories.</h3>
+        <p>Reporting cited names, email addresses, student ID numbers, and messages among users. As of the May 8 article, the reported categories were limited to identity and message data.</p>
+        <div class="deck">
+          <div class="chip">names</div>
+          <div class="chip">emails</div>
+          <div class="chip">IDs</div>
+          <div class="chip">messages</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="small">Attacker claims</div>
+        <h3>ShinyHunters claimed a much larger scale.</h3>
+        <p>The 8,809-9,000 institution and hundreds-of-millions-of-records figures should stay labeled as attacker claims unless independently verified.</p>
+        <div class="deck">
+          <div class="chip">attacker-claimed</div>
+          <div class="chip">unverified scale</div>
+        </div>
+      </div>
+    </div>
+    <div class="quote">The threat had more impact once it appeared on pages students and teachers already had to use.</div>
+    <div class="footer"><span>Full timeline and source links in article</span><span>opticlab.net/shinyhunters</span></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="frame">
+    <div class="top"><div class="brand">opticLab.net</div><div class="tag">Read more</div></div>
+    <div class="strap">Use the published article as the source record</div>
+    <h2 class="title" style="font-size:84px;max-width:11ch;">Read the evidence behind the name.</h2>
+    <p class="lede" style="max-width:34ch;">This carousel is the short version. The published article has the May 8 timeline, source links, confirmed facts, attacker claims, Google's tracking names, and practical defensive controls.</p>
+    <div class="cta">
+      <div class="linkbox">
+        <div>
+          <h3>The Canvas Extortion Case</h3>
+          <p>Published article with the timeline, reporting links, publication note, and distinction between what Instructure confirmed and what attackers claimed.</p>
+        </div>
+        <div class="url">opticlab.net/shinyhunters</div>
+      </div>
+      <div class="linkbox">
+        <div>
+          <h3>Why the Article Matters</h3>
+          <p>It keeps the public ShinyHunters name separate from Google's activity names and shows where each claim comes from.</p>
+        </div>
+        <div class="url">opticlab.net/shinyhunters</div>
+      </div>
+    </div>
+    <div class="footer"><span>Carousel summary - published article is the evidence record</span><span>opticlab.net/shinyhunters</span></div>
+  </div>
+</section>
+</body>
+</html>
