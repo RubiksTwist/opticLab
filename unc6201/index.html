@@ -1,0 +1,334 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNC6201 Threat Model - Internal Access Brief</title>
+<meta name="description" content="A defensive UNC6201 threat model for Dell RecoverPoint internal-access risk, with evidence boundaries, ATT&CK validation, detection logic, and vendor context.">
+<link rel="canonical" href="https://opticlab.net/unc6201">
+<meta property="og:title" content="UNC6201 Threat Model - Internal Access Brief">
+<meta property="og:description" content="A defensive threat model for UNC6201, Dell RecoverPoint, VMware recovery-plane risk, Ghost NIC validation, and sourced detection logic.">
+<meta property="og:url" content="https://opticlab.net/unc6201">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 16 16%27%3E%3Ccircle cx=%278%27 cy=%278%27 r=%276%27 fill=%27%23c92f3c%27/%3E%3C/svg%3E">
+<style>
+:root{--bg:#070a0d;--surface:#0c1118;--surface2:#111822;--surface3:#161f2c;--border:#1c2b3a;--border2:#243447;--accent:#e63946;--accent-dim:rgba(230,57,70,.12);--orange:#ff6b35;--amber:#f4a261;--green:#2ec4b6;--blue:#4a90d9;--purple:#9b72cf;--text:#b8c6d4;--muted:#596e82;--dim:#3d5166;--white:#eaf2fb;--mono:'Share Tech Mono',monospace;--display:'Barlow Condensed',sans-serif;--body:'Barlow',sans-serif}*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:var(--body);font-size:14px;line-height:1.65;overflow-x:hidden}body:before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.025) 2px,rgba(0,0,0,.025) 4px);pointer-events:none;z-index:9999}nav{position:sticky;top:0;z-index:100;background:rgba(7,10,13,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:0 48px;display:flex;overflow-x:auto}nav a{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:14px 16px;border-right:1px solid var(--border);white-space:nowrap}nav a:first-child{border-left:1px solid var(--border)}nav a:hover{color:var(--accent);background:var(--accent-dim)}header{position:relative;padding:64px 56px 48px;border-bottom:1px solid var(--border);overflow:hidden}header:before{content:'';position:absolute;top:-120px;right:-100px;width:700px;height:700px;background:radial-gradient(circle,rgba(230,57,70,.06) 0%,transparent 65%);pointer-events:none}header:after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--accent),transparent 60%)}.tag-row{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2px;display:flex;flex-wrap:wrap;gap:16px;margin-bottom:20px}.tag-row span{color:var(--accent)}h1{font-family:var(--display);font-size:clamp(64px,9vw,110px);font-weight:900;line-height:.88;letter-spacing:-2px;color:var(--white);margin-bottom:8px}h1 em{color:var(--accent);font-style:normal}.subtitle{font-family:var(--display);font-size:16px;font-weight:300;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-bottom:32px}.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{font-family:var(--mono);font-size:10px;padding:4px 12px;letter-spacing:1.5px;border:1px solid var(--border2);color:var(--muted)}.chip.r{border-color:rgba(230,57,70,.5);color:var(--accent);background:rgba(230,57,70,.06)}.chip.a{border-color:rgba(244,162,97,.5);color:var(--amber);background:rgba(244,162,97,.06)}.chip.g{border-color:rgba(46,196,182,.5);color:var(--green);background:rgba(46,196,182,.06)}.chip.b{border-color:rgba(74,144,217,.5);color:var(--blue);background:rgba(74,144,217,.06)}.page{max-width:1440px;margin:0 auto;padding:0 56px 100px}.section{margin-top:72px;scroll-margin-top:48px}.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:28px;padding-bottom:12px;border-bottom:1px solid var(--border);position:relative}.sec-head:after{content:'';position:absolute;left:0;bottom:-1px;width:60px;height:1px;background:var(--accent)}.sec-num{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:2px}h2{font-family:var(--display);font-size:26px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--white)}h3{font-family:var(--display);font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:8px}h4{font-family:var(--display);font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-bottom:6px}p{color:var(--text);font-size:14px;line-height:1.7}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}.cell{background:var(--surface);padding:22px 24px;transition:background .15s}.cell:hover{background:var(--surface2)}.cell p,.cell li{font-size:13px}.badge{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:2px;padding:3px 9px;margin-bottom:8px;text-transform:uppercase}.badge.critical{color:var(--accent);background:rgba(230,57,70,.1);border:1px solid rgba(230,57,70,.3)}.badge.high{color:var(--amber);background:rgba(244,162,97,.1);border:1px solid rgba(244,162,97,.3)}.badge.medium{color:var(--blue);background:rgba(74,144,217,.1);border:1px solid rgba(74,144,217,.3)}.badge.low{color:var(--muted);background:rgba(89,110,130,.1);border:1px solid var(--border2)}.badge.info{color:var(--green);background:rgba(46,196,182,.1);border:1px solid rgba(46,196,182,.3)}.metric-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-top:24px}.metric-stat{background:var(--surface2);padding:18px 20px}.stat-label{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}.stat-val{font-family:var(--display);font-size:24px;font-weight:700;color:var(--white)}.stat-val.red{color:var(--accent);font-size:32px}.stat-val.green{color:var(--green)}.stat-val.amber{color:var(--amber)}.stat-sub{font-size:12px;color:var(--muted);margin-top:3px}.cve-hero{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);overflow:hidden}.cve-top{padding:28px 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;border-bottom:1px solid var(--border)}.cve-bottom{padding:20px 32px;background:var(--surface2);display:grid;grid-template-columns:repeat(3,1fr);gap:28px}.bar{height:4px;background:var(--border);margin-top:8px;border-radius:2px;overflow:hidden}.bar-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--accent))}.chain{display:flex;gap:0;overflow-x:auto;padding-bottom:4px}.step{flex:1;min-width:170px;background:var(--surface);border:1px solid var(--border);border-right:none;padding:18px 16px;position:relative}.step:last-child{border-right:1px solid var(--border)}.step:hover{background:var(--surface2)}.step:after{content:'>';position:absolute;right:-15px;top:50%;transform:translateY(-50%);font-size:22px;color:var(--accent);z-index:2;background:var(--bg);width:22px;text-align:center;line-height:1}.step:last-child:after{display:none}.step-n{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:2px;margin-bottom:6px}.step-t{font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);margin-bottom:5px}.step-d{font-size:11px;color:var(--muted);line-height:1.5}.step-tool{margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--orange);background:rgba(255,107,53,.08);padding:2px 7px;display:inline-block;border:1px solid rgba(255,107,53,.2)}.code-block{background:#060c12;border:1px solid var(--border);border-left:3px solid var(--orange);padding:18px 22px;margin:12px 0;overflow-x:auto}.code-block pre{font-family:var(--mono);font-size:12px;color:#8dd7a0;line-height:1.8;white-space:pre}.code-label{font-family:var(--mono);font-size:9px;color:var(--orange);letter-spacing:2px;padding-bottom:8px;border-bottom:1px solid var(--border);margin-bottom:12px}.mitre-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1px;background:var(--border);border:1px solid var(--border)}.mc{background:var(--surface);padding:14px 16px}.mc:hover{background:var(--surface2)}.mc-tactic{font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--green);margin-bottom:5px}.mc-id{font-family:var(--mono);font-size:11px;color:var(--accent);margin-bottom:3px}.mc-name{font-family:var(--display);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--white)}.mc-note{font-size:11px;color:var(--muted);margin-top:4px}.ioc-table,.evidence-table{width:100%;border-collapse:collapse;border:1px solid var(--border)}.ioc-table th,.evidence-table th{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:10px 14px;background:var(--surface2);border-bottom:1px solid var(--border);text-align:left}.ioc-table td,.evidence-table td{font-family:var(--mono);font-size:11.5px;color:var(--text);padding:9px 14px;border-bottom:1px solid rgba(28,43,58,.5);vertical-align:top}.evidence-table td{font-family:var(--body);font-size:12px}.ioc-table tr:hover td,.evidence-table tr:hover td{background:var(--surface2)}.ioc-table td:first-child{color:var(--green);white-space:nowrap}.ioc-table td:nth-child(2){color:var(--amber);word-break:break-all}.mw-table{border:1px solid var(--border)}.mw-row{display:grid;grid-template-columns:130px 100px 1fr;gap:16px;background:var(--surface);padding:16px 22px;border-bottom:1px solid rgba(28,43,58,.5);align-items:start}.mw-row.hdr{background:var(--surface2);padding:9px 22px}.mw-row.hdr span{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}.mw-name{font-family:var(--mono);font-size:13px;color:var(--orange);font-weight:bold}.mw-type{font-family:var(--mono);font-size:10px;color:var(--muted);padding-top:2px}.mw-desc{font-size:13px;color:var(--text);line-height:1.6}.tl{position:relative;padding-left:28px}.tl:before{content:'';position:absolute;left:6px;top:6px;bottom:0;width:1px;background:linear-gradient(180deg,var(--accent),transparent)}.tl-item{position:relative;margin-bottom:32px}.tl-item:before{content:'';position:absolute;left:-26px;top:6px;width:8px;height:8px;background:var(--accent);border:2px solid var(--bg);box-shadow:0 0 0 1px var(--accent)}.tl-date{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:1.5px;margin-bottom:4px}.tl-title{font-family:var(--display);font-size:14px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--white);margin-bottom:5px}.tl-desc{font-size:13px;color:var(--muted);line-height:1.6}.rem-list{list-style:none}.rem-item{display:flex;gap:14px;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-bottom:none;align-items:flex-start}.rem-item:last-child{border-bottom:1px solid var(--border)}.rem-num{font-family:var(--mono);font-size:10px;color:var(--accent);min-width:26px;padding-top:2px}.rem-text{font-size:13px;color:var(--text);line-height:1.6}.rem-text strong{color:var(--white)}.rem-text code{font-family:var(--mono);font-size:11px;color:var(--green);background:rgba(46,196,182,.07);padding:1px 5px;border:1px solid rgba(46,196,182,.15)}.detect-box{background:var(--surface);border:1px solid var(--border);padding:22px 26px;margin-top:16px}.attr-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}.attr{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;border:1px solid var(--border2);padding:4px 12px}.attr strong{color:var(--white)}.divider{border:0;border-top:1px solid var(--border);margin:28px 0}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}.tag{font-family:var(--mono);font-size:10px;color:var(--orange);background:rgba(255,107,53,.08);padding:1px 6px;border:1px solid rgba(255,107,53,.2);display:inline}.source-note{font-size:12px;color:var(--muted);font-family:var(--mono);letter-spacing:.5px;margin-top:10px}.quote{color:var(--muted);font-style:italic}.blink{animation:blink 1.2s step-end infinite}@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}footer{border-top:1px solid var(--border);padding:20px 56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;position:relative}footer:before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--accent),transparent 50%)}footer span{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px}@media(max-width:1000px){header,.page,footer{padding-left:20px;padding-right:20px}nav{padding:0 20px}.grid-3,.grid-4,.metric-strip{grid-template-columns:1fr 1fr}.cve-top,.cve-bottom{grid-template-columns:1fr 1fr}.two-col{grid-template-columns:1fr}.mw-row{grid-template-columns:1fr 1fr}.mw-row .mw-desc{grid-column:1/-1}}@media(max-width:700px){.chain{flex-direction:column}.step{border-right:1px solid var(--border);border-bottom:none}.step:last-child{border-bottom:1px solid var(--border)}.step:after{display:none}.grid-2,.grid-3,.grid-4,.metric-strip,.cve-top,.cve-bottom{grid-template-columns:1fr}h1{font-size:56px}}
+nav{scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+/* Readability pass: keep the dark intelligence-brief style, remove visual noise. */
+body{background:#080c11;color:#c4ced8;font-size:15px;line-height:1.68}
+body:before{display:none}
+nav{background:#080c11;backdrop-filter:none;border-bottom:1px solid #1b2836;padding:0 32px}
+nav a{font-size:11px;letter-spacing:.6px;text-transform:none;padding:13px 14px;color:#8da0b3}
+nav a:hover{color:#eaf2fb;background:#101821}
+header{padding:48px 56px 40px;background:#0a1017}
+header:before,header:after{display:none}
+.tag-row{letter-spacing:.8px;gap:10px;margin-bottom:18px;color:#8294a6}
+h1{font-size:clamp(54px,7vw,92px);letter-spacing:-1px;margin-bottom:12px}
+.subtitle{font-size:16px;letter-spacing:1px;text-transform:none;color:#9daebe;margin-bottom:24px}
+.chip{font-size:11px;letter-spacing:.4px;text-transform:none;padding:5px 10px;border-radius:2px}
+.page{padding-bottom:80px}
+.section{margin-top:52px;scroll-margin-top:52px}
+.sec-head{margin-bottom:20px;padding-bottom:10px}
+.sec-head:after{width:44px}
+.sec-num{letter-spacing:.8px}
+h2{font-size:25px;letter-spacing:.8px;text-transform:none}
+h3{font-size:14px;letter-spacing:.5px;text-transform:none}
+h4{font-size:13px;letter-spacing:.4px;text-transform:none}
+p{font-size:14px;line-height:1.7}
+.grid-2,.grid-3,.grid-4,.metric-strip,.mitre-grid{gap:12px;background:transparent;border:0}
+.cell,.metric-stat,.mc,.detect-box,.cve-hero,.mw-table,.code-block{border-color:#223244;background:#0d141d}
+.cell{padding:20px 22px}
+.cell:hover,.mc:hover{background:#0f1822}
+.badge{font-size:10px;letter-spacing:.5px;text-transform:none;border-radius:2px;margin-bottom:10px}
+.stat-label{letter-spacing:.6px;text-transform:none}
+.stat-val{font-size:26px}
+.cve-top,.cve-bottom{gap:18px}
+.chain{gap:12px;overflow-x:visible;flex-wrap:wrap}
+.step{min-width:220px;border:1px solid #223244;flex:1 1 220px}
+.step:after{display:none}
+.step-n{letter-spacing:.6px}
+.step-t{font-size:14px;letter-spacing:.4px;text-transform:none}
+.step-d{font-size:12px;color:#8fa1b4}
+.step-tool{font-size:11px;border-radius:2px}
+.code-block,.detect-box{margin-top:14px}
+.code-block pre{font-size:12px;line-height:1.65;white-space:pre-wrap}
+.code-label{letter-spacing:.6px}
+.mc-tactic{letter-spacing:.5px}
+.mc-name{font-size:13px;letter-spacing:.2px;text-transform:none}
+.ioc-table th,.evidence-table th{letter-spacing:.6px;text-transform:none}
+.ioc-table td,.evidence-table td{font-size:12px}
+.tl-date{letter-spacing:.6px}
+.tl-title{letter-spacing:.4px;text-transform:none}
+.blink{animation:none}
+footer{padding:18px 56px}
+footer span{letter-spacing:.3px}
+/* Mid-tone theme: easier reading than the dark terminal view while keeping threat-intel accents. */
+:root{
+  --bg:#d8dee5;
+  --surface:#eef2f6;
+  --surface2:#e4ebf1;
+  --surface3:#d9e2ea;
+  --border:#bdc9d4;
+  --border2:#aab8c5;
+  --accent:#c92f3c;
+  --accent-dim:rgba(201,47,60,.10);
+  --orange:#b85f1e;
+  --amber:#8a5a17;
+  --green:#087f76;
+  --blue:#2f6698;
+  --purple:#7357a5;
+  --text:#1f2f3d;
+  --muted:#5b6f80;
+  --dim:#748699;
+  --white:#111c26;
+}
+body{background:#d8dee5;color:#1f2f3d}
+nav{background:#dfe6ed;border-bottom-color:#b8c5d1}
+nav a{color:#465d71;border-color:#bdc9d4}
+nav a:hover{color:#111c26;background:#eef2f6}
+header{background:#e6edf3;border-bottom-color:#b8c5d1}
+h1{color:#111c26}
+.subtitle{color:#385064}
+.tag-row{color:#5b6f80}
+.cell,.metric-stat,.mc,.detect-box,.cve-hero,.mw-table,.code-block,.step{background:#eef2f6;border-color:#bdc9d4}
+.cell:hover,.mc:hover,.step:hover{background:#f7f9fb}
+.grid-2,.grid-3,.grid-4,.metric-strip,.mitre-grid{background:transparent}
+.code-block{background:#f8fafc}
+.code-block pre{color:#244b35}
+.source-note,.step-d,.mc-note,.tl-desc,.stat-sub{color:#617385}
+.ioc-table th,.evidence-table th,.mw-row.hdr{background:#e0e8ef}
+.ioc-table td,.evidence-table td,.mw-row,.rem-item{background:#eef2f6;border-color:#bdc9d4;color:#1f2f3d}
+.ioc-table tr:hover td,.evidence-table tr:hover td,.mw-row:hover,.rem-item:hover{background:#f8fafc}
+.badge.critical{color:#a3202b;background:rgba(201,47,60,.10);border-color:rgba(201,47,60,.35)}
+.badge.high{color:#8a4d12;background:rgba(184,95,30,.10);border-color:rgba(184,95,30,.30)}
+.badge.medium{color:#285d8f;background:rgba(47,102,152,.10);border-color:rgba(47,102,152,.30)}
+.badge.info{color:#087f76;background:rgba(8,127,118,.10);border-color:rgba(8,127,118,.30)}
+.chip{background:#edf2f6;color:#465d71}
+.chip.r{color:#a3202b;background:rgba(201,47,60,.08)}
+.chip.a{color:#8a4d12;background:rgba(184,95,30,.08)}
+.chip.g{color:#087f76;background:rgba(8,127,118,.08)}
+.chip.b{color:#285d8f;background:rgba(47,102,152,.08)}
+.quote{color:#52677a}
+footer{background:#dfe6ed;border-top-color:#b8c5d1}
+.rel-graph{display:flex;flex-direction:column;gap:10px;margin:18px 0;max-width:760px}
+.rel-node{background:#eef2f6;border:1px solid #bdc9d4;padding:16px}
+.rel-node strong{display:block;margin-bottom:6px;color:#111c26}
+.rel-node span{display:inline-block;margin-bottom:8px}
+.rel-arrow{display:flex;align-items:center;color:#c92f3c;font-weight:800;padding-left:18px}
+.rel-arrow:before{content:"v ";margin-right:6px}
+@media(max-width:900px){.rel-graph{max-width:none}}
+/* Font readability pass: use calm system UI fonts for analysis text. */
+:root{
+  --mono:"Cascadia Mono","SFMono-Regular",Consolas,"Liberation Mono",monospace;
+  --display:"Segoe UI",Roboto,Arial,sans-serif;
+  --body:"Segoe UI",Roboto,Arial,sans-serif;
+}
+body{font-family:var(--body);font-size:15px;line-height:1.62}
+nav a,.tag-row,.chip,.badge,.stat-label,.sec-num,.step-n,.step-tool,.code-label,.mc-tactic,.mc-id,.ioc-table th,.evidence-table th,.ioc-table td,.attr,.tl-date,footer span{font-family:var(--mono)}
+.top-nav{justify-content:space-between;align-items:center;padding:0 56px}
+.top-nav span{font-weight:700;color:#213442}
+.top-nav a{border:0}
+.top-nav a:first-child{border-left:0}
+.top-nav a:last-child{border-left:1px solid var(--border)}
+h1,h2,h3,h4,.subtitle,.step-t,.mc-name,.stat-val,.tl-title{font-family:var(--display)}
+h1{font-weight:800;letter-spacing:-2px}
+h2{font-weight:700;letter-spacing:0}
+h3,h4,.step-t,.mc-name,.tl-title{letter-spacing:0}
+.subtitle{letter-spacing:0;font-weight:400}
+nav a{letter-spacing:0;font-size:13px}
+.tag-row{letter-spacing:0;font-size:11px}
+.chip,.badge,.stat-label,.sec-num,.step-n,.step-tool,.code-label,.mc-tactic,.tl-date,footer span{letter-spacing:0}
+p,.cell p,.cell li,.step-d,.mc-note,.mw-desc,.tl-desc,.rem-text{font-size:14px;line-height:1.65}
+.code-block pre{font-family:var(--mono);font-size:12px;line-height:1.6}
+table{max-width:100%}
+.evidence-table,.ioc-table{table-layout:fixed}
+.evidence-table th,.evidence-table td,.ioc-table th,.ioc-table td,a,footer span{overflow-wrap:anywhere}
+footer span{min-width:0}
+</style>
+</head>
+<body>
+<nav class="top-nav"><a href="https://opticlab.net/" target="_blank" rel="noreferrer">OPTIC</a><span>UNC6201 Internal-Access Threat Model</span><a href="#top">Back to Top</a></nav>
+<header id="top"><h1>UNC<em>6201</em></h1><div class="subtitle">Suspected PRC-Nexus Threat Model - Dell RecoverPoint Internal-Access Scenario</div><div class="chips"><span class="chip r">CVE-2026-22769 (CVSS 10.0 critical)</span><span class="chip a">INITIAL ACCESS CAVEATED</span><span class="chip g">3 OBSERVED / 2 MODELED / 4 GAPS</span><span class="chip b">RECOVERY-PLANE RISK</span><span class="chip">3 SOURCE ARTICLES</span><span class="chip">282 EXTRACTED ARTIFACTS</span></div></header>
+<div class="page">
+
+<section class="section" id="summary"><div class="sec-head"><span class="sec-num">01</span><h2>Executive Summary</h2></div>
+  <div class="grid-4">
+    <div class="cell"><div class="badge critical">Critical exposure</div><h3>RecoverPoint appliance risk</h3><p>The source pack centers on CVE-2026-22769 in Dell RecoverPoint for Virtual Machines. The practical model is recovery-plane compromise, not a generic web-app story.</p></div>
+    <div class="cell"><div class="badge high">Initial access caveated</div><h3>Do not overstate the path</h3><p>The RecoverPoint exploitation is strongly supported, but the initial access vector into victim environments was not confirmed.</p></div>
+    <div class="cell"><div class="badge info">Observed tooling</div><h3>SLAYSTYLE / BRICKSTORM / GRIMBOLT</h3><p>This model keeps tooling evidence separate from modeled movement. Tool deployment is evidence; path order is defensive reasoning.</p></div>
+    <div class="cell"><div class="badge medium">Source-backed</div><h3>Three Google reports</h3><p>The model uses the UNC6201 article, the BRICKSTORM campaign article, the GTIG AI Threat Tracker, and Dell advisory context as separate source layers.</p></div>
+  </div>
+  <div class="metric-strip"><div class="metric-stat"><div class="stat-label">Observed stages</div><div class="stat-val green">3</div><div class="stat-sub">direct display stages</div></div><div class="metric-stat"><div class="stat-label">Modeled stages</div><div class="stat-val amber">2</div><div class="stat-sub">threat-model steps</div></div><div class="metric-stat"><div class="stat-label">Evidence gaps</div><div class="stat-val red">4</div><div class="stat-sub">validation questions</div></div><div class="metric-stat"><div class="stat-label">Source articles</div><div class="stat-val">3</div><div class="stat-sub">GTIG/Mandiant sources</div></div><div class="metric-stat"><div class="stat-label">Extracted artifacts</div><div class="stat-val">282</div><div class="stat-sub">evidence objects</div></div></div>
+  <div class="detect-box"><h3>Defender takeaway</h3><p>UNC6201 activity has reportedly been present since at least mid-2024, so remediation should include retrospective hunting, not just patch deployment. The most distinctive operational risk is the recovery-plane pivot: RecoverPoint compromise can become a path toward VMware/vCenter control, including Ghost NIC-style virtual networking changes and iptables-based Single Packet Authorization.</p></div>
+</section>
+
+<section class="section" id="support"><div class="sec-head"><span class="sec-num">02</span><h2>Evidence Boundaries</h2></div>
+  <div class="grid-3">
+    <div class="cell"><h3>Observed evidence</h3><ul><li>T1078 Valid Accounts: Tomcat Manager administrative access.</li><li>T1059.004 Unix Shell: command execution on the appliance.</li><li>T1505.003 Web Shell: SLAYSTYLE via malicious WAR deployment.</li></ul></div>
+    <div class="cell"><h3>Modeled / caveated</h3><ul><li>T1190 remains caveated because initial access was not confirmed.</li><li>RecoverPoint-to-VMware pivot risk is modeled from appliance trust boundaries and source context.</li></ul></div>
+    <div class="cell"><h3>Validation gaps</h3><ul><li>Credential access, internal discovery, account manipulation, and data access remain tabletop questions unless backed by environment evidence.</li><li>AI/LLM abuse is actor-capability context, not part of the RecoverPoint attack path.</li></ul></div>
+  </div>
+  <div class="detect-box"><h3>Reading rule</h3><p>Green means quote-backed or directly extracted. Amber means modeled or caveated. Red means a useful validation gap. Treat the page as a defensive model, not a confirmed incident timeline.</p><p class="source-note">Source evidence anchors: <a href="https://cloud.google.com/blog/topics/threat-intelligence/unc6201-exploiting-dell-recoverpoint-zero-day" target="_blank" rel="noreferrer">Main UNC6201 article</a> | <a href="https://cloud.google.com/blog/topics/threat-intelligence/brickstorm-espionage-campaign" target="_blank" rel="noreferrer">BRICKSTORM espionage campaign</a> | <a href="https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools" target="_blank" rel="noreferrer">GTIG AI Threat Tracker</a></p></div>
+</section>
+
+<section class="section" id="asset-model"><div class="sec-head"><span class="sec-num">03</span><h2>Actor &amp; Asset Model</h2></div>
+  <div class="grid-3">
+    <div class="cell"><h3>Actor frame</h3><p>UNC6201 is treated as a suspected PRC-nexus threat cluster. Overlap with UNC5221 / Silk Typhoon remains a caveat, not identity equivalence.</p></div>
+    <div class="cell"><h3>Asset at risk</h3><p>RecoverPoint for Virtual Machines is modeled as a high-trust recovery and replication control surface adjacent to VMware, ESXi, vCenter, and restore workflows.</p></div>
+    <div class="cell"><h3>Trust boundary</h3><p>Appliance management access can cross into command execution, persistence, recovery-plane operations, and modeled internal pivot paths if segmentation and logging are weak.</p></div>
+  </div>
+</section>
+
+<section class="section" id="threat-model-detail"><div class="sec-head"><span class="sec-num">04</span><h2>Threat Model Detail</h2></div>
+  <div class="detect-box"><h3>Scope</h3><p>This is the working threat model for UNC6201 against RecoverPoint-backed VMware recovery environments. It separates confirmed source evidence from modeled internal-access risk and from environment-specific validation work.</p></div>
+  <table class="evidence-table"><thead><tr><th>Stage</th><th>Asset / surface</th><th>Entry point</th><th>Preconditions</th><th>Trust boundary crossed</th><th>Abuse case</th><th>Telemetry and controls</th></tr></thead><tbody>
+    <tr><td>Caveated initial access</td><td>Edge or internal route to RecoverPoint management</td><td>Unknown for the observed incidents; RecoverPoint exploitation is supported, first entry is not confirmed.</td><td>Actor can reach appliance management or already has internal access.</td><td>External or untrusted network into management plane.</td><td>Turn reachable appliance management into a path toward recovery infrastructure.</td><td>Restrict management access, review VPN and edge appliance auth, correlate first-seen RecoverPoint activity with perimeter logs.</td></tr>
+    <tr><td>Identity control</td><td>Apache Tomcat Manager on RecoverPoint</td><td>Hard-coded/default administrative credentials.</td><td>Management interface reachable; credentials are not rotated or mitigated.</td><td>Unauthenticated network actor into appliance administration.</td><td>Use legitimate manager access to blend with administrative deployment behavior.</td><td>Review Tomcat auth logs, rotate/remediate credentials, block manager access outside jump hosts.</td></tr>
+    <tr><td>Execution</td><td>RecoverPoint appliance operating system</td><td>WAR deployment and command execution through Tomcat Manager.</td><td>Manager credentials work; Tomcat can deploy applications with appliance privileges.</td><td>Application administration into root-level appliance execution.</td><td>Execute commands on a recovery-plane appliance that may have limited endpoint visibility.</td><td>Hunt for <code>/manager/text/deploy</code>, unexpected WAR/JSP files, process execution from Tomcat paths.</td></tr>
+    <tr><td>Persistence</td><td>Tomcat webapps, startup scripts, appliance filesystem</td><td>SLAYSTYLE web shell and modified legitimate scripts such as <code>convert_hosts.sh</code>.</td><td>Write access to Tomcat and boot-time script paths.</td><td>Runtime compromise into durable appliance foothold.</td><td>Survive reboots and maintain access while appearing close to normal appliance behavior.</td><td>File integrity monitoring, clean-baseline comparison, startup script review, Tomcat directory inventory.</td></tr>
+    <tr><td>Recovery-plane pivot</td><td>vCenter, ESXi, virtual networking, restore workflows</td><td>Modeled from RecoverPoint adjacency plus VMware/vCenter campaign context.</td><td>Appliance has network paths or credentials that touch VMware management functions.</td><td>Recovery appliance into virtualization control plane.</td><td>Reach high-value systems, inspect protected workloads, or support later credential and data access. The primary VMware concern is Ghost NIC-style activity: temporary network ports on existing ESXi VMs used to bridge toward internal or SaaS infrastructure and then disappear from normal inventory.</td><td>Monitor appliance-to-vCenter traffic, vNIC changes, VM clone/delete events, recovery-job audit trails, and short-lived virtual network adapter or port group changes.</td></tr>
+    <tr><td>Validation gaps</td><td>Identity stores, SaaS repositories, sensitive VMs, backup sets</td><td>Not directly proven for the RecoverPoint incident path in this page.</td><td>Requires victim-specific logs, EDR, identity telemetry, and VMware task history.</td><td>Management plane into enterprise identity and data planes.</td><td>Credential theft, account manipulation, internal discovery, and data access are plausible outcomes to test.</td><td>Use tabletop questions, retrospective hunts, privileged-account review, and restore-plane access audits.</td></tr>
+  </tbody></table>
+  <div class="grid-3" style="margin-top:20px">
+    <div class="cell"><h3>Primary assumptions</h3><ul><li>The appliance is reachable from a path the actor can use.</li><li>RecoverPoint has meaningful trust relationships with VMware and recovery operations.</li><li>Appliance telemetry may be weaker than workstation or server EDR coverage.</li></ul></div>
+    <div class="cell"><h3>Key abuse cases</h3><ul><li>Use Tomcat Manager as a legitimate-looking deployment surface.</li><li>Persist on a high-trust appliance with limited monitoring.</li><li>Create Ghost NIC-style temporary virtual network paths from ESXi VMs toward internal or SaaS infrastructure.</li><li>Pivot from recovery infrastructure toward vCenter, ESXi, privileged VMs, or SaaS document access.</li></ul></div>
+    <div class="cell"><h3>Decision points</h3><ul><li>Can the team prove whether RecoverPoint was reached from the internet, VPN, or internal host?</li><li>Can it distinguish normal recovery operations from attacker-driven VM or network changes?</li><li>Can it scope credentials exposed through appliance or VMware access?</li></ul></div>
+  </div>
+</section>
+
+<section class="section" id="attack-chain"><div class="sec-head"><span class="sec-num">05</span><h2>Attack Chain - Evidence-Aware Model</h2></div>
+  <div class="chain">
+    <div class="step"><div class="step-n">STEP 01</div><div class="badge high">caveated</div><div class="step-t">Initial Access</div><div class="step-d">RecoverPoint exploitation is supported, but the first entry into victim environments was not confirmed.</div><span class="step-tool">T1190</span></div>
+    <div class="step"><div class="step-n">STEP 02</div><div class="badge info">observed</div><div class="step-t">Identity Control</div><div class="step-d">Hard-coded/default Tomcat Manager credentials create an administrative access path.</div><span class="step-tool">T1078</span></div>
+    <div class="step"><div class="step-n">STEP 03</div><div class="badge info">observed</div><div class="step-t">Execution</div><div class="step-d">Tomcat Manager/WAR activity leads to command execution on the appliance.</div><span class="step-tool">T1059.004</span></div>
+    <div class="step"><div class="step-n">STEP 04</div><div class="badge info">observed</div><div class="step-t">Web Shell</div><div class="step-d">SLAYSTYLE web shell persistence is tied to malicious WAR deployment.</div><span class="step-tool">T1505.003</span></div>
+    <div class="step"><div class="step-n">STEP 05</div><div class="badge high">modeled</div><div class="step-t">Recovery-Plane Pivot</div><div class="step-d">VMware/vCenter movement remains modeled from trust boundaries and campaign context. Ghost NICs are the key pivot pattern to validate.</div><span class="step-tool">Ghost NIC / VMware risk</span></div>
+    <div class="step"><div class="step-n">STEP 06</div><div class="badge critical">gap</div><div class="step-t">Internal Outcomes</div><div class="step-d">Credential access, discovery, account changes, and data access need environment validation.</div><span class="step-tool">tabletop gaps</span></div>
+  </div>
+</section>
+
+<section class="section" id="technical"><div class="sec-head"><span class="sec-num">06</span><h2>Technical &amp; Forensic Anchors</h2></div>
+  <div class="grid-3">
+    <div class="cell"><h3>Tomcat Manager</h3><p>Review manager authentication, <code>/manager/text/deploy</code>, WAR/JSP deployment, Tomcat webapps/cache changes, and RecoverPoint audit logs.</p></div>
+    <div class="cell"><h3>Persistence artifacts</h3><p>Watch <code>convert_hosts.sh</code>, <code>rc.local</code>, Tomcat deployment paths, iptables state, and boot-time restoration behavior.</p></div>
+    <div class="cell"><h3>Malware families</h3><p>SLAYSTYLE is the web shell anchor. BRICKSTORM and GRIMBOLT are tooling and persistence context. Keep those separate from lateral-movement claims.</p></div>
+  </div>
+  <h3 style="margin-top:24px">Malware Behavior Notes</h3>
+  <table class="evidence-table"><thead><tr><th>Family</th><th>Role in this model</th><th>Behavioral notes</th><th>Evidence boundary</th></tr></thead><tbody>
+    <tr><td>SLAYSTYLE</td><td>Observed web-shell / backdoor context.</td><td>In the RecoverPoint case, SLAYSTYLE is tied to malicious WAR deployment through Tomcat Manager. In the BRICKSTORM campaign article, SLAYSTYLE is described as a JSP web shell that receives operating-system commands through HTTP requests and returns command output in the HTTP response.</td><td>Use as web-shell persistence and command-execution evidence; do not treat every vCenter SLAYSTYLE behavior as confirmed for UNC6201 unless incident logs support it.</td></tr>
+    <tr><td>BRICKSTORM</td><td>Observed tooling for UNC6201 and broader campaign context.</td><td>The campaign article frames BRICKSTORM as backdoor malware used to maintain persistent access. The UNC6201 article ties BRICKSTORM to RecoverPoint activity and later GRIMBOLT replacement context.</td><td>Supports persistence/tooling and campaign memory; not a lateral-movement technique by itself.</td></tr>
+    <tr><td>GRIMBOLT</td><td>Observed UNC6201 backdoor/tooling context.</td><td>The UNC6201 article identifies GRIMBOLT as a novel C# foothold backdoor compiled with native ahead-of-time (AOT) compilation and packed with UPX. Those choices improve performance on resource-constrained appliances and complicate static analysis by removing common .NET intermediate-language metadata. GRIMBOLT provides remote shell capability and uses the same command-and-control infrastructure as previously deployed BRICKSTORM payloads.</td><td>Use for C2, persistence, file-hash hunting, and static-analysis expectations. AOT/UPX means defenders should not rely only on conventional .NET metadata or unpacked binary patterns.</td></tr>
+  </tbody></table>
+  <h3 style="margin-top:24px">Activity Timeline</h3>
+  <table class="evidence-table"><thead><tr><th>Timeframe</th><th>What it means for defenders</th><th>Evidence status</th></tr></thead><tbody>
+    <tr><td>Mid-2024</td><td>Earliest identified exploitation activity for CVE-2026-22769. Hunt windows should reach back to this period where logs and backups allow.</td><td>Primary incident evidence.</td></tr>
+    <tr><td>September 2025</td><td>Mandiant observed older BRICKSTORM binaries replaced with GRIMBOLT. The reason is uncertain: planned tooling lifecycle and reaction to incident response are both possibilities.</td><td>Primary incident evidence with stated uncertainty.</td></tr>
+    <tr><td>February 2026 disclosure</td><td>Dell remediation, public reporting, and CISA KEV pressure shifted the issue from stealth campaign to urgent remediation item.</td><td>Primary incident plus external vendor/government context.</td></tr>
+  </tbody></table>
+</section>
+
+<section class="section" id="relationship-graph"><div class="sec-head"><span class="sec-num">07</span><h2>Relationship Graph</h2></div>
+  <div class="detect-box"><h3>What the graph shows</h3><p>This graph shows entity-to-entity links from source relationships, plus one modeled trust-boundary pivot. It is meant for analyst reasoning, not a timeline.</p></div>
+  <div class="rel-graph">
+    <div class="rel-node"><span class="badge info">primary incident</span><strong>UNC6201</strong><p>Suspected PRC-nexus cluster in the RecoverPoint article.</p></div><div class="rel-arrow">uses</div>
+    <div class="rel-node"><span class="badge info">relationship-backed</span><strong>SLAYSTYLE / BRICKSTORM / GRIMBOLT</strong><p>Explicit source relationships connect UNC6201 to these malware/tooling names.</p></div><div class="rel-arrow">targets / operates through</div>
+    <div class="rel-node"><span class="badge info">primary incident</span><strong>Dell RecoverPoint / Tomcat Manager</strong><p>CVE, hard-coded credentials, WAR deployment, and command execution evidence.</p></div><div class="rel-arrow">modeled pivot</div>
+    <div class="rel-node"><span class="badge high">modeled</span><strong>VMware / vCenter / Recovery Plane</strong><p>Trust-boundary risk shaped by RecoverPoint adjacency and BRICKSTORM campaign context.</p></div>
+  </div>
+  <table class="evidence-table"><thead><tr><th>Relationship</th><th>Source layer</th><th>Provenance</th><th>Confidence</th><th>Evidence note</th></tr></thead><tbody><tr><td>UNC5221 uses BRICKSTORM</td><td><span class="badge high">Campaign context</span></td><td>explicit</td><td>0.9</td><td><span class="quote">Google Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States....</span></td></tr><tr><td>UNC5221 uses SLAYSTYLE</td><td><span class="badge high">Campaign context</span></td><td>explicit</td><td>0.9</td><td><span class="quote">The threat actor has also created a web shell tracked by Mandiant as SLAYSTYLE on vCenter servers. SLAYSTYLE, tracked by MITRE as BEEFLUSH , is a JavaServer Pages (JSP) web shel...</span></td></tr><tr><td>UNC6201 uses SLAYSTYLE</td><td><span class="badge info">Primary incident evidence</span></td><td>explicit</td><td>0.9</td><td><span class="quote">Mandiant and Google Threat Intelligence Group (GTIG) have identified the zero-day exploitation of a high-risk vulnerability in Dell RecoverPoint for Virtual Machines , tracked a...</span></td></tr><tr><td>UNC6201 uses BRICKSTORM</td><td><span class="badge info">Primary incident evidence</span></td><td>explicit</td><td>0.9</td><td><span class="quote">Mandiant and Google Threat Intelligence Group (GTIG) have identified the zero-day exploitation of a high-risk vulnerability in Dell RecoverPoint for Virtual Machines , tracked a...</span></td></tr><tr><td>UNC6201 uses GRIMBOLT</td><td><span class="badge info">Primary incident evidence</span></td><td>explicit</td><td>0.9</td><td><span class="quote">Mandiant and Google Threat Intelligence Group (GTIG) have identified the zero-day exploitation of a high-risk vulnerability in Dell RecoverPoint for Virtual Machines , tracked a...</span></td></tr></tbody></table>
+</section>
+
+<section class="section" id="attack-validation"><div class="sec-head"><span class="sec-num">08</span><h2>ATT&amp;CK Validation Matrix</h2></div>
+  <div class="detect-box"><h3>How to read this matrix</h3><p>Technique rows are merged by ATT&amp;CK ID. Source layers show whether the support comes from the UNC6201 incident article, broader BRICKSTORM campaign context, or actor-capability context. T1190 stays caveated because the first entry vector was not confirmed.</p></div>
+  <table class="evidence-table"><thead><tr><th>ID</th><th>Technique</th><th>Status</th><th>Source layers</th><th>Validation note</th></tr></thead><tbody>
+    <tr><td>T1190</td><td>Exploit Public-Facing Application</td><td><span class="badge high">caveated</span></td><td>Primary incident evidence</td><td>RecoverPoint exploitation is strongly supported, but the initial access vector into victim environments was not confirmed.</td></tr>
+    <tr><td>T1059.004</td><td>Unix Shell</td><td><span class="badge high">modeled from evidence</span></td><td>Primary incident evidence, campaign context</td><td>Supported by shell command execution evidence around Tomcat/web-shell activity; exact use depends on the source layer.</td></tr>
+    <tr><td>T1090</td><td>Proxy</td><td><span class="badge high">modeled from evidence</span></td><td>Primary incident evidence, campaign context</td><td>Represents proxy, tunneling, or pivot behavior in the source material; validate with network and appliance logs before treating it as observed locally.</td></tr>
+    <tr><td>T1497.001</td><td>System Checks</td><td><span class="badge high">modeled from evidence</span></td><td>Primary incident evidence, campaign context</td><td>Mapped from virtualization and VM environment checks; useful for hunting but not a standalone incident sequence.</td></tr>
+    <tr><td>T1505.003</td><td>Web Shell</td><td><span class="badge high">modeled / quote-supported</span></td><td>Primary incident evidence, campaign context</td><td>SLAYSTYLE web-shell evidence supports this mapping; the RecoverPoint and vCenter contexts should remain separated.</td></tr>
+    <tr><td>T1071.001</td><td>Application Layer Protocol: Web Protocols</td><td><span class="badge info">observed in campaign context</span></td><td>Campaign context</td><td>Explicit ATT&amp;CK identifier appears in BRICKSTORM detection content. Use as campaign tradecraft context, not automatic UNC6201 incident proof.</td></tr>
+    <tr><td>T1587</td><td>Develop Capabilities</td><td><span class="badge medium">actor capability context</span></td><td>GTIG AI Threat Tracker</td><td>Threat-tracker context only: capability development is not promoted into the RecoverPoint attack path.</td></tr>
+  </tbody></table>
+</section>
+
+<section class="section" id="detection"><div class="sec-head"><span class="sec-num">09</span><h2>Detection &amp; Controls</h2></div>
+  <div class="grid-3">
+    <div class="cell"><h3>RecoverPoint / Tomcat</h3><ul><li>Hunt for <code>/manager</code> and <code>/manager/text/deploy</code>.</li><li>Review unexpected WAR/JSP deployments.</li><li>Baseline Tomcat users and audit logs.</li></ul></div>
+    <div class="cell"><h3>Persistence / C2</h3><ul><li>Monitor startup scripts and Tomcat deployment directories.</li><li>Review outbound WSS from appliances.</li><li>Audit iptables redirects, hidden ports, and SPA-like rules.</li></ul></div>
+    <div class="cell"><h3>VMware / recovery plane</h3><ul><li>Alert on unusual appliance-to-vCenter traffic.</li><li>Review transient vNIC and VM clone/delete activity.</li><li>Restrict RecoverPoint and vCenter management access to hardened admin paths.</li></ul></div>
+  </div>
+  <h3 style="margin-top:24px">Worked Detection Example</h3>
+  <table class="evidence-table"><thead><tr><th>Scenario</th><th>Logs needed</th><th>Analytic idea</th><th>Expected signal</th><th>False positives</th><th>Control that breaks it</th></tr></thead><tbody>
+    <tr><td>Tomcat Manager WAR deployment on a RecoverPoint appliance.</td><td>RecoverPoint audit log, Tomcat access logs, filesystem change data for webapps/cache paths, process execution if available.</td><td>Alert when <code>/manager/text/deploy</code> or manager authentication appears on RecoverPoint, especially with new WAR/JSP files or Tomcat-spawned shell execution.</td><td>Manager request followed by deployment artifact and command execution from Tomcat context.</td><td>Rare vendor maintenance or controlled recovery operation; validate change ticket and administrator source.</td><td>Network restrict Tomcat Manager, rotate/remediate hard-coded credentials, enforce jump-host-only appliance administration.</td></tr>
+  </tbody></table>
+  <h3 style="margin-top:24px">What Would Promote VMware Pivot From Modeled To Observed</h3>
+  <table class="evidence-table"><thead><tr><th>Question</th><th>Evidence that would confirm</th><th>Evidence that would weaken</th></tr></thead><tbody>
+    <tr><td>Did RecoverPoint reach vCenter or ESXi in an unusual way?</td><td>Firewall, proxy, NetFlow, or appliance logs showing unexpected RecoverPoint-to-vCenter/ESXi connections near the compromise window.</td><td>Only expected recovery-operation traffic from approved service accounts and scheduled jobs.</td></tr>
+    <tr><td>Were Ghost NICs used?</td><td>vSphere events showing short-lived virtual NIC or network-port creation on existing ESXi VMs, especially where the adapter is quickly removed after access to internal or SaaS infrastructure.</td><td>No unexplained network adapter additions, no temporary port group membership changes, and no related internal/SaaS access from the VM timeline.</td></tr>
+    <tr><td>Was virtual networking manipulated?</td><td>vSphere events showing short-lived vNIC additions, port group changes, or VM reconfiguration not tied to an approved change.</td><td>No unexplained <code>VmReconfiguredEvent</code> activity and no anomalous virtual switch membership changes.</td></tr>
+    <tr><td>Was VM cloning used for credential or data access?</td><td>vCenter task history showing clone, snapshot, export, or delete sequences involving sensitive VMs and high-privilege accounts.</td><td>Clone/delete activity aligns with documented backup, DR test, or administrative workflows.</td></tr>
+    <tr><td>Did credentials move from recovery plane to identity or SaaS access?</td><td>Privileged logons from appliance-adjacent hosts, unusual SSO activity, new OAuth/SaaS access, or access to document repositories after appliance compromise.</td><td>No identity events, SaaS audit entries, or privileged sessions connected to the appliance timeline.</td></tr>
+  </tbody></table>
+  <h3 style="margin-top:24px">Tabletop Validation Questions</h3>
+  <div class="grid-3">
+    <div class="cell"><h3>Scope</h3><ul><li>Which RecoverPoint appliances existed before patching?</li><li>Were any reachable from VPN, edge, or broad internal segments?</li><li>Can logs establish first suspicious manager access?</li></ul></div>
+    <div class="cell"><h3>Recovery plane</h3><ul><li>Which vCenter, ESXi, storage, and restore workflows trusted the appliance?</li><li>Were any VM clone, vNIC, or port group changes unexplained?</li><li>Were backup or recovery credentials reused elsewhere?</li></ul></div>
+    <div class="cell"><h3>Containment</h3><ul><li>Can management interfaces be isolated without breaking recovery objectives?</li><li>Can privileged credentials be rotated safely?</li><li>What evidence would prove the actor did or did not reach data repositories?</li></ul></div>
+  </div>
+</section>
+
+<section class="section" id="evidence"><div class="sec-head"><span class="sec-num">10</span><h2>Source Evidence Ledger</h2></div>
+  <div class="detect-box"><h3>Deduped evidence view</h3><p>Repeated claims are grouped here so the same source quote is not shown over and over for every stage label or malware name.</p></div>
+  <table class="evidence-table"><thead><tr><th>Claim group</th><th>Source layer</th><th>Confidence</th><th>Quote anchor</th><th>How to use it</th></tr></thead><tbody><tr><td>RecoverPoint CVE and caveat</td><td><span class="badge info">Primary incident evidence</span></td><td>high</td><td><span class="quote">Mandiant and Google Threat Intelligence Group (GTIG) have identified the zero-day exploitation of a high-risk vulnerability in Dell RecoverPoint for Virtual Machines , tracked as CVE-2026-22769 , with a CVSSv3.1 score of 10.0 . Analysis of incident response...</span></td><td>Use as the incident anchor; keep initial access caveated.</td></tr><tr><td>Tomcat Manager access path</td><td><span class="badge info">Primary incident evidence</span></td><td>high</td><td><span class="quote">Mandiant discovered CVE-2026-22769 while investigating multiple Dell RecoverPoint for Virtual Machines within a victimâ€™s environment that had active C2 associated with BRICKSTORM and GRIMBOLT backdoors. During analysis of the appliances, analysts identified...</span></td><td>Supports appliance-management access and WAR deployment review.</td></tr><tr><td>BRICKSTORM campaign memory</td><td><span class="badge high">Campaign context</span></td><td>high</td><td><span class="quote">Google Threat Intelligence Group (GTIG) is tracking BRICKSTORM malware activity, which is being used to maintain persistent access to victim organizations in the United States. Since March 2025, Mandiant Consulting has responded to intrusions across a range...</span></td><td>Use as campaign/tradecraft context, not proof of every UNC6201 step.</td></tr><tr><td>AI capability context</td><td><span class="badge medium">Actor capability context</span></td><td>context_only</td><td><span class="quote">This marks a new operational phase of AI abuse, involving tools that dynamically alter behavior mid-execution.</span></td><td>Use as actor-capability context only, outside the RecoverPoint attack path.</td></tr></tbody></table>
+  <div class="detect-box"><h3>AI tracker provenance</h3><p>The GTIG AI Threat Tracker is included only because it was part of the three-article Google source set used to enrich actor-capability context. It does not prove AI use in the RecoverPoint intrusion path. Treat it as background on adversary capability development unless a future incident source directly connects those behaviors to UNC6201 activity in this campaign.</p></div>
+</section>
+
+<section class="section" id="vendor-context"><div class="sec-head"><span class="sec-num">11</span><h2>External Vendor Context</h2></div>
+  <div class="detect-box"><h3>Why this section is separate</h3><p>Dell guidance is operationally important for remediation and scoping. It is labeled as external vendor context so readers do not confuse vendor remediation facts with the Google incident and campaign evidence.</p></div>
+  <div class="grid-3">
+    <div class="cell"><div class="badge critical">Dell advisory</div><h3>DSA-2026-079</h3><p>Dell rates the RecoverPoint for Virtual Machines issue as critical. The advisory describes CVE-2026-22769 as a hard-coded credential vulnerability that can allow unauthenticated access to the underlying operating system and root-level persistence.</p></div>
+    <div class="cell"><div class="badge high">Affected versions</div><h3>Prior to 6.0.3.1 HF1</h3><p>Dell lists RecoverPoint for Virtual Machines 6.0 through 6.0 SP3 P1 as affected prior to 6.0.3.1 HF1. Dell also notes 5.3 SP4 P1 and earlier 5.3 releases require upgrade/remediation steps.</p></div>
+    <div class="cell"><div class="badge info">Deployment boundary</div><h3>Not public-facing</h3><p>Dell recommends deploying RecoverPoint for Virtual Machines only within trusted, access-controlled internal networks protected by firewalls and segmentation. This reinforces the page's recovery-plane threat model.</p></div>
+    <div class="cell"><div class="badge critical">CISA KEV</div><h3>Known exploited</h3><p>CISA lists CVE-2026-22769 in the Known Exploited Vulnerabilities catalog. Treat that as a remediation urgency signal and a reason to hunt retrospectively, not just apply the vendor fix.</p></div>
+    <div class="cell"><div class="badge high">Targeting scope</div><h3>North America</h3><p>The Hacker News reported that Google said the activity targeted organizations across North America. This is external reporting context, not a replacement for internal exposure scoping.</p></div>
+  </div>
+  <h3 style="margin-top:24px">Vendor Remediation View</h3>
+  <table class="evidence-table"><thead><tr><th>Vendor item</th><th>Dell context</th><th>How this changes the model</th></tr></thead><tbody>
+    <tr><td>Primary fix path</td><td>Upgrade RecoverPoint for Virtual Machines to 6.0.3.1 HF1, or apply Dell's remediation script where upgrade is not immediately possible.</td><td>Adds an operational response layer without changing the evidence status of the attack path.</td></tr>
+    <tr><td>Legacy 5.3 path</td><td>Dell states 5.3 SP4 P1 should migrate to 6.0 SP3 and then upgrade to 6.0.3.1 HF1, or follow the remediation script path.</td><td>Useful for environment scoping and exposure review.</td></tr>
+    <tr><td>Product boundary</td><td>Dell says RecoverPoint Classic physical and virtual appliances are not affected by this CVE.</td><td>Prevents over-scoping the model to unrelated RecoverPoint product lines.</td></tr>
+    <tr><td>Exposure guidance</td><td>RecoverPoint for Virtual Machines is not intended for untrusted or public networks.</td><td>Supports the control recommendation to segment appliance management and recovery-plane traffic.</td></tr>
+    <tr><td>CISA KEV status</td><td>CVE-2026-22769 is listed in the CISA Known Exploited Vulnerabilities catalog.</td><td>Prioritize patching, compensating controls, and retrospective hunting.</td></tr>
+    <tr><td>External targeting note</td><td>The Hacker News reported that Google said the activity targeted organizations across North America.</td><td>Useful for regional awareness; still validate local exposure and telemetry.</td></tr>
+  </tbody></table>
+  <p class="source-note">External sources: <a href="https://www.dell.com/support/kbdoc/en-us/000426773/dsa-2026-079" target="_blank" rel="noreferrer">Dell DSA-2026-079</a> | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-22769" target="_blank" rel="noreferrer">NVD/CISA KEV reference for CVE-2026-22769</a> | <a href="https://thehackernews.com/2026/02/dell-recoverpoint-for-vms-zero-day-cve.html" target="_blank" rel="noreferrer">The Hacker News targeting report</a>. Dell, CISA, and media context are not counted in the three Google article totals.</p>
+</section>
+
+<section class="section" id="appendix"><div class="sec-head"><span class="sec-num">12</span><h2>Technical Appendix</h2></div>
+  <div class="detect-box"><h3>Purpose</h3><p>This appendix keeps the heavier UNC6201 material: source roles, selected artifacts, long hashes, and YARA names. It preserves rigor without slowing down the main threat model.</p></div>
+  <h3 style="margin-top:24px">Cross-Report Memory Map</h3>
+  <table class="evidence-table"><thead><tr><th>Google source</th><th>Contributes</th><th>Use in this model</th><th>Confidence effect</th></tr></thead><tbody>
+    <tr><td><span class="badge info">Primary incident evidence</span><br><a href="https://cloud.google.com/blog/topics/threat-intelligence/unc6201-exploiting-dell-recoverpoint-zero-day" target="_blank" rel="noreferrer">UNC6201 RecoverPoint article</a></td><td>RecoverPoint exploitation, CVE-2026-22769, Tomcat Manager/WAR deployment, SLAYSTYLE, BRICKSTORM/GRIMBOLT, caveats, IOCs, and YARA names.</td><td>Primary source for the UNC6201 RecoverPoint threat model and for the caveat that initial access was not confirmed.</td><td>Raises incident confidence with direct evidence, while qualifying initial access and path ordering.</td></tr>
+    <tr><td><span class="badge high">Campaign context</span><br><a href="https://cloud.google.com/blog/topics/threat-intelligence/brickstorm-espionage-campaign" target="_blank" rel="noreferrer">BRICKSTORM article</a></td><td>BRICKSTORM and SLAYSTYLE campaign context, VMware/vCenter tradecraft, VM cloning, long-dwell persistence, and hunting logic.</td><td>Enriches the recovery-plane and VMware pivot model without turning every campaign behavior into a confirmed UNC6201 RecoverPoint step.</td><td>Raises tradecraft confidence but remains contextual for this incident path.</td></tr>
+    <tr><td><span class="badge medium">Actor capability context</span><br><a href="https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools" target="_blank" rel="noreferrer">GTIG AI Threat Tracker</a></td><td>AI/LLM abuse and capability-development context from the broader GTIG tracker.</td><td>Explains a possible actor capability layer only; it is not part of the RecoverPoint attack chain in this brief.</td><td>Context only; does not raise confidence for RecoverPoint exploitation, VMware pivoting, or data access.</td></tr>
+  </tbody></table>
+  <h3 style="margin-top:24px">Network IOC Coverage</h3>
+  <div class="detect-box"><p>The UNC6201 source data used here provides one public network IOC, <code>149.248.11.71</code>, and one C2 endpoint, <code>wss://149.248.11.71/rest/apisession</code>. The BRICKSTORM campaign material also includes local/private examples such as <code>10.0.0.255</code> and vCenter access URLs. No additional public C2 domains are shown in this page. Treat the absence of domains as a source limitation, not proof that no other infrastructure existed.</p></div>
+  <h3 style="margin-top:24px">Selected Artifacts</h3>
+  <table class="ioc-table"><thead><tr><th>Type</th><th>Value</th><th>Source layer</th></tr></thead><tbody><tr><td>cve</td><td>CVE-2026-22769</td><td>Primary incident evidence</td></tr><tr><td>file_path</td><td>/home/kos/tomcat9/tomcat-users.xml</td><td>Primary incident evidence</td></tr><tr><td>file_path</td><td>/manager/text/deploy</td><td>Primary incident evidence</td></tr><tr><td>port</td><td>443</td><td>Primary incident evidence</td></tr><tr><td>port</td><td>10443</td><td>Primary incident evidence</td></tr><tr><td>file_path</td><td>/home/kos/auditlog/fapi_cl_audit_log.log</td><td>Primary incident evidence</td></tr><tr><td>file_path</td><td>/var/lib/tomcat9</td><td>Primary incident evidence</td></tr><tr><td>file_path</td><td>/var/cache/tomcat9/Catalina</td><td>Primary incident evidence</td></tr><tr><td>file_path</td><td>/var/log/tomcat9</td><td>Primary incident evidence</td></tr><tr><td>file_path</td><td>/home/kos/kbox/src/installation/distribution/convert_hosts.sh</td><td>Primary incident evidence</td></tr><tr><td>ioc_ip</td><td>149.248.11.71</td><td>Primary incident evidence</td></tr><tr><td>file_path</td><td>/bin/sh</td><td>Primary incident evidence</td></tr></tbody></table>
+  <h3 style="margin-top:24px">File Hash Reference</h3>
+  <table class="ioc-table"><thead><tr><th>Type</th><th>SHA256</th><th>Source layer</th></tr></thead><tbody><tr><td>ioc_hash_sha256</td><td>24a11a26a2586f4fba7bfe89df2e21a0809ad85069e442da98c37c4add369a0c</td><td>Primary incident evidence</td></tr><tr><td>ioc_hash_sha256</td><td>dfb37247d12351ef9708cb6631ce2d7017897503657c6b882a711c0da8a9a591</td><td>Primary incident evidence</td></tr><tr><td>ioc_hash_sha256</td><td>92fb4ad6dee9362d0596fda7bbcfe1ba353f812ea801d1870e37bfc6376e624a</td><td>Primary incident evidence</td></tr><tr><td>ioc_hash_sha256</td><td>aa688682d44f0c6b0ed7f30b981a609100107f2d414a3a6e5808671b112d1878</td><td>Primary incident evidence</td></tr><tr><td>ioc_hash_sha256</td><td>2388ed7aee0b6b392778e8f9e98871c06499f476c9e7eae6ca0916f827fe65df</td><td>Primary incident evidence</td></tr><tr><td>ioc_hash_sha256</td><td>320a0b5d4900697e125cebb5ff03dee7368f8f087db1c1570b0b62f5a986d759</td><td>Primary incident evidence</td></tr><tr><td>ioc_hash_sha256</td><td>90b760ed1d0dcb3ef0f2b6d6195c9d852bcb65eca293578982a8c4b64f51b035</td><td>Primary incident evidence</td></tr><tr><td>ioc_hash_sha256</td><td>45313a6745803a7f57ff35f5397fdf117eaec008a76417e6e2ac8a6280f7d830</td><td>Primary incident evidence</td></tr></tbody></table>
+  <h3 style="margin-top:24px">YARA Rule Names</h3>
+  <table class="ioc-table"><thead><tr><th>Rule</th><th>Source layer</th></tr></thead><tbody><tr><td>G_APT_BackdoorToehold_GRIMBOLT_1</td><td>Primary incident evidence</td></tr><tr><td>G_Hunting_BackdoorToehold_GRIMBOLT_1</td><td>Primary incident evidence</td></tr><tr><td>G_APT_BackdoorWebshell_SLAYSTYLE_4</td><td>Primary incident evidence</td></tr><tr><td>G_APT_Backdoor_BRICKSTORM_3</td><td>Campaign context</td></tr><tr><td>G_Backdoor_BRICKSTORM_2</td><td>Campaign context</td></tr><tr><td>G_APT_Backdoor_BRICKSTORM_1</td><td>Campaign context</td></tr><tr><td>G_APT_Backdoor_BRICKSTORM_2</td><td>Campaign context</td></tr><tr><td>G_APT_BackdoorWebshell_SLAYSTYLE_1</td><td>Campaign context</td></tr><tr><td>G_APT_BackdoorWebshell_SLAYSTYLE_2</td><td>Campaign context</td></tr><tr><td>G_Backdoor_BRICKSTEAL_1</td><td>Campaign context</td></tr><tr><td>G_Dropper_BRICKSTEAL_1</td><td>Campaign context</td></tr><tr><td>G_Dropper_BRICKSTEAL_2</td><td>Campaign context</td></tr></tbody></table>
+</section>
+
+</div><footer><span>UNC6201 THREAT MODEL // DEFENSIVE TRAINING</span><span>Sources: <a href="https://cloud.google.com/blog/topics/threat-intelligence/unc6201-exploiting-dell-recoverpoint-zero-day" target="_blank" rel="noreferrer">Main UNC6201 article</a> | <a href="https://cloud.google.com/blog/topics/threat-intelligence/brickstorm-espionage-campaign" target="_blank" rel="noreferrer">BRICKSTORM espionage campaign</a> | <a href="https://cloud.google.com/blog/topics/threat-intelligence/threat-actor-usage-of-ai-tools" target="_blank" rel="noreferrer">GTIG AI Threat Tracker</a> | <a href="https://www.dell.com/support/kbdoc/en-us/000426773/dsa-2026-079" target="_blank" rel="noreferrer">Dell DSA-2026-079</a></span><span>Updated: May 2026 | UNC6201 threat model version</span><span>Generated with AI. OPTIC helps reduce hallucinations by keeping claims tied to cited source material.</span></footer></body></html>
+
+
+
+
+
+
+
