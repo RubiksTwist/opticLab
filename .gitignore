@@ -1,2 +1,5 @@
 release-assets/*.dump
+release-assets/*-bundle.zip
+carousel-export/*-review*.png
+carousel-export/slide-*.png
 release-assets/*.sql.gz
